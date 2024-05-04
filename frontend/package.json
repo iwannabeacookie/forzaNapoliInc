@@ -9,7 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.21"
+    "@nanostores/vue": "^0.10.0",
+    "nanostores": "^0.10.3",
+    "oh-vue-icons": "^1.0.0-rc3",
+    "vue": "^3.4.21",
+    "vuetify": "^3.6.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
