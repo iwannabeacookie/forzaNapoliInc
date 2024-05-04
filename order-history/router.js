@@ -1,3 +1,5 @@
+const express = require('express')
+const router = express.Router()
 
 /* 
  * Order collection entry:
@@ -7,7 +9,7 @@
  * status: "Delivered" (Delivered, In delivery, Submitted)
 */
 
-app.get('/history', (req, res) => {
+router.get('/history', (req, res) => {
   if (/* not req.body.jwt.is_valid() */true) {
     res.status(401).send('ERROR: UNAUTHORIZED')
     return

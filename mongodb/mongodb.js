@@ -10,13 +10,11 @@ const mClient = new MongoClient(uri, {
 })
 
 async function connect() {
-	await mClient.connect()
-	mClient.db('UserData').command({ ping: 1 })
-	.then(() => console.log("Pinged your deployment. You successfully connected to MongoDB!"), () => console.log("Connection do database failed!"))
-
-	let db = mClient.db("UserData")
-
-	orders = db.collection("Orders")
+  await mClient.connect()
+  mClient.db('UserData').command({ ping: 1 })
+  .then(() => console.log("Pinged your deployment. You successfully connected to MongoDB!"), () => console.log("Connection to database failed!"))
 }
 
-module.exports(connect)
+connect()
+
+return mClient
