@@ -1,10 +1,14 @@
+require('dotenv').config()
 const mongoose = require("mongoose");
-//const connect we need to create a database
+mongoose.connect(process.env.MONGODB_URI).then(() =>{
+    console.log("mongodb connected");
+}).catch((err) => {
+    console.log(err);
+})
 
 //User schema
-//we need to fill it up with all the parameters
 const Userschema = new mongoose.Schema({
-    nome: {
+    name: {
         type: String,
         required: true
     },
@@ -16,7 +20,6 @@ const Userschema = new mongoose.Schema({
 
 //User model
 //is used to connect a database to a determinated schema
-//insted of user we have to put the collection name
 const usercollection = new mongoose.model("user", Userschema);
 
 //export to allow everyone index.js to use it

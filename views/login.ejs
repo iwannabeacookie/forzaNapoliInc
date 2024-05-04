@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Log in</title>
 </head>
 <body>
-    <form action="/signup" method="post">
+    <form action="/login" method="post">
         <label for="username">Name</label>
         <input type="text" name="username" id="username" required autocomplete="off">
         <label for="pass">Password</label>
         <input type="password" name="password" id="pass" required>
-        <button type="submit">Sign Up</button>
+        <button type="submit">Login</button>
     </form>
+    <p>Don't have an account?<a href="/signup">Signup</a></p>
 </body>
 </html>
