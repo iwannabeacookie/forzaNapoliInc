@@ -1,4 +1,5 @@
 import { atom } from "nanostores";
+import { apiHelper } from "./api";
 
 export const $items = atom([
   {
@@ -29,3 +30,7 @@ export const $items = atom([
     available: true,
   },
 ]);
+
+export default async function updateCart(new_cart) {
+  return(await apiHelper("/cart/update", {"new_cart": new_cart, "user_id": 44})).json()
+}
