@@ -14,3 +14,9 @@ export async function updateCart(newCart, customer_id) {
     usersCollection.updateOne({ _id: customer_id }, { $set: { cart: newCart } })
     return usersCollection.findOne({ _id: customer_id })
 }
+
+export async function getCart(customer_id) {
+    customer_id = new ObjectId(customer_id)
+    const usersCollection = await mClient.db("Data").collection("Users")
+    return await usersCollection.findOne({ _id: customer_id })
+}

@@ -1,7 +1,8 @@
 <script setup>
-import { ref, defineProps, watch, computed } from "vue";
+import { ref, watch, computed } from "vue";
 import { $items } from "./cart";
 import { useStore } from "@nanostores/vue";
+import { apiHelperPOST } from "./api";
 
 const props = defineProps({
   id: String,
@@ -45,8 +46,8 @@ watch(addItem, (val) => {
         quantity: tmpItems[itemIndex].quantity + 1,
       };
       tmpItems.splice(itemIndex, 1, updatedItem);
-      $items.set(tmpItems);
     }
+    updateCart(tmpItems)
     addItem.value = false;
   }
 });
@@ -65,7 +66,7 @@ watch(removeItem, (val) => {
       if (updatedItem.quantity <= 0) {
         deleteItem.value = true;
       } else {
-        $items.set(tmpItems);
+        updateCart(tmpItems)
       }
     }
     removeItem.value = false;
@@ -75,12 +76,18 @@ watch(removeItem, (val) => {
 watch(deleteItem, (val) => {
   if (val) {
     const tmpItems = items.value.filter((item) => item.id !== props.id);
-    $items.set(tmpItems);
+    updateCart(tmpItems)
     deleteItem.value = false;
   }
 });
-</script>
 
+async function updateCart(new_cart) {
+                const {updated_cart, ...respose} = await apiHelperPOST("/cart/update", {"new_cart": new_cart, "user_id": "663751edeb50fc9f32cfd751"})
+                console.info("New Cart:", updated_cart.cart)
+                $items.set(updated_cart.cart)
+        }
+</script>
+ 
 <template>
   <v-card :title="itemName">
     <img :src="imageUrl" />
