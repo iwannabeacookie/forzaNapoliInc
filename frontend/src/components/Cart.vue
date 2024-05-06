@@ -1,23 +1,13 @@
 <script setup>
-import { ref, watch } from "vue";
 import CartModal from "./cart/CartModal.vue"
-import {$items} from "./cart/cart"
-import {useStore} from "@nanostores/vue"
-const viewCart = ref(false);
-const items = useStore($items)
-
-watch(viewCart, (newVal, oldVal) => {
-  if (!newVal) {
-    return;
-  }
-  // Actually viewing cart
-  console.info("Viewing Cart")
-});
+import { $viewCart } from "./cart/cart";
+import { useStore } from "@nanostores/vue";
+const viewCart = useStore($viewCart);
 </script>
 
 <template>
   <div class="Cart">
-      <div class="cart-icon" @click="viewCart = !viewCart">
+      <div class="cart-icon" @click="$viewCart.set(true)">
         <svg
           version="1.1"
           id="Layer_1"
@@ -63,16 +53,3 @@ svg {
   height: 50px;
 }
 </style>
-
-<script>
-export default {
-  methods: {
-    updateCart() {
-      if (viewCart.value === true) {
-        console.info("Viewing cart");
-      }
-    },
-  }
-};
-</script>
-

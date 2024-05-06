@@ -2,12 +2,11 @@
 import { ref } from "vue";
 import CartItem from "./CartItem.vue";
 import {useStore} from "@nanostores/vue"
-import {$items} from "./cart"
+import {$items, $viewCart} from "./cart"
 
 const itemsParent = useStore($items)
 const items = ref(itemsParent)
-
-const dialog = ref(true);
+const viewCart = useStore($viewCart)
 </script>
 
 
@@ -24,7 +23,7 @@ const dialog = ref(true);
 
 <template>
   <div class="text-center pa-4">
-    <v-dialog v-model="dialog" width="auto">
+    <v-dialog v-model="viewCart" width="auto">
       <v-card max-width="100%" prepend-icon="mdi-update" title="Cart">
         <div class="cartContent">
           <cart-item
@@ -39,18 +38,9 @@ const dialog = ref(true);
           />
         </div>
         <template v-slot:actions>
-          <v-btn class="ms-auto" text="Close" @click="dialog = false"></v-btn>
+          <v-btn class="ms-auto" text="Close" @click="$viewCart.set(!viewCart)"></v-btn>
         </template>
       </v-card>
     </v-dialog>
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      dialog: false,
-    };
-  },
-};
-</script>

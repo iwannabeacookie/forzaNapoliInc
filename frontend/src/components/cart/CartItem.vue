@@ -1,6 +1,6 @@
 <script setup>
 import { ref, watch, computed } from "vue";
-import { $items } from "./cart";
+import { $items, findItemIndexById } from "./cart";
 import { useStore } from "@nanostores/vue";
 import { apiHelperPOST } from "./api";
 
@@ -12,15 +12,6 @@ const props = defineProps({
   imageUrl: String,
   available: Boolean,
 });
-
-function findItemIndexById(originalArr, id) {
-  for (let i = 0; i < originalArr.length; i++) {
-    if (originalArr[i].id == id) {
-      return i;
-    }
-  }
-  return -1;
-}
 
 const items = useStore($items);
 const removeItem = ref(false);
