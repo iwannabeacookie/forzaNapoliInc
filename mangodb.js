@@ -6,6 +6,8 @@ mongoose.connect(process.env.MONGODB_URI).then(() =>{
     console.log(err);
 })
 
+mongoose.connection.useDb('foza_napoli');
+
 //User schema
 const Userschema = new mongoose.Schema({
     name: {
@@ -13,6 +15,10 @@ const Userschema = new mongoose.Schema({
         required: true
     },
     password: {
+        type: String,
+        required: true
+    },
+    salt: {
         type: String,
         required: true
     }

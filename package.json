@@ -9,11 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "connect-mongodb-session": "^2.2.0",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
+    "express-session": "^1.18.0",
     "mongodb": "^6.5.0",
     "mongoose": "^8.3.3",
+    "morgan": "^1.10.0",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0"
   }
