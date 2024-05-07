@@ -1,6 +1,4 @@
 <script type='module'>
-
-
 export default {
     name: 'Item',
     props: {

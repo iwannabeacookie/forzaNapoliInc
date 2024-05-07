@@ -19,10 +19,9 @@ export default {
     <div>
         <ul>
             <li v-for="list in items" :key="list.id">
-                <!-- <div v-for="item in list" :key='item.id'> -->
-                <!--     {{ item }} -->
-                <!-- </div>	 -->
-                <Item :label="list.label"/>
+                <div v-for="(article, quantity) in list" :key='article.id'>
+                    <Item :label='article' />
+                </div>	
             </li>
         </ul>
     </div>

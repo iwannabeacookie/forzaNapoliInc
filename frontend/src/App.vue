@@ -1,5 +1,6 @@
 <script type='module'>
-import ItemList from './components/product-list.vue'
+import ItemList from './components/product-list/product-list.vue'
+import { getHistory } from './components/product-list/scripts/getHistory.js'
 
 export default {
     name: 'App',
@@ -8,11 +9,7 @@ export default {
     },
     data() {
         return {
-            items: [
-                { label: 'Item 1' },
-                { label: 'Item 2' },
-                { label: 'Item 3' }
-            ]
+            items: getHistory('pohuy')
         }
     }
 }
