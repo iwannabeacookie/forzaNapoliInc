@@ -1,6 +1,6 @@
 require('dotenv').config()
 const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGODB_URI).then(() =>{
+mongoose.connect(process.env.MONGODB_URI).then(() => {
     console.log("mongodb connected");
 }).catch((err) => {
     console.log(err);
@@ -14,6 +14,15 @@ const Userschema = new mongoose.Schema({
         type: String,
         required: true
     },
+    surname: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
     password: {
         type: String,
         required: true
@@ -21,8 +30,30 @@ const Userschema = new mongoose.Schema({
     salt: {
         type: String,
         required: true
+    },
+    VIP: {
+        type: Boolean,
+        required: true
+    },
+    newsletter: {
+        type: Boolean,
+        required: true
+    },
+    Cart: {
+        type: [],
+        required: true
+    },
+    Orders: {
+        type: [],
+        required: true
     }
-})
+});
+
+mongoose.set('toJSON', {
+    virtuals: true,
+    versionKey: false,
+    transform: function (doc, ret) { delete ret._id }
+});
 
 //User model
 //is used to connect a database to a determinated schema

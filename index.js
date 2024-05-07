@@ -36,7 +36,7 @@ app.use(
 );
 
 passport.use(new LocalStrategy(async function verify(username, password, cb) {
-  const auth = await usercollection.findOne({ name: username });
+  const auth = await usercollection.findOne({ email: username });
   if (auth) {
     crypto.pbkdf2(password, auth.salt, 310000, 32, 'sha256', (err, hashedPassword) => {
       if (err) { console.log(err); return cb(err); }
@@ -50,7 +50,7 @@ passport.use(new LocalStrategy(async function verify(username, password, cb) {
 
 passport.serializeUser((user, cb) => {
   process.nextTick(() => {
-    cb(null, { id: user.id, username: user.name });
+    cb(null, { id: user.id, email: user.email });
   });
 });
 
@@ -116,16 +116,22 @@ app.post('/signup', async (req, res, next) => {
       if (err) { return next(err); }
 
       const data = {
-        name: req.body.username,
+        name: req.body.name,
+        surname: req.body.surname,
+        email: req.body.email,
         password: hashedPassword.toString("base64"),
-        salt: salt
+        salt: salt,
+        VIP: false,
+        newsletter: false,
+        Cart: [],
+        Orders: []
       }
 
       const userdata = await usercollection.insertMany(data);
 
       var user = {
-        id: userdata._id,
-        name: userdata.name
+        id: userdata[0]._id,
+        email: userdata[0].email
       };
 
       req.login(user, (err) => {
@@ -136,16 +142,26 @@ app.post('/signup', async (req, res, next) => {
   }
 });
 
-app.get('/logout', checkAuth,(req, res) => {
+app.get('/logout', checkAuth, (req, res) => {
   res.render('logout');
 })
 
 app.post('/logout', (req, res, next) => {
-  req.logOut();
-  req.session.destroy(()=>{
-    req.session = null;
+  req.logout((err) => {
+    if (err) { return next(err); }
     res.redirect('/');
   });
+});
+
+app.get('/signout', checkAuth, (req, res) => {
+  res.render('signout');
+})
+
+app.post('/signout', checkAuth,async (req, res, next) => {
+  const id = req.session.passport.user.id;
+  req.logout((err) => {});
+  await usercollection.findOneAndDelete({ _id: id });
+  res.redirect('/');
 });
 
 app.listen(port, () => {
