@@ -9,8 +9,17 @@ export default {
     },
     data() {
         return {
-            items: getHistory('pohuy')
+            items: []
         }
+    },
+    async created() {
+        getHistory('pohuy')
+            .then((orders) => {
+                this.items = orders
+            })
+            .catch((error) => {
+                console.log('Blyat! Error fetching history:', error)
+            })
     }
 }
 </script>

@@ -2,8 +2,8 @@
 export default {
     name: 'Item',
     props: {
-        label: {
-            type: String,
+        data: {
+            type: Object,
             required: true
         }
     }
@@ -12,6 +12,6 @@ export default {
 
 <template>
     <div>
-        <label> {{ label }} </label>
+        <label> {{ data.article }}: {{ data.quantity }} штук ёпта ...... {{ data.quantity * data.price }}₽ </label>
     </div>
 </template>

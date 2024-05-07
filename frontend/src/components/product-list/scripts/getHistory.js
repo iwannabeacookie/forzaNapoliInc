@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export async function getHistory(body) {
+export function getHistory(body) {
   console.info("[API] GET Request, body:", body);
   const API_URL = "http://localhost:3000";
-  axios
+  return axios
     .get(`${API_URL}/api/user/history`, body)
     .then((response) => {
       console.info("[API] Response:", response.data.orders);
