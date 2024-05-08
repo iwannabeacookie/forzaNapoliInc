@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
+const flash = require("connect-flash");
 const LocalStrategy = require("passport-local");
 const GoogleStrategy = require("passport-google-oidc");
 const logger = require("morgan");
@@ -22,6 +23,7 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
 })
 
 app.set('view engine', 'ejs');
+app.use(express.static(__dirname + '/public'));
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: false }));
@@ -51,7 +53,7 @@ passport.use(new LocalStrategy(async function verify(username, password, cb) {
     crypto.pbkdf2(password, auth.salt, 310000, 32, 'sha256', (err, hashedPassword) => {
       if (err) { console.log(err); return cb(err); }
       if (auth.password != hashedPassword.toString("base64")) {
-        return cb(null, false, { message: "Incorrect password." });
+        return cb(null, false, { message: "Incorrect password" });
       }
       var auuser = {
         issuer: null,
@@ -60,6 +62,8 @@ passport.use(new LocalStrategy(async function verify(username, password, cb) {
       };
       return cb(null, auuser);
     });
+  } else {
+    return cb(null, false, { message: "Incorrect User" });
   }
 }));
 
@@ -143,23 +147,26 @@ function checkUnAuth(req, res, next) {
   next()
 }
 
+app.use(flash());
+
 app.get('/', checkUnAuth, (req, res) => {
   res.render('home');
 });
 
 app.get('/login', (req, res) => {
-  res.render('login');
+  res.render('login', {message: req.flash("error")});
 });
 
 app.get('/signup', (req, res) => {
-  res.render('signup');
+  res.render('signup', {message: null});
 });
 
 app.get('/login/google', passport.authenticate('google'));
 
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/test',
-  failureRedirect: '/login'
+  failureRedirect: '/login',
+  failureFlash: true
 }));
 
 app.get("/test", checkAuth, async (req, res) => {
@@ -177,10 +184,10 @@ app.get("/test", checkAuth, async (req, res) => {
 app.post('/signup', async (req, res, next) => {
 
   //check if exist
-  const check = await usercollection.findOne({ name: req.body.username });
-  if (check) {
-    //todo
-    res.send("found");
+  const checkuser = await usercollection.findOne({ email: req.body.email });
+  const checkgoogle= await googlecollection.findOne({ email: req.body.email });
+  if (checkuser || checkgoogle) {
+    res.render('signup', { message: "Already used email"})
   } else {
 
     const salt = crypto.randomBytes(16).toString("base64");
@@ -220,7 +227,7 @@ app.get('/logout', checkAuth, (req, res) => {
   res.render('logout');
 })
 
-app.post('/logout', (req, res, next) => {
+app.post('/logout', checkAuth,(req, res, next) => {
   req.logout((err) => {
     if (err) { return next(err); }
     res.redirect('/');

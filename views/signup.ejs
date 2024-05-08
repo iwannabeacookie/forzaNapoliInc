@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/access_form.css" />
     <title>Sign Up</title>
 </head>
+
 <body>
-    <form action="/signup" method="post">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" required autocomplete="off">
-        <label for="surname">Surname</label>
-        <input type="text" name="surname" id="surname" required autocomplete="off">
-        <label for="username">Email</label>
-        <input type="text" name="email" id="email" required autocomplete="off">
-        <label for="pass">Password</label>
-        <input type="password" name="password" id="pass" required>
-        <button type="submit">Sign Up</button>
-    </form>
+    <div class="form-wrap">
+        <h1>SIGN UP</h1>
+        <% if(message){ %>
+            <p class="error-message"> <%- message %></p>
+        <% } %>
+        <form action="/signup" method="post">
+            <input type="text" name="name" id="name" required autocomplete="off" placeholder="Name">
+            <input type="text" name="surname" id="surname" required autocomplete="off" placeholder="Surname">
+            <input type="text" name="email" id="email" required autocomplete="off" placeholder="E-mail">
+            <input type="password" name="password" id="pass" required placeholder="Password">
+            <button type="submit">Sign Up</button>
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </form>
+    </div>
 </body>
+
 </html>
