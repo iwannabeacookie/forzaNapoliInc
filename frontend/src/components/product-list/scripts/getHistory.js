@@ -1,9 +1,4 @@
 import axios from "axios";
-// const headers = {
-//   headers: {
-//     "Access-Control-Allow-Origin": "*",
-//   },
-// };
 
 export function getHistory(body) {
   console.info("[API] POST Request, body:", body);
@@ -11,11 +6,10 @@ export function getHistory(body) {
   return axios
     .post(`${API_URL}/api/user/history`, body)
     .then((response) => {
-      console.info("[API] Response:", response.data.orders);
       return response.data.orders;
     })
     .catch((error) => {
-      console.log("blyat", error);
+      console.log("Blyat:", error);
       return error;
     });
 }

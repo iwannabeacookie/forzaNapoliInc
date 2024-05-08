@@ -21,7 +21,7 @@ export default {
             <li v-for="list in items" :key="list.id">
                 <div v-for="article in list" :key='article.id'>
                     <Item :data='article' />
-                </div>	
+                </div>
             </li>
         </ul>
     </div>
