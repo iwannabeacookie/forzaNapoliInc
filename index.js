@@ -10,8 +10,6 @@ const MongoDbStore = require("connect-mongodb-session")(session);
 const usercollection = require('./models/user');
 const googlecollection = require('./models/google_user');
 const crypto = require("crypto");
-const { name } = require('ejs');
-const { CLIENT_RENEG_WINDOW } = require('tls');
 require('dotenv').config()
 const app = express();
 const port = 3000;
@@ -23,7 +21,6 @@ mongoose.connect(process.env.MONGODB_URI).then(() => {
 })
 
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/public'));
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({ extended: false }));
@@ -154,11 +151,11 @@ app.get('/', checkUnAuth, (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-  res.render('login', {message: req.flash("error")});
+  res.render('login', { message: req.flash("error") });
 });
 
 app.get('/signup', (req, res) => {
-  res.render('signup', {message: null});
+  res.render('signup', { message: null });
 });
 
 app.get('/login/google', passport.authenticate('google'));
@@ -185,9 +182,9 @@ app.post('/signup', async (req, res, next) => {
 
   //check if exist
   const checkuser = await usercollection.findOne({ email: req.body.email });
-  const checkgoogle= await googlecollection.findOne({ email: req.body.email });
+  const checkgoogle = await googlecollection.findOne({ email: req.body.email });
   if (checkuser || checkgoogle) {
-    res.render('signup', { message: "Already used email"})
+    res.render('signup', { message: "Already used email" })
   } else {
 
     const salt = crypto.randomBytes(16).toString("base64");
@@ -227,7 +224,7 @@ app.get('/logout', checkAuth, (req, res) => {
   res.render('logout');
 })
 
-app.post('/logout', checkAuth,(req, res, next) => {
+app.post('/logout', checkAuth, (req, res, next) => {
   req.logout((err) => {
     if (err) { return next(err); }
     res.redirect('/');
@@ -238,11 +235,18 @@ app.get('/signout', checkAuth, (req, res) => {
   res.render('signout');
 })
 
-app.post('/signout', checkAuth, async (req, res, next) => {
-  const id = req.session.passport.user.id;
-  req.logout((err) => { });
-  await usercollection.findOneAndDelete({ _id: id });
-  res.redirect('/');
+app.post('/signout', checkAuth, async (req, res) => {
+  if (req.session.passport.user.issuer) {
+    const id = req.session.passport.user.id;
+    req.logout((err) => { });
+    await googlecollection.findOneAndDelete({ googleID: id });
+    res.redirect('/');
+  } else {
+    const id = req.session.passport.user.id;
+    req.logout((err) => { });
+    await usercollection.findOneAndDelete({ _id: id });
+    res.redirect('/');
+  }
 });
 
 app.listen(port, () => {
