@@ -13,7 +13,7 @@ export default {
         }
     },
     async created() {
-        getHistory('pohuy')
+        getHistory({ _id: "6636140f667afaeb2c1d6338" })
             .then((orders) => {
                 this.items = orders
             })
