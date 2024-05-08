@@ -1,15 +1,10 @@
-require('dotenv').config()
 const mongoose = require("mongoose");
-mongoose.connect(process.env.MONGODB_URI).then(() => {
-    console.log("mongodb connected");
-}).catch((err) => {
-    console.log(err);
-})
-
-mongoose.connection.useDb('foza_napoli');
 
 //User schema
 const Userschema = new mongoose.Schema({
+    issuer: {
+        type: String,
+    },
     name: {
         type: String,
         required: true
@@ -47,12 +42,6 @@ const Userschema = new mongoose.Schema({
         type: [],
         required: true
     }
-});
-
-mongoose.set('toJSON', {
-    virtuals: true,
-    versionKey: false,
-    transform: function (doc, ret) { delete ret._id }
 });
 
 //User model

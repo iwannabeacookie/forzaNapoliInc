@@ -1,15 +1,25 @@
 const express = require('express');
+const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const GoogleStrategy = require("passport-google-oidc");
 const logger = require("morgan");
 const MongoDbStore = require("connect-mongodb-session")(session);
-const usercollection = require('./mangodb');
+const usercollection = require('./models/user');
+const googlecollection = require('./models/google_user');
 const crypto = require("crypto");
 const { name } = require('ejs');
+const { CLIENT_RENEG_WINDOW } = require('tls');
 require('dotenv').config()
 const app = express();
 const port = 3000;
+
+mongoose.connect(process.env.MONGODB_URI).then(() => {
+  console.log("mongodb connected");
+}).catch((err) => {
+  console.log(err);
+})
 
 app.set('view engine', 'ejs');
 
@@ -43,14 +53,68 @@ passport.use(new LocalStrategy(async function verify(username, password, cb) {
       if (auth.password != hashedPassword.toString("base64")) {
         return cb(null, false, { message: "Incorrect password." });
       }
-      return cb(null, auth);
+      var auuser = {
+        issuer: null,
+        id: auth._id,
+        email: auth.email
+      };
+      return cb(null, auuser);
     });
   }
 }));
 
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_ID,
+  clientSecret: process.env.GOOGLE_SECRET,
+  callbackURL: '/google/redirect',
+  scope: ["profile", "email"]
+}, async function verify(issuer, profile, cb) {
+  const user = await usercollection.findOne({ email: profile.emails[0].value });
+  if (user) {
+    return cb(null, user);
+  }
+
+  const guser = await googlecollection.findOne({ googleID: profile.id });
+  if (guser) {
+    var gouser = {
+      issuer: guser.issuer,
+      id: guser.googleID,
+      email: guser.email
+    };
+    return cb(null, gouser);
+  }
+
+  const data = {
+    issuer: issuer,
+    name: profile.name.givenName,
+    surname: profile.name.familyName,
+    email: profile.emails[0].value,
+    googleID: profile.id,
+    VIP: false,
+    newsletter: false,
+    Cart: [],
+    Orders: []
+  }
+
+  const userdata = await googlecollection.insertMany(data);
+
+  var users = {
+    issuer: userdata[0].issuer,
+    id: userdata[0].googleID,
+    email: userdata[0].email
+  };
+
+  return cb(null, users);
+}));
+
+app.get('/google/redirect', passport.authenticate('google', {
+  successRedirect: '/test',
+  failureRedirect: '/login'
+}));
+
 passport.serializeUser((user, cb) => {
   process.nextTick(() => {
-    cb(null, { id: user.id, email: user.email });
+    cb(null, { issuer: user.issuer, id: user.id, email: user.email });
   });
 });
 
@@ -91,15 +155,23 @@ app.get('/signup', (req, res) => {
   res.render('signup');
 });
 
+app.get('/login/google', passport.authenticate('google'));
+
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/test',
   failureRedirect: '/login'
 }));
 
 app.get("/test", checkAuth, async (req, res) => {
-  const id = req.session.passport.user.id;
-  const userdata = await usercollection.findOne({ _id: id });
-  res.render('test', { data: userdata });
+  if (req.session.passport.user.issuer) {
+    const id = req.session.passport.user.id;
+    const userdata = await googlecollection.findOne({ googleID: id });
+    res.render('test', { data: userdata });
+  } else {
+    const id = req.session.passport.user.id;
+    const userdata = await usercollection.findOne({ _id: id });
+    res.render('test', { data: userdata });
+  }
 });
 
 app.post('/signup', async (req, res, next) => {
@@ -116,6 +188,7 @@ app.post('/signup', async (req, res, next) => {
       if (err) { return next(err); }
 
       const data = {
+        issuer: null,
         name: req.body.name,
         surname: req.body.surname,
         email: req.body.email,
@@ -130,6 +203,7 @@ app.post('/signup', async (req, res, next) => {
       const userdata = await usercollection.insertMany(data);
 
       var user = {
+        issuer: userdata[0].issuer,
         id: userdata[0]._id,
         email: userdata[0].email
       };
@@ -157,9 +231,9 @@ app.get('/signout', checkAuth, (req, res) => {
   res.render('signout');
 })
 
-app.post('/signout', checkAuth,async (req, res, next) => {
+app.post('/signout', checkAuth, async (req, res, next) => {
   const id = req.session.passport.user.id;
-  req.logout((err) => {});
+  req.logout((err) => { });
   await usercollection.findOneAndDelete({ _id: id });
   res.redirect('/');
 });
