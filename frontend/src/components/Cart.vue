@@ -7,6 +7,7 @@ const viewCart = useStore($viewCart);
 
 <template>
   <div class="Cart">
+    <!-- Cart Icon -->
       <div class="cart-icon" @click="$viewCart.set(true)">
         <svg
           version="1.1"
