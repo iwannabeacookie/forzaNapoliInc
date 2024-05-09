@@ -6,7 +6,7 @@ const googlecollection = require('../models/google_user');
 
 const router = express.Router();
 
-//Pages
+//Check Auth
 
 function checkAuth(req, res, next) {
     if (req.isAuthenticated()) {
@@ -23,6 +23,8 @@ function checkUnAuth(req, res, next) {
 
     next()
 };
+
+//Pages
 
 router.get('/', checkUnAuth, (req, res) => {
     res.render('home');

@@ -52,6 +52,7 @@ app.use(passport.session());
 app.use('/', indexRouter);
 app.use('/', authRouter);
 
+//Setting up the listener
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
