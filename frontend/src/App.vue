@@ -9,13 +9,13 @@ export default {
     },
     data() {
         return {
-            items: []
+            data: {}
         }
     },
     async created() {
-        getHistory({ _id: "6636140f667afaeb2c1d6338" })
-            .then((orders) => {
-                this.items = orders
+        getHistory({ _id: "663c962b66b3219a1852a91e" })
+            .then((data) => {
+                this.data = data
             })
             .catch((error) => {
                 console.log('Blyat! Error fetching history:', error)
@@ -33,7 +33,7 @@ export default {
             <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
         </a>
     </div>
-    <ItemList :items='items' />
+    <ItemList :data='data' />
 </template>
 
 <style scoped>

@@ -2,7 +2,7 @@
 export default {
     name: 'Item',
     props: {
-        data: {
+        item: {
             type: Object,
             required: true
         }
@@ -12,6 +12,6 @@ export default {
 
 <template>
     <div>
-        <label> {{ data.article }}: {{ data.quantity }} штук ёпта ...... {{ data.quantity * data.price }}₽ </label>
+        <label> {{ item.article }}: {{ item.quantity }} штук ёпта ...... {{ item.quantity * item.price }}₽ </label>
     </div>
 </template>

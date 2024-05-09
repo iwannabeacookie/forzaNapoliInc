@@ -6,7 +6,7 @@ export function getHistory(body) {
   return axios
     .post(`${API_URL}/api/user/history`, body)
     .then((response) => {
-      return response.data.orders;
+      return response.data;
     })
     .catch((error) => {
       console.log("Blyat:", error);

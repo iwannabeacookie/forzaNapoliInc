@@ -7,8 +7,8 @@ export default {
         Item
     },
     props: {
-        items: {
-            type: Array,
+        data: {
+            type: Object,
             required: true
         }
     }
@@ -18,9 +18,10 @@ export default {
 <template>
     <div>
         <ul>
-            <li v-for="list in items" :key="list.id">
-                <div v-for="article in list" :key='article.id'>
-                    <Item :data='article' />
+            <li v-for="order in data.orders" :key="order.id">
+                <label> Order id: {{ order._id }}, date: {{ order.date }}, status: {{ order.status }} </label>
+                <div v-for="item in order.items" :key="item.id">
+                    <Item :item='item' />
                 </div>
             </li>
         </ul>
