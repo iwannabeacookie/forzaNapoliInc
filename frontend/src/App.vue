@@ -1,5 +1,27 @@
 <script setup>
-import Cart from "./components/Cart.vue";
+import ExampleDarkModePlatform from "./components/ExampleDarkModePlatform.vue";
+import Swiper from 'swiper';
+</script>
+
+<script>
+import {showMenu, hideMenu, removeMenuMobile, setupAccordionSkills, setupQualificationTabs,setupServicesModal, setupPortfolioSwiper, setupTestimonialSwiper,setupScrollSectionsActiveLink, setupScrollHeader,setupShowScrollTop, setupDarkLightTheme } from './assets/js/darkMode.js';
+
+export default {
+  mounted() {
+    showMenu();
+    hideMenu();
+    removeMenuMobile();
+    setupAccordionSkills();
+    setupQualificationTabs();
+    setupServicesModal();
+    setupPortfolioSwiper();
+    setupTestimonialSwiper();
+    setupScrollSectionsActiveLink();
+    setupScrollHeader();
+    setupShowScrollTop();
+    setupDarkLightTheme();
+  }
+};
 </script>
 
 <style scoped>
@@ -27,7 +49,7 @@ import Cart from "./components/Cart.vue";
 
 <template>
   <div>
-    <Cart />
+    <ExampleDarkModePlatform />
   </div>
 </template>
 
