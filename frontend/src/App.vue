@@ -1,6 +1,6 @@
 <script type='module'>
 import ItemList from './components/product-list/product-list.vue'
-import { getHistory } from './components/product-list/scripts/getHistory.js'
+import { postTicket } from './components/product-list/scripts/post.js'
 
 export default {
     name: 'App',
@@ -9,31 +9,45 @@ export default {
     },
     data() {
         return {
-            data: {}
+            phone: '',
+            email: '',
+            message: '',
         }
     },
-    async created() {
-        getHistory({ _id: "663c962b66b3219a1852a91e" })
-            .then((data) => {
-                this.data = data
-            })
-            .catch((error) => {
-                console.log('Blyat! Error fetching history:', error)
-            })
-    }
+    methods: {
+        submitTicket() {
+            let ticketBody = {
+                phone: this.phone,
+                email: this.email,
+                message: this.message,
+            }
+            postTicket(ticketBody)
+            this.phone = ''
+            this.email = ''
+            this.message = ''
+        }
+    },
+    // async created() {
+    // }
 }
 </script>
 
 <template>
-    <div>
-        <a href="https://vitejs.dev" target="_blank">
-            <img src="/vite.svg" class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://vuejs.org/" target="_blank">
-            <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-        </a>
+    <div id="app" class="container">
+        <h2>Submit a Support Ticket</h2>
+        <form @submit.prevent="submitTicket">
+            <label for="phone">Phone Number:</label>
+            <input type="text" id="phone" v-model="phone" required><br>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" v-model="email" required><br>
+
+            <label for="message">Describe Your Issue:</label><br>
+            <textarea id="message" v-model="message" rows="6" required></textarea><br>
+
+            <input type="submit" value="Submit Ticket">
+        </form>
     </div>
-    <ItemList :data='data' />
 </template>
 
 <style scoped>
