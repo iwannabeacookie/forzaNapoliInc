@@ -50,19 +50,48 @@ export default {
     </div>
 </template>
 
-<style scoped>
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
+<style>
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
+h2 {
+    margin-top: 0;
+    color: black;
 }
 
-.logo.vue:hover {
-    filter: drop-shadow(0 0 2em #42b883aa);
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: black;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
 }
 </style>
