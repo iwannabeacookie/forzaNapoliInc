@@ -1,6 +1,7 @@
+import express from "express";
+import "dotenv/config";
 import morgan from "morgan";
 import cors from "cors";
-import express from "express";
 import historyRouter from "./history-router.js";
 
 const app = express();

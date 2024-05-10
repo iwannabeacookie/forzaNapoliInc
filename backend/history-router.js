@@ -1,21 +1,20 @@
-import { mClient } from "./mongodb/mongodb.js";
-import { ObjectId } from "mongodb";
 import express from "express";
+import User from "./userModel.js";
 
 const router = express.Router();
 
-router.post("/api/user/history", (req, res) => {
-  // if (/* not req.body.jwt.is_valid() */ todo) {
-  //   res.status(401).send("ERROR: UNAUTHORIZED");
-  //   return;
-  // }
+/*
+ * function isAuthed() {
+ *  req.user_id = ...
+ * }
+ */
 
-  mClient
-    .db("Data")
-    .collection("Users")
-    .findOne({ _id: new ObjectId(req.body._id) })
+router.post("/api/user/history", /* isAuthed() */ (req, res) => {
+  User
+    .findOne({ _id: req.body._id })
     .then(
       (doc) => {
+        console.log(doc);
         res.status(200).json(doc);
       },
     )
@@ -24,6 +23,20 @@ router.post("/api/user/history", (req, res) => {
         res.status(404).json(err);
       },
     );
+
+  // ACTUAL CODE:
+  // User
+  //   .find({ _id: req.user_id })
+  //   .then(
+  //     (doc) => {
+  //       res.status(200).json(doc);
+  //     },
+  //   )
+  //   .catch(
+  //     (err) => {
+  //       res.status(404).json(err);
+  //     },
+  //   );
 });
 
 export default router;
