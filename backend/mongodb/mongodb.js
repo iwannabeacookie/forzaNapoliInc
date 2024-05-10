@@ -1,29 +1,14 @@
-import { MongoClient, ServerApiVersion } from "mongodb";
-
-const uri =
-  "mongodb+srv://iwannabeacookie:sGJQHv3nePFLzoym@forzanapoliinc.tqmgi1i.mongodb.net/?retryWrites=true&w=majority&appName=ForzaNapoliInc";
-
-const mClient_setup = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
-});
+import mongoose from "mongoose";
 
 async function connect() {
-  await mClient_setup.connect();
-  mClient_setup
-    .db("Data")
-    .command({ ping: 1 })
-    .then(
-      () => {
-        console.log("Connected to MongoDB!");
-      },
-      () => console.log("Connection to database failed!"),
-    );
-  return mClient_setup;
+  await mongoose.connect(process.env.MONGODB_URI)
+    .then(() => {
+      console.log("Connected to MongoDB!");
+    })
+    .catch((err) => {
+      console.log("Blyat! Error connecting to MongoDB:", err);
+    });
+  return mongoose;
 }
 
-export const mClient = await connect();
-// export const mClient = connect();
+export default await connect();

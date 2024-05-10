@@ -11,8 +11,10 @@
   "description": "",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongodb": "^6.6.1",
+    "mongoose": "^8.3.4",
     "morgan": "^1.10.0",
     "path": "^0.12.7",
     "url": "^0.11.3"
