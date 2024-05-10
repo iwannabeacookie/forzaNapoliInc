@@ -1,14 +1,21 @@
 {
-  "name": "forzanapoliinc",
+  "name": "backend",
   "version": "1.0.0",
+<<<<<<< HEAD:package.json
   "description": "",
   "main": "app.js",
+=======
+  "main": "index.js",
+  "type": "module",
+>>>>>>> order-history:backend/package.json
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
+  "description": "",
   "dependencies": {
+<<<<<<< HEAD:package.json
     "connect-flash": "^0.1.1",
     "connect-mongodb-session": "^2.2.0",
     "dotenv": "^16.4.5",
@@ -21,5 +28,15 @@
     "passport": "^0.7.0",
     "passport-google-oidc": "^0.1.0",
     "passport-local": "^1.0.0"
+=======
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.6.1",
+    "mongoose": "^8.3.4",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "url": "^0.11.3"
+>>>>>>> order-history:backend/package.json
   }
 }
