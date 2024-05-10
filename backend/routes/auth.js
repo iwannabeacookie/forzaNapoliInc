@@ -3,7 +3,7 @@ import passport from "passport";
 import flash from "connect-flash";
 import LocalStrategy from "passport-local";
 import GoogleStrategy from "passport-google-oidc";
-import usercollection from "../models/user.js";
+import usercollection from "../models/userModel.js";
 import googlecollection from "../models/google_user.js";
 import crypto from "crypto";
 import("dotenv/config");
@@ -124,7 +124,7 @@ function checkUnAuth(req, res, next) {
 
 //authRouter
 
-export const authRouter = express.Router();
+const authRouter = express.Router();
 authRouter.use(flash());
 
 //Log In get
@@ -245,3 +245,5 @@ authRouter.post("/signout", checkAuth, async (req, res) => {
     res.redirect("/");
   }
 });
+
+export default authRouter;

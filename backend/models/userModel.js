@@ -1,6 +1,11 @@
 import { Schema } from "mongoose";
-import mongoose from "./mongodb/mongodb.js";
-import Order from "./orderSchema.js";
+import Order from "./schemas/orderSchema.js";
+import mongoose from "../mongodb/mongodb.js";
+// const mongoose = await import(
+//   "file:///" + process.env.ROOT_DIR + "/backend/mongodb/mongodb.js"
+// ).then((mod) => {
+//   return mod.default;
+// });
 
 const Userschema = new Schema({
   issuer: {

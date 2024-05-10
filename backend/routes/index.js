@@ -1,10 +1,10 @@
 import express from "express";
-import usercollection from "../models/user.js";
+import usercollection from "../models/userModel.js";
 import googlecollection from "../models/google_user.js";
 
 //Router
 
-export const indexRouter = express.Router();
+const indexRouter = express.Router();
 
 //Check Auth
 
@@ -41,3 +41,5 @@ indexRouter.get("/test", checkAuth, async (req, res) => {
     res.render("test", { data: userdata });
   }
 });
+
+export default indexRouter;
