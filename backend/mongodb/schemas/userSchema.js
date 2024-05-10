@@ -1,6 +1,7 @@
-import { Schema } from "mongoose";
-import mongoose from "../mongodb.js";
+import mongoose, { Schema } from "mongoose";
+import { mClient } from "../mongodb.js";
 import Order from "./orderSchema.js";
+import { CartItem } from "./cartItemSchema.js";
 
 const Userschema = new Schema({
   issuer: {
@@ -35,8 +36,8 @@ const Userschema = new Schema({
     type: Boolean,
     required: true,
   },
-  Cart: {
-    type: [],
+  cart: {
+    type: [CartItem],
     required: true,
   },
   orders: {
@@ -45,4 +46,4 @@ const Userschema = new Schema({
   },
 });
 
-export default mongoose.model("user", Userschema);
+export default mClient.model("user", Userschema);

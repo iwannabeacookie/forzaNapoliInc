@@ -2,7 +2,6 @@ import express from "express";
 import "dotenv/config";
 const app = express();
 const port = 3000;
-export const mClient = import("./mongodb/mongodb.js"); // Remember to add your ip to the allowed list!!!
 import cors from "cors";
 import { cartRouter } from "./router.js";
 
