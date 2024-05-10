@@ -8,4 +8,4 @@ const ticketSchema = new Schema({
   message: String,
 });
 
-export default mongoose.model("Ticket", ticketSchema);
+export default mongoose.model("ticket", ticketSchema);
