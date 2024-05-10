@@ -8,10 +8,14 @@ import MongoDbSession from "connect-mongodb-session";
 import indexRouter from "./routes/index.js";
 import historyRouter from "./features/order-history/history-router.js";
 import authRouter from "./routes/auth.js";
+import path from 'path';
+import { fileURLToPath } from "url";
 
 const app = express();
 const port = 3000;
 const MongoDbStore = MongoDbSession(session);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 export const mClient = import("./mongodb/mongodb.js");
 
 const store = new MongoDbStore({
@@ -23,12 +27,12 @@ const store = new MongoDbStore({
 app.use(express.json());
 app.use(cors());
 app.use(morgan("combined"));
-app.use(express.static(process.env.ROOT_DIR + "/backend/public"));
+app.use(express.static( __dirname + "/public"));
 app.use(express.urlencoded({ extended: false }));
 
 app.use(
   session({
-    secret: "secret string",
+    secret: process.env.SESSION_SECRET,
     cookie: {
       maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
     },
