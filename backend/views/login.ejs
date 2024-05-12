@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/access_form.css" />
+    <title>Log in</title>
+</head>
+<body>
+    <div class="form-wrap">
+        <h1>LOG IN</h1>
+        <% if(message){ %>
+            <p class="error-message"> <%- message %></p>
+         <% } %>
+        <form action="/login" method="post">
+            <input type="text" name="username" id="username" required autocomplete="off" placeholder="E-mail">
+            <input type="password" name="password" id="pass" required placeholder="password">
+            <button type="submit">Login</button>
+        </form>
+        <button class="login-with-google-btn" onclick="window.location.href='/login/google';">Log in with Google</button>
+        <p>Don't have an account? <a href="/signup">Signup</a></p>
+    </div>
+</body>
+</html>

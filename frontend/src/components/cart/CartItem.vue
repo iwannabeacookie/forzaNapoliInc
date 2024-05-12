@@ -83,7 +83,7 @@ async function updateCart(new_cart) {
   <v-card :title="itemName">
     <img :src="imageUrl" />
     <p>
-      Quantity: {{ realQuantity }} Price: {{ realPrice }}€
+      Quantity: {{ realQuantity }} Price: {{ realPrice*realQuantity }}€
       <small v-if="available">Available</small>
     </p>
     <v-card-actions>
