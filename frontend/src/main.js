@@ -1,3 +1,5 @@
+import { createApp } from "vue";
+
 // Vuetify
 import "vuetify/styles";
 import { createVuetify } from "vuetify";

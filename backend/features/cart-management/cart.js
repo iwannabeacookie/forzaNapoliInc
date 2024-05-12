@@ -1,5 +1,4 @@
-import UserSchema from "./mongodb/schemas/userSchema.js";
-import userSchema from "./mongodb/schemas/userSchema.js";
+import userSchema from "../../models/userModel.js";
 
 /*
  * @param newCart: [{
@@ -13,7 +12,7 @@ export async function updateCart(newCart, customer_id) {
 }
 
 export async function getCart(customer_id) {
-  const user = await UserSchema.findOne({ _id: customer_id });
+  const user = await userSchema.findOne({ _id: customer_id });
   console.info("User:", user);
   return user;
 }

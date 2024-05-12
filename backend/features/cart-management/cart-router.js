@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { updateCart, getCart } from "./components/cart.js";
-export const cartRouter = Router();
+import { getCart, updateCart } from "./cart.js";
+export default cartRouter = Router();
 
 cartRouter.post("/cart/update", (req, res) => {
   const reqBody = req.body;

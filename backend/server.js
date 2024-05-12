@@ -9,6 +9,7 @@ import indexRouter from "./routes/index.js";
 import historyRouter from "./features/order-history/history-router.js";
 import ticketRouter from "./features/submit-ticket/ticket-router.js";
 import authRouter from "./routes/auth.js";
+import cartRouter from "./features/cart-management/cart-router.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -56,6 +57,7 @@ app.use("/", indexRouter);
 app.use("/", authRouter);
 app.use(historyRouter);
 app.use(ticketRouter);
+app.use(cartRouter);
 
 //Setting up the listener
 
