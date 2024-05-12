@@ -1,5 +1,5 @@
-import UserSchema from "../mongodb/schemas/userSchema.js";
-import userSchema from "../mongodb/schemas/userSchema.js";
+import UserSchema from "./mongodb/schemas/userSchema.js";
+import userSchema from "./mongodb/schemas/userSchema.js";
 
 /*
  * @param newCart: [{
