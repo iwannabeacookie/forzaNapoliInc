@@ -7,8 +7,9 @@ import passport from "passport";
 import MongoDbSession from "connect-mongodb-session";
 import indexRouter from "./routes/index.js";
 import historyRouter from "./features/order-history/history-router.js";
+import ticketRouter from "./features/submit-ticket/ticket-router.js";
 import authRouter from "./routes/auth.js";
-import path from 'path';
+import path from "path";
 import { fileURLToPath } from "url";
 
 const app = express();
@@ -27,7 +28,7 @@ const store = new MongoDbStore({
 app.use(express.json());
 app.use(cors());
 app.use(morgan("combined"));
-app.use(express.static( __dirname + "/public"));
+app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: false }));
 
 app.use(
@@ -54,6 +55,7 @@ app.use(passport.session());
 app.use("/", indexRouter);
 app.use("/", authRouter);
 app.use(historyRouter);
+app.use(ticketRouter);
 
 //Setting up the listener
 
