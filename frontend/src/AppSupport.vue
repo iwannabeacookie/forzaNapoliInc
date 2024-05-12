@@ -29,6 +29,16 @@ export default {
     },
     // async created() {
     // }
+    async created() {
+        getHistory({ _id: "663c962b66b3219a1852a91e" })
+            .then((data) => {
+                console.log(data)
+                this.data = data
+            })
+            .catch((error) => {
+                console.log('Blyat! Error fetching history:', error)
+            })
+    }
 }
 </script>
 
