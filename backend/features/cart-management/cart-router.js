@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { getCart, updateCart } from "./cart.js";
-export default cartRouter = Router();
+const cartRouter = Router();
 
 cartRouter.post("/cart/update", (req, res) => {
   const reqBody = req.body;
@@ -19,3 +19,5 @@ cartRouter.post("/cart/get", (req, res) => {
     res.json({ client_id: reqBody.client_id, cart: user.cart });
   });
 });
+
+export default cartRouter;
