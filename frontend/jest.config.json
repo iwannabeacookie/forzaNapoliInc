@@ -1,0 +1,6 @@
+{
+  "testEnvironment": "node",
+  "transform": {},
+  "collectCoverage": true,
+  "coverageDirectory": "tests/coverage"
+}
