@@ -1,5 +1,4 @@
 import { atom } from "nanostores";
-import { apiHelperPOST } from "./api";
 
 export const $items = atom([]);
 export const $viewCart = atom(false);
@@ -7,12 +6,6 @@ export const $viewCart = atom(false);
 $viewCart.subscribe((viewCart) => {
   console.log(viewCart);
 });
-
-const { cart } = await apiHelperPOST("/cart/get", {
-  user_id: "663751edeb50fc9f32cfd751",
-});
-
-$items.set(cart);
 
 export function findItemIndexById(originalArr, id) {
   for (let i = 0; i < originalArr.length; i++) {

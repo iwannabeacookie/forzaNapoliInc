@@ -1,5 +1,7 @@
 <script setup>
 import ExampleDarkModePlatform from "./components/ExampleDarkModePlatform.vue";
+import { $items } from "./components/cart/cart.js";
+import { apiHelperPOST } from "./components/cart/api.js";
 </script>
 
 <script>
@@ -34,6 +36,13 @@ export default {
     setupDarkLightTheme();
   },
 };
+
+// Cart Setup blyat nahui
+const { cart } = await apiHelperPOST("/cart/get", {
+  user_id: "663751edeb50fc9f32cfd751",
+});
+
+$items.set(cart);
 </script>
 
 <style scoped>
