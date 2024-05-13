@@ -1,6 +1,6 @@
 <script type='module'>
 import ItemList from './components/product-list/product-list.vue'
-import { postTicket } from './components/product-list/scripts/post.js'
+import { postTicket } from './components/contact-support/scripts/post.js'
 
 export default {
     name: 'App',
@@ -29,16 +29,16 @@ export default {
     },
     // async created() {
     // }
-    async created() {
-        getHistory({ _id: "663c962b66b3219a1852a91e" })
-            .then((data) => {
-                console.log(data)
-                this.data = data
-            })
-            .catch((error) => {
-                console.log('Blyat! Error fetching history:', error)
-            })
-    }
+    // async created() {
+    //     getHistory({ _id: "663c962b66b3219a1852a91e" })
+    //         .then((data) => {
+    //             console.log(data)
+    //             this.data = data
+    //         })
+    //         .catch((error) => {
+    //             console.log('Blyat! Error fetching history:', error)
+    //         })
+    // }
 }
 </script>
 

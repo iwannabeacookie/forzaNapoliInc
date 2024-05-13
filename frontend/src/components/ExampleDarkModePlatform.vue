@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <header class="header" id="header">
+    <header class="header" id="header">
         <nav class="nav container">
             <a href="#" class="nav__logo">Forza Napoli Inc</a>
 
@@ -26,7 +26,7 @@
                     </li>
                     <li class="nav__item">
                         <a href="#qualification" class="nav__link">
-                            <i class="uil uil-graduation-cap nav__icon"></i> Calificaciones   
+                            <i class="uil uil-graduation-cap nav__icon"></i> Calificaciones
                         </a>
                     </li>
                     <li class="nav__item">
@@ -57,7 +57,8 @@
         <div class="home__container container grid">
             <div class="home__content grid">
                 <div class="home__social">
-                    <a href="https://linkedin.com/in/aldo-ricardo-munoz-arellano" target="_blank" class="home__social-icon">
+                    <a href="https://linkedin.com/in/aldo-ricardo-munoz-arellano" target="_blank"
+                        class="home__social-icon">
                         <i class="uil uil-linkedin"></i>
                     </a>
                     <a href="https://github.com/AldoRed" target="_blank" class="home__social-icon">
@@ -74,13 +75,14 @@
                 <div class="home__data">
                     <h1 class="home__title">Forza Napoli Inc</h1>
                     <h3 class="home__subtitle">Alcohol delivery</h3>
-                    <p class="home__description">We are a company dedicated to the delivery of alcoholic beverages, we have a wide variety of products and we deliver to your home.</p>
+                    <p class="home__description">We are a company dedicated to the delivery of alcoholic beverages, we
+                        have a wide variety of products and we deliver to your home.</p>
                     <a href="#contact" class="button button--flex">
                         Contact us <i class="uil uil-message button__icon"></i>
                     </a>
                 </div>
 
-                
+
             </div>
             <div class="home__scroll">
                 <a href="#about" class="home__scroll-button button--flex">
@@ -95,11 +97,13 @@
     <section class="about section" id="about">
         <h2 class="section__title">Acerca de mi</h2>
         <span class="section__subtitle">Mi introducción</span>
-        
+
 
         <div class="about__container container grid">
             <div class="about__data">
-                <p class="about__description">Además de la programación, me considero una persona tranquila y receptiva, siempre dispuesta a escuchar y aprender. Disfruto de la compañía de otros y me considero bastante sociable. En mis momentos libres, me gusta salir con amigos y compartir momentos significativos.</p>
+                <p class="about__description">Además de la programación, me considero una persona tranquila y receptiva,
+                    siempre dispuesta a escuchar y aprender. Disfruto de la compañía de otros y me considero bastante
+                    sociable. En mis momentos libres, me gusta salir con amigos y compartir momentos significativos.</p>
                 <div class="about__info">
                     <div>
                         <span class="about__info-title">10</span>
@@ -249,7 +253,7 @@
                         </div>
                     </div>
 
-                    
+
                 </div>
             </div>
 
@@ -484,7 +488,7 @@
                 </div>
             </div>
 
-            
+
         </div>
     </section>
 
@@ -589,7 +593,7 @@
                                 2017 - 2018
                             </div>
                         </div>
-                        
+
                     </div>
 
                     <!-- Sistema de gestion de inventario -->
@@ -728,7 +732,8 @@
                     <div class="qualification__data">
                         <div>
                             <h3 class="qualification__title">Jefe de departamento salud mental</h3>
-                            <span class="qualification__subtitle">Federación de Estudiantes Universidad Adolfo Ibáñez 2023</span>
+                            <span class="qualification__subtitle">Federación de Estudiantes Universidad Adolfo Ibáñez
+                                2023</span>
                             <div class="qualification__calendar">
                                 <i class="uil uil-calendar-alt"></i>
                                 2022 - 2023
@@ -748,8 +753,10 @@
                             <!--<span class="qualification__line"></span>-->
                         </div>
                         <div>
-                            <h3 class="qualification__title">Coordinador departamento Investigación y excelencia académica</h3>
-                            <span class="qualification__subtitle">Federación de Estudiantes Universidad Adolfo Ibáñez 2022</span>
+                            <h3 class="qualification__title">Coordinador departamento Investigación y excelencia
+                                académica</h3>
+                            <span class="qualification__subtitle">Federación de Estudiantes Universidad Adolfo Ibáñez
+                                2022</span>
                             <div class="qualification__calendar">
                                 <i class="uil uil-calendar-alt"></i>
                                 2021 - 2022
@@ -760,8 +767,10 @@
                     <!-- Ambassador Leader Región de Valparaiso en Education First -->
                     <div class="qualification__data">
                         <div>
-                            <h3 class="qualification__title">Ambassador Leader Región de Valparaiso en Education First</h3>
-                            <span class="qualification__subtitle">Seleccionado como ambassador leader de la región de Valparaíso, con más de 110 personas que son parte.</span>
+                            <h3 class="qualification__title">Ambassador Leader Región de Valparaiso en Education First
+                            </h3>
+                            <span class="qualification__subtitle">Seleccionado como ambassador leader de la región de
+                                Valparaíso, con más de 110 personas que son parte.</span>
                             <div class="qualification__calendar">
                                 <i class="uil uil-calendar-alt"></i>
                                 2019 - 2021
@@ -917,11 +926,14 @@
             <div class="swiper-wrapper">
                 <!-- Portfolio 1 -->
                 <div class="portfolio__content grid swiper-slide">
-                    <img src="https://images.unsplash.com/photo-1483792879322-696964487a67?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2081&q=80" alt="" class="portfolio__img">
+                    <img src="https://images.unsplash.com/photo-1483792879322-696964487a67?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2081&q=80"
+                        alt="" class="portfolio__img">
 
                     <div class="portofolio__data">
-                        <h3 class="portfolio__title">¿Las mujeres son mejores diferenciando los colores que los hombres?</h3>
-                        <p class="portfolio__description">El presente trabajo tiene por objetivo desarrollar la problemática con respecto
+                        <h3 class="portfolio__title">¿Las mujeres son mejores diferenciando los colores que los hombres?
+                        </h3>
+                        <p class="portfolio__description">El presente trabajo tiene por objetivo desarrollar la
+                            problemática con respecto
                             a la percepción de los colores por parte de ambos géneros, femenino y masculino. Para
                             esto se desarrolló una introducción al tema donde se entregan antecedentes e información
                             general para la comprensión del resto del trabajo. Seguido a esto se detalló el método
@@ -930,7 +942,8 @@
                             múltiples variables junto con la demostración gráfica de esto. Finalmente, se analizaron
                             los resultados con los cuales se desarrolló una conclusión a la información obtenida para
                             dar resultado a la problemática inicialmente planteada.</p>
-                        <a href="https://aldored.com/proyecto" class="button button--flex button--small portafolio__button">
+                        <a href="https://aldored.com/proyecto"
+                            class="button button--flex button--small portafolio__button">
                             Demo <i class="uil uil-arrow-right button__icon"></i>
                         </a>
                     </div>
@@ -941,8 +954,11 @@
 
                     <div class="portofolio__data">
                         <h3 class="portfolio__title">Sistema de regadío automático con sensor de humedad</h3>
-                        <p class="portfolio__description">El fin de este proyecto fue crear un sistema que ahorrara agua y a la vez mantuviera en condiciones optimas plantas regadas, de manera totalmente automática.</p>
-                        <a href="https://drive.google.com/file/d/1XK6N1DZxlapAsGsrnRTiXB64ThOG2-HE/view" class="button button--flex button--small portafolio__button">
+                        <p class="portfolio__description">El fin de este proyecto fue crear un sistema que ahorrara agua
+                            y a la vez mantuviera en condiciones optimas plantas regadas, de manera totalmente
+                            automática.</p>
+                        <a href="https://drive.google.com/file/d/1XK6N1DZxlapAsGsrnRTiXB64ThOG2-HE/view"
+                            class="button button--flex button--small portafolio__button">
                             Demo <i class="uil uil-arrow-right button__icon"></i>
                         </a>
                     </div>
@@ -963,7 +979,8 @@
             <div class="project__container container grid">
                 <div class="project__data">
                     <h2 class="project__title">¿Tienes un proyecto en mente?</h2>
-                    <p class="project__description">Si tienes un proyecto en mente, no dudes en ponerte en contacto conmigo. Estaré encantado de ayudarte.</p>
+                    <p class="project__description">Si tienes un proyecto en mente, no dudes en ponerte en contacto
+                        conmigo. Estaré encantado de ayudarte.</p>
                     <a href="#contact" class="button button--flex button--small button--white">
                         Contactame <i class="uil uil-message button__icon"></i>
                     </a>
@@ -1073,5 +1090,4 @@
     </a>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
