@@ -3,8 +3,8 @@ import passport from "passport";
 import flash from "connect-flash";
 import LocalStrategy from "passport-local";
 import GoogleStrategy from "passport-google-oidc";
-import usercollection from "../models/userModel.js";
-import googlecollection from "../models/google_user.js";
+import usercollection from "../../models/userModel.js";
+import googlecollection from "../../models/google_user.js";
 import crypto from "crypto";
 import("dotenv/config");
 

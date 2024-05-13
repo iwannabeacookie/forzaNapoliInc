@@ -1,6 +1,6 @@
 import express from "express";
-import usercollection from "../models/userModel.js";
-import googlecollection from "../models/google_user.js";
+import usercollection from "../../models/userModel.js";
+import googlecollection from "../../models/google_user.js";
 
 //Router
 
