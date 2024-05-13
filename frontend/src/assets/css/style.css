@@ -216,6 +216,7 @@ img {
     font-size: var(--small-font-size);
     color: var(--title-color);
     font-weight: var(--font-medium);
+    cursor:pointer;
 }
 
 .nav__link:hover{

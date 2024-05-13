@@ -1,5 +1,8 @@
-<script>
-
+<script setup>
+import CartModal from "./cart/CartModal.vue"
+import { $viewCart } from "./cart/cart";
+import { useStore } from "@nanostores/vue";
+const viewCart = useStore($viewCart);
 </script>
 
 <template>
@@ -30,20 +33,19 @@
                         </a>
                     </li>
                     <li class="nav__item">
-                        <a href="#portfolio" class="nav__link">
-                            <i class="uil uil-scenery nav__icon"></i> Portafolio
+                        <a class="nav__link cart-icon" @click="$viewCart.set(true)">
+                            <i class="uil uil-shopping-cart nav__icon" id="cart"></i><i class="uil uil-shopping-cart change-theme"> Cart </i>
                         </a>
                     </li>
-                    <li class="nav__item">
-                        <a href="#contact" class="nav__link">
-                            <i class="uil uil-message nav__icon"></i> Contacto
-                        </a>
-                    </li>
+                    <cart-modal v-if="viewCart" />
+                    
                 </ul>
                 <i class="uil uil-times nav__close" id="nav-close"></i>
             </div>
 
             <div class="nav__btns">
+                <!-- Add cart -->
+
                 <i class="uil uil-moon change-theme" id="theme-button"></i>
 
                 <div class="nav__toggle" id="nav-toggle">
