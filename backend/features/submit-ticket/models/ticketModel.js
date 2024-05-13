@@ -1,5 +1,5 @@
 const mongoose = await import(
-  "file:///" + process.env.ROOT_DIR + "/backend/mongodb/mongodb.js"
+  "/Users/aldomunozarellano/Desktop/SoftwareDevelopment/forzaNapoliInc/backend/mongodb/mongodb.js"
 ).then((mod) => {
   return mod.default;
 });
