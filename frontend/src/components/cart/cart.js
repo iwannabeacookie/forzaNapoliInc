@@ -8,7 +8,7 @@ $viewCart.subscribe((viewCart) => {
   console.log(viewCart);
 });
 
-const { cart, ...respose } = await apiHelperPOST("/cart/get", {
+const { cart } = await apiHelperPOST("/cart/get", {
   user_id: "663751edeb50fc9f32cfd751",
 });
 

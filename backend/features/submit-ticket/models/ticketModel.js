@@ -1,8 +1,4 @@
-const mongoose = await import(
-  "/Users/aldomunozarellano/Desktop/SoftwareDevelopment/forzaNapoliInc/backend/mongodb/mongodb.js"
-).then((mod) => {
-  return mod.default;
-});
+import mongoose from "../../../mongodb/mongodb.js";
 import { Schema } from "mongoose";
 
 const ticketSchema = new Schema({

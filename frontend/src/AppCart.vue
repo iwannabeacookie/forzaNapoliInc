@@ -4,7 +4,20 @@ import Cart from "./components/Cart.vue";
 </script>
 
 <script>
-import { showMenu, hideMenu, removeMenuMobile, setupAccordionSkills, setupQualificationTabs, setupServicesModal, setupPortfolioSwiper, setupTestimonialSwiper, setupScrollSectionsActiveLink, setupScrollHeader, setupShowScrollTop, setupDarkLightTheme } from './assets/js/darkMode.js';
+import {
+  showMenu,
+  hideMenu,
+  removeMenuMobile,
+  setupAccordionSkills,
+  setupQualificationTabs,
+  setupServicesModal,
+  setupPortfolioSwiper,
+  setupTestimonialSwiper,
+  setupScrollSectionsActiveLink,
+  setupScrollHeader,
+  setupShowScrollTop,
+  setupDarkLightTheme,
+} from "./assets/js/darkMode.js";
 
 export default {
   mounted() {
@@ -20,7 +33,7 @@ export default {
     setupScrollHeader();
     setupShowScrollTop();
     setupDarkLightTheme();
-  }
+  },
 };
 </script>
 

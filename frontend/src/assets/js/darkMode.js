@@ -1,3 +1,4 @@
+import Swiper from "swiper";
 export function showMenu() {
   const navToggle = document.getElementById("nav-toggle");
   const navMenu = document.getElementById("nav-menu");
@@ -123,7 +124,7 @@ export function setupScrollSectionsActiveLink() {
       const sectionTop = current.offsetTop - 50;
       const sectionId = current.getAttribute("id");
       const activeLink = document.querySelector(
-        ".nav__menu a[href*=" + sectionId + "]"
+        ".nav__menu a[href*=" + sectionId + "]",
       );
       if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
         activeLink.classList.add("active-link");
