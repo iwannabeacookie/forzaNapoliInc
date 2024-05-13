@@ -1,6 +1,6 @@
 import { Schema } from "mongoose";
 
-export const CartItem = Schema({
+export default Schema({
   productId: { type: String, ref: "Product" },
   productName: { type: String, default: "" },
   imageUrl: { type: String, default: "" },

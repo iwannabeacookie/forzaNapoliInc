@@ -14,9 +14,9 @@ cartRouter.post("/cart/update", (req, res) => {
 cartRouter.post("/cart/get", (req, res) => {
   const reqBody = req.body;
   console.info("Getting cart:", reqBody);
-  getCart(reqBody.user_id).then((user) => {
-    console.info("User:", user.cart);
-    res.json({ client_id: reqBody.client_id, cart: user.cart });
+  getCart(reqBody.user_id).then((cart) => {
+    console.info("Cart:", cart);
+    res.json({ client_id: reqBody.client_id, cart: cart });
   });
 });
 
