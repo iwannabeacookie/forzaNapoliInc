@@ -1,6 +1,5 @@
 <script setup>
 import ExampleDarkModePlatform from "./components/ExampleDarkModePlatform.vue";
-import Cart from "./components/Cart.vue";
 </script>
 
 <script>
@@ -62,7 +61,6 @@ export default {
 <template>
   <div>
     <ExampleDarkModePlatform />
-    <Cart />
   </div>
 </template>
 
