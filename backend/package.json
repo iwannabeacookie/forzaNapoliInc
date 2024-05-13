@@ -6,8 +6,10 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon .",
-    "prod": "node ."
+    "dev": "nodemon --exec \"npm run format && npm run lint && node .\"",
+    "prod": "node .",
+    "format": "prettier . --write",
+    "lint": "eslint . --ignore-pattern .gitignore"
   },
   "author": "",
   "license": "ISC",
@@ -26,5 +28,11 @@
     "passport": "^0.7.0",
     "passport-google-oidc": "^0.1.0",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.2.0",
+    "eslint": "^9.2.0",
+    "globals": "^15.2.0",
+    "prettier": "^3.2.5"
   }
 }
