@@ -1,6 +1,5 @@
 <script setup>
 import ExampleDarkModePlatform from "./components/ExampleDarkModePlatform.vue";
-import Swiper from 'swiper';
 import Cart from "./components/Cart.vue";
 </script>
 
