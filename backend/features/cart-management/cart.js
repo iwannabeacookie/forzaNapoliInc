@@ -13,6 +13,6 @@ export async function updateCart(newCart, customer_id) {
 
 export async function getCart(customer_id) {
   const user = await userSchema.findOne({ _id: customer_id });
-  console.info("User:", user.cart);
+  console.info("Cart:", user.cart);
   return user.cart;
 }

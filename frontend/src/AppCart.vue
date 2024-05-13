@@ -4,7 +4,7 @@ import Swiper from 'swiper';
 import Cart from "./components/Cart.vue";
 </script>
 
-<!-- <script>
+<script>
 import { showMenu, hideMenu, removeMenuMobile, setupAccordionSkills, setupQualificationTabs, setupServicesModal, setupPortfolioSwiper, setupTestimonialSwiper, setupScrollSectionsActiveLink, setupScrollHeader, setupShowScrollTop, setupDarkLightTheme } from './assets/js/darkMode.js';
 
 export default {
@@ -23,7 +23,7 @@ export default {
     setupDarkLightTheme();
   }
 };
-</script> -->
+</script>
 
 <style scoped>
 .Cart {
@@ -32,7 +32,6 @@ export default {
   right: 0;
   bottom: 0;
   left: 0;
-  margin: auto;
   width: 100px;
   height: 100px;
   background-color: #f9f9f9;
@@ -50,7 +49,7 @@ export default {
 
 <template>
   <div>
-    <!-- <ExampleDarkModePlatform /> -->
+    <ExampleDarkModePlatform />
     <Cart />
   </div>
 </template>
