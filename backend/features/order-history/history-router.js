@@ -1,5 +1,6 @@
 import express from "express";
 import User from "../../models/userModel.js";
+import { checkAuth } from "../../helpers/auth.js";
 
 const router = express.Router();
 
@@ -9,9 +10,11 @@ const router = express.Router();
  * }
  */
 
-router.post("/api/user/history", /* isAuthed() */ (req, res) => {
+router.post("/api/user/history", checkAuth, (req, res) => {
   User
-    .findOne({ _id: req.body._id })
+    .findOne({ _id: 
+    req.user_id = req.session.passport.user.id
+ })
     .then(
       (doc) => {
         console.log(doc);
