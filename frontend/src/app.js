@@ -7,11 +7,11 @@ import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
 
 // Components
-import AppCart from "./AppCart.vue";
+import App from "./App.vue";
 
 const vuetify = createVuetify({
   components,
   directives,
 });
 
-createApp(AppCart).use(vuetify).mount("#app");
+createApp(App).use(vuetify).mount("#app");

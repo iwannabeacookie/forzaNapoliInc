@@ -7,7 +7,7 @@ export default [
   {
     ignores: [".gitignore", "tests/"],
     rules: {
-      "no-undef": "warn",
+      "no-undef": "off",
       "no-unused-vars": "warn",
     },
   },
