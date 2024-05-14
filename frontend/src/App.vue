@@ -1,7 +1,7 @@
 <script setup>
 import ExampleDarkModePlatform from "./components/ExampleDarkModePlatform.vue";
-import { $items } from "./components/cart/cart.js";
-import { apiHelperPOST } from "./components/cart/api.js";
+import { $items } from "./components/cart/scripts/cart.js";
+import { apiHelperPOST } from "./components/helpers/api.js";
 </script>
 
 <script>

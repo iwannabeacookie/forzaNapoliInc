@@ -2,7 +2,7 @@ import {
   apiHelperGET,
   apiHelperPOST,
   API_URL,
-} from "../src/components/cart/api";
+} from "../src/components/helpers/api";
 import axios from "axios";
 
 test("Tests GET API Endpoint", async () => {

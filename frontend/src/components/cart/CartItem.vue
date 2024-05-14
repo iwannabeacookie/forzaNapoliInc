@@ -1,8 +1,8 @@
 <script setup>
 import { ref, watch, computed } from "vue";
-import { $items, findItemIndexById } from "./cart";
+import { $items, findItemIndexById } from "./scripts/cart";
 import { useStore } from "@nanostores/vue";
-import { apiHelperPOST } from "./api";
+import { apiHelperPOST } from "../helpers/api";
 
 const props = defineProps({
   id: String,

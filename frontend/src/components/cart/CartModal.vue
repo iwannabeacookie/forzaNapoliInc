@@ -2,7 +2,7 @@
 import { ref } from "vue";
 import CartItem from "./CartItem.vue";
 import { useStore } from "@nanostores/vue";
-import { $items, $viewCart } from "./cart";
+import { $items, $viewCart } from "./scripts/cart";
 
 const itemsParent = useStore($items);
 const items = ref(itemsParent);
