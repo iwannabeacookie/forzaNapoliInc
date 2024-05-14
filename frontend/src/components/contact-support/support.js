@@ -1,6 +1,6 @@
 import { createApp } from "vue";
 
 // Components
-import AppSupport from "./AppSupport.vue";
+import AppSupport from "./Support.vue";
 
 createApp(AppSupport).mount("#app");
