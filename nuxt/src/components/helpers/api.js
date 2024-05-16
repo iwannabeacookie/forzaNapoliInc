@@ -1,5 +1,5 @@
 import axios from "axios";
-export const API_URL = "http://localhost:3333";
+export const API_URL = "http://localhost:3000";
 
 export async function apiHelperPOST(endpoint, body) {
   console.info("[API] POST Request, body:", body);

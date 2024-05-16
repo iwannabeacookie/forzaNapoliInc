@@ -11,4 +11,7 @@ export default defineNuxtConfig({
   },
   // ssr: false,
   modules: ["vuetify-nuxt-module", "@nuxt/eslint"],
+  devServer: {
+    port: 5173,
+  },
 });

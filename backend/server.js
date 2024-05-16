@@ -14,7 +14,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const app = express();
-const port = 3333;
+const port = 3000;
 const MongoDbStore = MongoDbSession(session);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

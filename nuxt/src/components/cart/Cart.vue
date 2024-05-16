@@ -6,8 +6,8 @@ const viewCart = useStore($viewCart);
 </script>
 
 <template>
-    <div>
-        <button @click="$viewCart.set(true)">Cart</button>
-        <CartModal v-if="viewCart" />
-    </div>
+  <div>
+    <button @click="$viewCart.set(true)">Cart</button>
+    <CartModal v-if="viewCart" />
+  </div>
 </template>
