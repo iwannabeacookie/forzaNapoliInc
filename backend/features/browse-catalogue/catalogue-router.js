@@ -6,7 +6,6 @@ const router = express.Router();
 router.get("/api/catalogue", (req, res) => {
   CatalogueItem.find({})
     .then((doc) => {
-      console.log(doc);
       res.status(200).json(doc);
     })
     .catch((err) => {
