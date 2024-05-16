@@ -2,7 +2,7 @@
 import { $items } from "./components/cart/scripts/cart.js";
 import { apiHelperPOST } from "./components/helpers/api.js";
 import ExampleDarkModePlatform from "./views/ExampleDarkModePlatform.vue";
-import SupportView from "./views/SupportView.vue"
+import SupportView from "./views/SupportView.vue";
 </script>
 
 <script>

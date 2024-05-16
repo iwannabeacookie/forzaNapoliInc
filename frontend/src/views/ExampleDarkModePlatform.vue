@@ -34,8 +34,8 @@ const viewCart = useStore($viewCart);
           </li>
           <li class="nav__item">
             <a class="nav__link cart-icon" @click="$viewCart.set(true)">
-              <i class="uil uil-shopping-cart nav__icon" id="cart"></i><i class="uil uil-shopping-cart change-theme">
-                Cart </i>
+              <i class="uil uil-shopping-cart nav__icon" id="cart"></i
+              ><i class="uil uil-shopping-cart change-theme"> Cart </i>
             </a>
           </li>
           <cart-modal v-if="viewCart" />
@@ -59,13 +59,25 @@ const viewCart = useStore($viewCart);
     <div class="home__container container grid">
       <div class="home__content grid">
         <div class="home__social">
-          <a href="https://linkedin.com/in/aldo-ricardo-munoz-arellano" target="_blank" class="home__social-icon">
+          <a
+            href="https://linkedin.com/in/aldo-ricardo-munoz-arellano"
+            target="_blank"
+            class="home__social-icon"
+          >
             <i class="uil uil-linkedin"></i>
           </a>
-          <a href="https://github.com/AldoRed" target="_blank" class="home__social-icon">
+          <a
+            href="https://github.com/AldoRed"
+            target="_blank"
+            class="home__social-icon"
+          >
             <i class="uil uil-github-alt"></i>
           </a>
-          <a href="https://www.instagram.com/aldo__munoz_/" target="_blank" class="home__social-icon">
+          <a
+            href="https://www.instagram.com/aldo__munoz_/"
+            target="_blank"
+            class="home__social-icon"
+          >
             <i class="uil uil-instagram"></i>
           </a>
         </div>
@@ -124,7 +136,11 @@ const viewCart = useStore($viewCart);
         </div>
 
         <div class="about__buttons">
-          <a download="" href="assets/pdf/CV_Aldo_Munoz.pdf" class="button button--flex">
+          <a
+            download=""
+            href="assets/pdf/CV_Aldo_Munoz.pdf"
+            class="button button--flex"
+          >
             Descargar CV <i class="uil uil-download-alt button__icon"></i>
           </a>
         </div>
@@ -492,7 +508,10 @@ const viewCart = useStore($viewCart);
 
     <div class="qualification__container container">
       <div class="qualification__tabs">
-        <div class="qualification__button button--flex qualification__active" data-target="#education">
+        <div
+          class="qualification__button button--flex qualification__active"
+          data-target="#education"
+        >
           <i class="uil uil-graduation-cap qualification__icon"></i> Educación
         </div>
         <div class="qualification__button button--flex" data-target="#work">
@@ -502,7 +521,11 @@ const viewCart = useStore($viewCart);
 
       <div class="qualification__sections">
         <!-- Education -->
-        <div class="qualification__content qualification__active" data-content id="education">
+        <div
+          class="qualification__content qualification__active"
+          data-content
+          id="education"
+        >
           <!-- Education 1 -->
           <div class="qualification__data">
             <div></div>
@@ -514,7 +537,9 @@ const viewCart = useStore($viewCart);
               <h3 class="qualification__title">
                 Associate's degree, Computer Engineering
               </h3>
-              <span class="qualification__subtitle">Università di Trento, Italia</span>
+              <span class="qualification__subtitle"
+                >Università di Trento, Italia</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 Feb 2024 - Aug 2024
@@ -528,7 +553,9 @@ const viewCart = useStore($viewCart);
               <h3 class="qualification__title">
                 Ingeniería Civil, Informática
               </h3>
-              <span class="qualification__subtitle">Universidad Adolfo Ibañez, Chile</span>
+              <span class="qualification__subtitle"
+                >Universidad Adolfo Ibañez, Chile</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 2020 - 2024
@@ -551,7 +578,9 @@ const viewCart = useStore($viewCart);
               <h3 class="qualification__title">
                 EF International Language Campuses
               </h3>
-              <span class="qualification__subtitle">Education First, Australia</span>
+              <span class="qualification__subtitle"
+                >Education First, Australia</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 2016 - 2017
@@ -566,7 +595,9 @@ const viewCart = useStore($viewCart);
           <div class="qualification__data">
             <div>
               <h3 class="qualification__title">AldoRed</h3>
-              <span class="qualification__subtitle">Desarrollo de software Fullstack a medida</span>
+              <span class="qualification__subtitle"
+                >Desarrollo de software Fullstack a medida</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 2017 - 2024
@@ -587,7 +618,9 @@ const viewCart = useStore($viewCart);
             </div>
             <div>
               <h3 class="qualification__title">Sistemas <br />e-commerce</h3>
-              <span class="qualification__subtitle">Desarrollo de software Fullstack a medida - PHP</span>
+              <span class="qualification__subtitle"
+                >Desarrollo de software Fullstack a medida - PHP</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 2017 - 2018
@@ -601,7 +634,9 @@ const viewCart = useStore($viewCart);
               <h3 class="qualification__title">
                 Sistemas gestión de inventario
               </h3>
-              <span class="qualification__subtitle">Desarrollo de software Fullstack a medida - PHP</span>
+              <span class="qualification__subtitle"
+                >Desarrollo de software Fullstack a medida - PHP</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 2018 - 2019
@@ -622,7 +657,9 @@ const viewCart = useStore($viewCart);
             </div>
             <div>
               <h3 class="qualification__title">Sistemas para restaurantes</h3>
-              <span class="qualification__subtitle">Desarrollo de software Fullstack a medida - PHP</span>
+              <span class="qualification__subtitle"
+                >Desarrollo de software Fullstack a medida - PHP</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 2020 - 2021
@@ -634,7 +671,9 @@ const viewCart = useStore($viewCart);
           <div class="qualification__data">
             <div>
               <h3 class="qualification__title">Sistemas de administración</h3>
-              <span class="qualification__subtitle">Desarrollo de software Fullstack a medida - PHP</span>
+              <span class="qualification__subtitle"
+                >Desarrollo de software Fullstack a medida - PHP</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 2021 - 2022
@@ -655,7 +694,9 @@ const viewCart = useStore($viewCart);
             </div>
             <div>
               <h3 class="qualification__title">Sistemas modulares</h3>
-              <span class="qualification__subtitle">Desarrollo de software Fullstack a medida - PHP</span>
+              <span class="qualification__subtitle"
+                >Desarrollo de software Fullstack a medida - PHP</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 2022 - 2023
@@ -669,7 +710,9 @@ const viewCart = useStore($viewCart);
               <h3 class="qualification__title">
                 Sistemas de Gestión de documentos
               </h3>
-              <span class="qualification__subtitle">Desarrollo de software Fullstack a medida - PHP</span>
+              <span class="qualification__subtitle"
+                >Desarrollo de software Fullstack a medida - PHP</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 2023 - 2024
@@ -692,7 +735,9 @@ const viewCart = useStore($viewCart);
               <h3 class="qualification__title">
                 Sistemas de gestión de reuniones
               </h3>
-              <span class="qualification__subtitle">Desarrollo de software Fullstack a medida - PHP</span>
+              <span class="qualification__subtitle"
+                >Desarrollo de software Fullstack a medida - PHP</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 2023 - 2024
@@ -706,7 +751,9 @@ const viewCart = useStore($viewCart);
               <h3 class="qualification__title">
                 Sistema de gestión para consultora de inmobiliarias
               </h3>
-              <span class="qualification__subtitle">Desarrollo de software Fullstack a medida - PHP</span>
+              <span class="qualification__subtitle"
+                >Desarrollo de software Fullstack a medida - PHP</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 2023 - 2024
@@ -727,7 +774,9 @@ const viewCart = useStore($viewCart);
             </div>
             <div>
               <h3 class="qualification__title">Federación de estudiantes</h3>
-              <span class="qualification__subtitle">Desempeñado en la universidad adolfo ibañez</span>
+              <span class="qualification__subtitle"
+                >Desempeñado en la universidad adolfo ibañez</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 2021 - 2023
@@ -741,7 +790,9 @@ const viewCart = useStore($viewCart);
               <h3 class="qualification__title">
                 Jefe de departamento salud mental
               </h3>
-              <span class="qualification__subtitle">Federación de Estudiantes Universidad Adolfo Ibáñez 2023</span>
+              <span class="qualification__subtitle"
+                >Federación de Estudiantes Universidad Adolfo Ibáñez 2023</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 2022 - 2023
@@ -764,7 +815,9 @@ const viewCart = useStore($viewCart);
               <h3 class="qualification__title">
                 Coordinador departamento Investigación y excelencia académica
               </h3>
-              <span class="qualification__subtitle">Federación de Estudiantes Universidad Adolfo Ibáñez 2022</span>
+              <span class="qualification__subtitle"
+                >Federación de Estudiantes Universidad Adolfo Ibáñez 2022</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 2021 - 2022
@@ -778,8 +831,10 @@ const viewCart = useStore($viewCart);
               <h3 class="qualification__title">
                 Ambassador Leader Región de Valparaiso en Education First
               </h3>
-              <span class="qualification__subtitle">Seleccionado como ambassador leader de la región de Valparaíso,
-                con más de 110 personas que son parte.</span>
+              <span class="qualification__subtitle"
+                >Seleccionado como ambassador leader de la región de Valparaíso,
+                con más de 110 personas que son parte.</span
+              >
               <div class="qualification__calendar">
                 <i class="uil uil-calendar-alt"></i>
                 2019 - 2021
@@ -825,7 +880,9 @@ const viewCart = useStore($viewCart);
           <i class="uil uil-web-grid services__icon"></i>
           <h3 class="services__title">Desarrollo Web</h3>
         </div>
-        <span class="button button--flex button--small button--link services__button">
+        <span
+          class="button button--flex button--small button--link services__button"
+        >
           Ver más <i class="uil uil-arrow-right button__icon"></i>
         </span>
 
@@ -863,7 +920,9 @@ const viewCart = useStore($viewCart);
           <i class="uil uil-mobile-android services__icon"></i>
           <h3 class="services__title">Desarrollo Blockchain</h3>
         </div>
-        <span class="button button--flex button--small button--link services__button">
+        <span
+          class="button button--flex button--small button--link services__button"
+        >
           Ver más <i class="uil uil-arrow-right button__icon"></i>
         </span>
 
@@ -898,7 +957,9 @@ const viewCart = useStore($viewCart);
           <i class="uil uil-pen services__icon"></i>
           <h3 class="services__title">Renovación Web</h3>
         </div>
-        <span class="button button--flex button--small button--link services__button">
+        <span
+          class="button button--flex button--small button--link services__button"
+        >
           Ver más <i class="uil uil-arrow-right button__icon"></i>
         </span>
 
@@ -939,7 +1000,9 @@ const viewCart = useStore($viewCart);
         <div class="portfolio__content grid swiper-slide">
           <img
             src="https://images.unsplash.com/photo-1483792879322-696964487a67?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2081&q=80"
-            alt="" class="portfolio__img" />
+            alt=""
+            class="portfolio__img"
+          />
 
           <div class="portofolio__data">
             <h3 class="portfolio__title">
@@ -960,7 +1023,10 @@ const viewCart = useStore($viewCart);
               se desarrolló una conclusión a la información obtenida para dar
               resultado a la problemática inicialmente planteada.
             </p>
-            <a href="https://aldored.com/proyecto" class="button button--flex button--small portafolio__button">
+            <a
+              href="https://aldored.com/proyecto"
+              class="button button--flex button--small portafolio__button"
+            >
               Demo <i class="uil uil-arrow-right button__icon"></i>
             </a>
           </div>
@@ -977,8 +1043,10 @@ const viewCart = useStore($viewCart);
               la vez mantuviera en condiciones optimas plantas regadas, de
               manera totalmente automática.
             </p>
-            <a href="https://drive.google.com/file/d/1XK6N1DZxlapAsGsrnRTiXB64ThOG2-HE/view"
-              class="button button--flex button--small portafolio__button">
+            <a
+              href="https://drive.google.com/file/d/1XK6N1DZxlapAsGsrnRTiXB64ThOG2-HE/view"
+              class="button button--flex button--small portafolio__button"
+            >
               Demo <i class="uil uil-arrow-right button__icon"></i>
             </a>
           </div>
@@ -1003,7 +1071,10 @@ const viewCart = useStore($viewCart);
             Si tienes un proyecto en mente, no dudes en ponerte en contacto
             conmigo. Estaré encantado de ayudarte.
           </p>
-          <a href="#contact" class="button button--flex button--small button--white">
+          <a
+            href="#contact"
+            class="button button--flex button--small button--white"
+          >
             Contactame <i class="uil uil-message button__icon"></i>
           </a>
           <br />
@@ -1060,7 +1131,13 @@ const viewCart = useStore($viewCart);
         </div>
         <div class="contact__content">
           <label for="" class="contact__label">Mensaje</label>
-          <textarea name="" id="" cols="0" rows="7" class="contact__input"></textarea>
+          <textarea
+            name=""
+            id=""
+            cols="0"
+            rows="7"
+            class="contact__input"
+          ></textarea>
         </div>
         <div>
           <a href="#" class="button button--flex">
@@ -1076,7 +1153,9 @@ const viewCart = useStore($viewCart);
       <div class="footer__container container grid">
         <div>
           <h1 class="footer__title">Aldo Munoz</h1>
-          <span class="footer__subtitle">Estudiante de Ingeniería Civil Informática</span>
+          <span class="footer__subtitle"
+            >Estudiante de Ingeniería Civil Informática</span
+          >
         </div>
 
         <ul class="footer__links">
@@ -1092,7 +1171,11 @@ const viewCart = useStore($viewCart);
         </ul>
 
         <div class="footer__socials">
-          <a href="https://www.linkedin.com/in/aldo-munoz-1b3b3b1b3/" target="_blank" class="footer__social">
+          <a
+            href="https://www.linkedin.com/in/aldo-munoz-1b3b3b1b3/"
+            target="_blank"
+            class="footer__social"
+          >
             <i class="uil uil-linkedin"></i>
           </a>
           <a href="" target="_blank" class="footer__social">
