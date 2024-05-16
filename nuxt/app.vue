@@ -53,7 +53,7 @@ apiHelperPOST("/cart/get", {
 <template>
   <ul>
     <li>
-      <NuxtLink to="/example">Home</NuxtLink>
+      <NuxtLink to="/cart">Home</NuxtLink>
     </li>
     <li>
       <NuxtLink to="/history">History</NuxtLink>
