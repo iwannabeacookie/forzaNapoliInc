@@ -1,7 +1,3 @@
-<script setup>
-import { NuxtLink } from "#build/components";
-</script>
-
 <template>
   <ul>
     <li>

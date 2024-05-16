@@ -8,37 +8,37 @@ import { apiHelperPOST } from "./src/components/helpers/api.js";
 </script>
 
 <script>
-import {
-  showMenu,
-  hideMenu,
-  removeMenuMobile,
-  setupAccordionSkills,
-  setupQualificationTabs,
-  setupServicesModal,
-  setupPortfolioSwiper,
-  setupTestimonialSwiper,
-  setupScrollSectionsActiveLink,
-  setupScrollHeader,
-  setupShowScrollTop,
-  setupDarkLightTheme,
-} from "./src/assets/js/darkMode.js";
+// import {
+//   showMenu,
+//   hideMenu,
+//   removeMenuMobile,
+//   setupAccordionSkills,
+//   setupQualificationTabs,
+//   setupServicesModal,
+//   setupPortfolioSwiper,
+//   setupTestimonialSwiper,
+//   setupScrollSectionsActiveLink,
+//   setupScrollHeader,
+//   setupShowScrollTop,
+//   setupDarkLightTheme,
+// } from "./src/assets/js/darkMode.js";
 
-export default {
-  mounted() {
-    showMenu();
-    hideMenu();
-    removeMenuMobile();
-    setupAccordionSkills();
-    setupQualificationTabs();
-    setupServicesModal();
-    setupPortfolioSwiper();
-    setupTestimonialSwiper();
-    setupScrollSectionsActiveLink();
-    setupScrollHeader();
-    setupShowScrollTop();
-    setupDarkLightTheme();
-  },
-};
+// export default {
+//   mounted() {
+//     showMenu();
+//     hideMenu();
+//     removeMenuMobile();
+//     setupAccordionSkills();
+//     setupQualificationTabs();
+//     setupServicesModal();
+//     setupPortfolioSwiper();
+//     setupTestimonialSwiper();
+//     setupScrollSectionsActiveLink();
+//     setupScrollHeader();
+//     setupShowScrollTop();
+//     setupDarkLightTheme();
+//   },
+// };
 
 // Cart Setup blyat nahui
 apiHelperPOST("/cart/get", {
@@ -51,17 +51,7 @@ apiHelperPOST("/cart/get", {
 </script>
 
 <template>
-  <ul>
-    <li>
-      <NuxtLink to="/cart">Home</NuxtLink>
-    </li>
-    <li>
-      <NuxtLink to="/history">History</NuxtLink>
-    </li>
-    <li>
-      <NuxtLink to="/support">Support</NuxtLink>
-    </li>
-  </ul>
+  <NuxtPage />
 </template>
 
 <style scoped></style>
