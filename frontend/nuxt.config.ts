@@ -9,7 +9,7 @@ export default defineNuxtConfig({
       emptyOutDir: true,
     },
   },
-  // ssr: false,
+  ssr: false,
   modules: ["vuetify-nuxt-module", "@nuxt/eslint"],
   devServer: {
     port: 5173,

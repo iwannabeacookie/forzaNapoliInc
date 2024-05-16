@@ -9,8 +9,5 @@
     <li>
       <NuxtLink to="/support">Support</NuxtLink>
     </li>
-    <li>
-      <NuxtLink to="/example">Example</NuxtLink>
-    </li>
   </ul>
 </template>

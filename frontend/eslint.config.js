@@ -1,8 +1,9 @@
 import globals from "globals";
 import pluginJs from "@eslint/js";
 import pluginVue from "eslint-plugin-vue";
+import withNuxt from "./.nuxt/eslint.config.mjs";
 
-export default [
+export default withNuxt([
   {
     languageOptions: { globals: globals.browser },
   },
@@ -13,7 +14,6 @@ export default [
     rules: {
       "vue/multi-word-component-names": "warn",
       "no-unused-vars": "warn",
-      "vue/no-unused-components": "warn",
     },
   },
-];
+]);
