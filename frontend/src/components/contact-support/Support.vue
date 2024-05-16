@@ -1,5 +1,5 @@
 <script type="module">
-import ItemList from "./components/product-list/product-list.vue";
+import ItemList from "../product-list/ProductList.vue";
 import { postTicket } from "./scripts/post.js";
 
 export default {
