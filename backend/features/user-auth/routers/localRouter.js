@@ -79,7 +79,7 @@ localAuth.post("/signup", async (req, res, next) => {
 localAuth.post("/logout", checkAuth, (req, res, next) => {
     req.sessionStore.destroy(req.body.sessionid, (error) => {
         res.status(200).end();
-    })
+    });
 });
 
 //Sign Out
@@ -96,14 +96,32 @@ localAuth.post("/signout", checkAuth, async (req, res) => {
     });
 });
 
-//Sessio Get
+//Get Session
 
-localAuth.get('/api/session', checkAuth, (req, res) => {
+localAuth.get('/session', checkAuth, (req, res) => {
     req.sessionStore.get(req.body.sessionid, async (error, session) => {
         if (session) {
             res.json(session);
         }
     });
-}) 
+});
+
+//Get User
+
+localAuth.get('/user', checkAuth, async (req, res) => {
+    req.sessionStore.get(req.body.sessionid, async (error, session) => {
+        if (session) {
+            if (session.passport){
+                if(session.passport.user.issuer){
+                    const guser = await googlecollection.findOne({ googleID: session.passport.user.id });
+                    res.json(guser);
+                } else {
+                    const user = await usercollection.findOne({ _id: session.passport.user.id });
+                    res.json(user);
+                }
+            }
+        }
+    });
+})
 
 export default localAuth

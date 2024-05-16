@@ -17,9 +17,14 @@ GoogleAuth.get("/login/google", passport.authenticate("google"));
 GoogleAuth.get(
     "/google/redirect",
     passport.authenticate("google", {
-        successRedirect: "/test",
-        failureRedirect: "/login",
+        successRedirect: "/google/success",
+        failureRedirect: "http://localhost:5000/auth/login",
     }),
 );
+
+GoogleAuth.get('/google/success', (req, res) => {
+    const redirect = "http://localhost:5000/auth/google/" + req.sessionID;
+    res.redirect(redirect);
+})
 
 export default GoogleAuth;

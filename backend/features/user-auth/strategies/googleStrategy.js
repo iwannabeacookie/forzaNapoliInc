@@ -42,7 +42,7 @@ const googleStrategy = new GoogleStrategy({
 
     var users = {
         issuer: userdata[0].issuer,
-        id: userdata[0]._id,
+        id: userdata[0].googleID,
         email: userdata[0].email,
     };
 

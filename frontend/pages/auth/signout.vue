@@ -13,13 +13,6 @@
 import '~/assets/css/access_form.css'
 
 export default {
-    data() {
-        return {
-            username: '',
-            password: '',
-            message: ''
-        }
-    },
     methods: {
         async userSignout() {
             const sessionid = useCookie('sessionId');
