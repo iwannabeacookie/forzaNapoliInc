@@ -13,6 +13,7 @@ export default [
     rules: {
       "vue/multi-word-component-names": "warn",
       "no-unused-vars": "warn",
+      "vue/no-unused-components": "warn",
     },
   },
 ];
