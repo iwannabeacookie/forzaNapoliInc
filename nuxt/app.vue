@@ -3,7 +3,7 @@
 import "./src/assets/css/style.css";
 
 //Components
-import ExampleDarkModePlatform from "./src/components/ExampleDarkModePlatform.vue";
+import ExampleDarkModePlatform from "./src/views/ExampleDarkModePlatform.vue";
 import { $items } from "./src/components/cart/scripts/cart.js";
 import { apiHelperPOST } from "./src/components/helpers/api.js";
 </script>
