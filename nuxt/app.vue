@@ -3,7 +3,6 @@
 import "./src/assets/css/style.css";
 
 //Components
-import ExampleDarkModePlatform from "./src/views/ExampleDarkModePlatform.vue";
 import { $items } from "./src/components/cart/scripts/cart.js";
 import { apiHelperPOST } from "./src/components/helpers/api.js";
 </script>
@@ -51,32 +50,18 @@ apiHelperPOST("/cart/get", {
 });
 </script>
 
-<style scoped>
-.Cart {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100px;
-  height: 100px;
-  background-color: #f9f9f9;
-  border-radius: 10px;
-  padding: 10px;
-  box-shadow: 0 0 10px #ccc;
-  z-index: 1000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-</style>
-
 <template>
-  <div>
-    <ExampleDarkModePlatform />
-  </div>
+  <ul>
+    <li>
+      <NuxtLink to="/example">Home</NuxtLink>
+    </li>
+    <li>
+      <NuxtLink to="/history">History</NuxtLink>
+    </li>
+    <li>
+      <NuxtLink to="/support">Support</NuxtLink>
+    </li>
+  </ul>
 </template>
 
 <style scoped></style>

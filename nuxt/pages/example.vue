@@ -1,6 +1,6 @@
 <script setup>
-import CartModal from "../components/cart/CartModal.vue";
-import { $viewCart } from "../components/cart/scripts/cart";
+import CartModal from "../src/components/cart/CartModal.vue";
+import { $viewCart } from "../src/components/cart/scripts/cart";
 import { useStore } from "@nanostores/vue";
 const viewCart = useStore($viewCart);
 </script>

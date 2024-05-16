@@ -3,5 +3,5 @@
 </template>
 
 <script>
-import AppHistory from "../components/History.vue";
+import AppHistory from "../src/components/History.vue";
 </script>
