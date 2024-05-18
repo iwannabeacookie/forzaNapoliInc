@@ -1,8 +1,8 @@
 import { Schema } from "mongoose";
-import Item from "./itemSchema.js";
+import OrderItem from "./orderItemSchema.js";
 
 export default new Schema({
   date: Date,
   status: String,
-  items: [Item],
+  items: [OrderItem],
 });

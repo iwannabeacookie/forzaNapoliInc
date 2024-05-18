@@ -1,11 +1,16 @@
 import express from "express";
-import CatalogueItem from "../../models/itemModel.js";
+import Item from "../../models/itemModel.js";
 
 const router = express.Router();
 
-router.get("/api/catalogue", (req, res) => {
-  CatalogueItem.find({})
+router.get("/api/item/:id", (req, res) => {
+  Item.findById(req.params.id, {
+    _id: 0,
+    __v: 0,
+    description_short: 0,
+  })
     .then((doc) => {
+      console.log(doc);
       res.status(200).json(doc);
     })
     .catch((err) => {
