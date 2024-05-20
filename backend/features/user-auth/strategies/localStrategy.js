@@ -4,7 +4,7 @@ import usercollection from "../models/userModel.js";
 
 const localStrategy = new LocalStrategy(async function verify(username, password, cb) {
     const auth = await usercollection.findOne({ email: username });
-    if (auth) {
+    if (auth && !auth.issuer) {
         crypto.pbkdf2(
             password,
             auth.salt,

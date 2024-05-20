@@ -2,11 +2,6 @@ import { Schema } from "mongoose";
 import Order from "../../../models/schemas/orderSchema.js";
 import mongoose from "../../../mongodb/mongodb.js";
 import CartItem from "../../cart-management/models/cartItemSchema.js";
-// const mongoose = await import(
-//   "file:///" + process.env.ROOT_DIR + "/backend/mongodb/mongodb.js"
-// ).then((mod) => {
-//   return mod.default;
-// });
 
 const Userschema = new Schema({
   issuer: {

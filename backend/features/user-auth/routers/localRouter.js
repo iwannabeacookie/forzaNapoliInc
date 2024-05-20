@@ -77,7 +77,7 @@ localAuth.post("/signup", async (req, res, next) => {
 //Log Out
 
 localAuth.post("/logout", checkAuth, (req, res, next) => {
-    req.sessionStore.destroy(req.body.sessionid, (error) => {
+    req.sessionStore.destroy(req.body.sessionid._value, (error) => {
         res.status(200).end();
     });
 });
@@ -85,10 +85,14 @@ localAuth.post("/logout", checkAuth, (req, res, next) => {
 //Sign Out
 
 localAuth.post("/signout", checkAuth, async (req, res) => {
-    req.sessionStore.get(req.body.sessionid, async (error, session) => {
+    req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
         if (session) {
-            await usercollection.findOneAndDelete({ _id: session.passport.user.id });
-            req.sessionStore.destroy(req.body.sessionid, (error) => {
+            if (session.passport.user.issuer) {
+                await googlecollection.findOneAndDelete({ _id: session.passport.user.id });
+            } else {
+                await usercollection.findOneAndDelete({ _id: session.passport.user.id });
+            }
+            req.sessionStore.destroy(req.body.sessionid._value, (error) => {
                 console.log("destroied");
                 res.status(200).end();
             })
@@ -98,8 +102,8 @@ localAuth.post("/signout", checkAuth, async (req, res) => {
 
 //Get Session
 
-localAuth.get('/session', checkAuth, (req, res) => {
-    req.sessionStore.get(req.body.sessionid, async (error, session) => {
+localAuth.post('/session', checkAuth, (req, res) => {
+    req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
         if (session) {
             res.json(session);
         }
@@ -108,20 +112,15 @@ localAuth.get('/session', checkAuth, (req, res) => {
 
 //Get User
 
-localAuth.get('/user', checkAuth, async (req, res) => {
-    req.sessionStore.get(req.body.sessionid, async (error, session) => {
+localAuth.post('/user', checkAuth, async (req, res) => {
+    req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
         if (session) {
-            if (session.passport){
-                if(session.passport.user.issuer){
-                    const guser = await googlecollection.findOne({ googleID: session.passport.user.id });
-                    res.json(guser);
-                } else {
-                    const user = await usercollection.findOne({ _id: session.passport.user.id });
-                    res.json(user);
-                }
+            if (session.passport) {
+                const user = await usercollection.findOne({ _id: session.passport.user.id });
+                res.json(user);
             }
         }
     });
-})
+});
 
 export default localAuth

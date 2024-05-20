@@ -10,23 +10,18 @@
 
 <script>
 
+import axios from 'axios';
 import '~/assets/css/access_form.css'
 
 export default {
     methods: {
         async userLogout() {
             const sessionid = useCookie('sessionId');
-            await useFetch('http://localhost:3000/logout', {
-                method: 'post',
-                body: {
-                    sessionid: sessionid
-                }
-            }).then((response) => {
-                if (response.error.value) {
-                } else {
-                    sessionid.value = '';
-                    navigateTo('/');
-                }
+            await axios.post('http://localhost:3000/logout', {
+                sessionid: sessionid
+            }).then(response => {
+                sessionid.value = null;
+                navigateTo('/');
             });
         }
     }

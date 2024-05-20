@@ -15,6 +15,7 @@
 
 <script>
 
+import axios from 'axios';
 import '~/assets/css/access_form.css'
 
 export default {
@@ -30,22 +31,15 @@ export default {
   methods: {
     async userSignup() {
       const sessionid = useCookie('sessionId');
-      await useFetch('http://localhost:3000/signup', {
-        method: 'post',
-        body: {
-          name: this.name,
-          surname: this.surname,
-          email: this.email,
-          password: this.password
-        }
-      }).then((response) => {
-        if (response.error.value) {
-          console.log(response.error);
-          this.message = "already used email"
-        } else {
-          sessionid.value = response.data.value;
-          navigateTo('/');
-        }
+      await axios.post('http://localhost:3000/signup', {
+        name: this.name,
+        surname: this.surname,
+        email: this.email,
+        password: this.password
+      }).then(response => {
+        console.log(response);
+        sessionid.value = response.data;
+        navigateTo('/');
       });
     }
   }

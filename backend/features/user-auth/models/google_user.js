@@ -21,7 +21,6 @@ const Googleschema = new mongoose.Schema({
   googleID: {
     type: String,
     required: true,
-    unique: true,
   },
   VIP: {
     type: Boolean,
@@ -43,7 +42,7 @@ const Googleschema = new mongoose.Schema({
 
 //User model
 //is used to connect a database to a determinated schema
-const googlecollection = new mongoose.model("google_user", Googleschema);
+const googlecollection = new mongoose.model("users", Googleschema);
 
 //export to allow everyone index.js to use it
 export default googlecollection;
