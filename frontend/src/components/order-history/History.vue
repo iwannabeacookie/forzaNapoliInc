@@ -1,0 +1,53 @@
+<script type="module">
+import ItemList from "./ProductList.vue";
+import getHistory from "./scripts/getHistory.js";
+
+export default {
+  name: "App",
+  components: {
+    ItemList,
+  },
+  data() {
+    return {
+      data: {},
+    };
+  },
+  async created() {
+    getHistory({ _id: "663c962b66b3219a1852a91e" })
+      .then((data) => {
+        console.log(data);
+        this.data = data;
+      })
+      .catch((error) => {
+        console.log("Blyat! Error fetching history:", error);
+      });
+  },
+};
+</script>
+
+<template>
+  <div>
+    <a href="https://vitejs.dev" target="_blank"> </a>
+    <a href="https://vuejs.org/" target="_blank">
+      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
+    </a>
+  </div>
+  <ItemList :data="data" />
+</template>
+
+<style scoped>
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.vue:hover {
+  filter: drop-shadow(0 0 2em #42b883aa);
+}
+</style>

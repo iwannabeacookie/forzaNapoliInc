@@ -1,8 +1,9 @@
 <script setup lang="ts">
-const sessionid = useCookie('sessionId');
-
+import "./src/assets/css/style.css";
 </script>
 
 <template>
-    <NuxtPage />
+  <NuxtPage />
 </template>
+
+<style scoped></style>

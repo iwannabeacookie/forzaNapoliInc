@@ -9,6 +9,8 @@ import authRouter from "./features/user-auth/auth.js";
 import historyRouter from "./features/order-history/history-router.js";
 import ticketRouter from "./features/submit-ticket/ticket-router.js";
 import cartRouter from "./features/cart-management/cart-router.js";
+import cataloueRouter from "./features/browse-catalogue/catalogue-router.js";
+import itemRouter from "./features/inspect-item/item-router.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -56,6 +58,8 @@ app.use("/", authRouter);
 app.use(historyRouter);
 app.use(ticketRouter);
 app.use(cartRouter);
+app.use(cataloueRouter);
+app.use(itemRouter);
 
 //Setting up the listener
 
