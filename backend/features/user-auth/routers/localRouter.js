@@ -5,7 +5,7 @@ import usercollection from "../models/userModel.js";
 import googlecollection from "../models/google_user.js";
 import crypto from "crypto";
 import localStrategy from "../strategies/localStrategy.js";
-import { checkAuth } from '../../../helpers/auth.js'
+import { checkAuth } from "../../../helpers/auth.js";
 
 //Strategy
 
@@ -18,109 +18,119 @@ localAuth.use(flash());
 
 //Log In
 
-localAuth.post("/login", passport.authenticate("local", { failureRedirect: '/message/error' }), (req, res) => {
+localAuth.post(
+  "/login",
+  passport.authenticate("local", { failureRedirect: "/message/error" }),
+  (req, res) => {
     res.send(req.sessionID);
-});
+  },
+);
 
-localAuth.get('/message/error', (req, res) => {
-    res.status(400);
-})
+localAuth.get("/message/error", (req, res) => {
+  res.status(400);
+});
 
 //Sign Up
 
 localAuth.post("/signup", async (req, res, next) => {
-    const checkuser = await usercollection.findOne({ email: req.body.email });
-    const checkgoogle = await googlecollection.findOne({ email: req.body.email });
-    if (checkuser || checkgoogle) {
-        res.redirect('/message/error')
-    } else {
-        const salt = crypto.randomBytes(16).toString("base64");
-        crypto.pbkdf2(
-            req.body.password,
-            salt,
-            310000,
-            32,
-            "sha256",
-            async (err, hashedPassword) => {
-                if (err) return next(err);
+  const checkuser = await usercollection.findOne({ email: req.body.email });
+  const checkgoogle = await googlecollection.findOne({ email: req.body.email });
+  if (checkuser || checkgoogle) {
+    res.redirect("/message/error");
+  } else {
+    const salt = crypto.randomBytes(16).toString("base64");
+    crypto.pbkdf2(
+      req.body.password,
+      salt,
+      310000,
+      32,
+      "sha256",
+      async (err, hashedPassword) => {
+        if (err) return next(err);
 
-                const data = {
-                    issuer: null,
-                    name: req.body.name,
-                    surname: req.body.surname,
-                    email: req.body.email,
-                    password: hashedPassword.toString("base64"),
-                    salt: salt,
-                    VIP: false,
-                    newsletter: false,
-                    Cart: [],
-                    Orders: [],
-                };
+        const data = {
+          issuer: null,
+          name: req.body.name,
+          surname: req.body.surname,
+          email: req.body.email,
+          password: hashedPassword.toString("base64"),
+          salt: salt,
+          VIP: false,
+          newsletter: false,
+          Cart: [],
+          Orders: [],
+        };
 
-                const userdata = await usercollection.insertMany(data);
+        const userdata = await usercollection.insertMany(data);
 
-                var user = {
-                    issuer: userdata[0].issuer,
-                    id: userdata[0]._id,
-                    email: userdata[0].email,
-                };
+        var user = {
+          issuer: userdata[0].issuer,
+          id: userdata[0]._id,
+          email: userdata[0].email,
+        };
 
-                req.login(user, (err) => {
-                    if (err) return next(err);
-                    res.send(req.sessionID);
-                });
-            },
-        );
-    }
+        req.login(user, (err) => {
+          if (err) return next(err);
+          res.send(req.sessionID);
+        });
+      },
+    );
+  }
 });
 
 //Log Out
 
 localAuth.post("/logout", checkAuth, (req, res, next) => {
-    req.sessionStore.destroy(req.body.sessionid._value, (error) => {
-        res.status(200).end();
-    });
+  req.sessionStore.destroy(req.body.sessionid._value, (error) => {
+    res.status(200).end();
+  });
 });
 
 //Sign Out
 
 localAuth.post("/signout", checkAuth, async (req, res) => {
-    req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
-        if (session) {
-            if (session.passport.user.issuer) {
-                await googlecollection.findOneAndDelete({ _id: session.passport.user.id });
-            } else {
-                await usercollection.findOneAndDelete({ _id: session.passport.user.id });
-            }
-            req.sessionStore.destroy(req.body.sessionid._value, (error) => {
-                console.log("destroied");
-                res.status(200).end();
-            })
-        }
-    });
+  req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
+    if (session) {
+      if (session.passport.user.issuer) {
+        await googlecollection.findOneAndDelete({
+          _id: session.passport.user.id,
+        });
+      } else {
+        await usercollection.findOneAndDelete({
+          _id: session.passport.user.id,
+        });
+      }
+      req.sessionStore.destroy(req.body.sessionid._value, (error) => {
+        console.log("destroied");
+        res.status(200).end();
+      });
+    }
+  });
 });
 
 //Get Session
 
-localAuth.post('/session', checkAuth, (req, res) => {
-    req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
-        if (session) {
-            res.json(session);
-        }
-    });
+localAuth.post("/session", checkAuth, (req, res) => {
+  req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
+    if (session) {
+      res.json(session);
+    }
+  });
 });
 
 //Get User
 
-localAuth.post('/user', checkAuth, async (req, res) => {
-    req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
-        if (session) {
-            if (session.passport) {
-                const user = await usercollection.findOne({ _id: session.passport.user.id });
-                res.json(user);
-            }
-        }
-    });
+localAuth.post("/user", checkAuth, async (req, res) => {
+  req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
+    if (session) {
+      if (session.passport) {
+        const user = await usercollection.findOne({
+          _id: session.passport.user.id,
+        });
+        res.json(user);
+      }
+    }
+  });
 });
 
-export default localAuth
+export default localAuth;
