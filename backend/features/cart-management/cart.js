@@ -1,4 +1,4 @@
-import userSchema from "../../models/userModel.js";
+import userSchema from "../user-auth/models/userModel.js";
 
 /*
  * @param newCart: [{

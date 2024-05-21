@@ -5,7 +5,6 @@ import cors from "cors";
 import session from "express-session";
 import passport from "passport";
 import MongoDbSession from "connect-mongodb-session";
-import indexRouter from "./features/user-auth/index.js";
 import authRouter from "./features/user-auth/auth.js";
 import historyRouter from "./features/order-history/history-router.js";
 import ticketRouter from "./features/submit-ticket/ticket-router.js";
@@ -55,7 +54,6 @@ app.use(passport.session());
 
 //Setting up the router
 
-app.use("/", indexRouter);
 app.use("/", authRouter);
 app.use(historyRouter);
 app.use(ticketRouter);

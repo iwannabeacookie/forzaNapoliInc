@@ -1,15 +1,25 @@
 export function checkAuth(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
+  req.sessionStore.get(req.body.sessionid._value, (error, session) => {
+    if (session) {
+      if (session.passport) {
+        return next();
+      }
+    }
+  });
 
-  res.send("Blyat, auth error");
+  res.status(500);
 }
 
 export function checkunAuth(req, res, next) {
-  if (req.isAuthenticated()) {
-    return res.send("Blyat, auth error");
-  }
+  req.sessionStore.get(req.body.sessionid._value, (error, session) => {
+    if (!session) {
+      return next();
+    } else {
+      if (!session.passport) {
+        return next();
+      }
+    }
+  });
 
-  next();
+  res.status(500);
 }

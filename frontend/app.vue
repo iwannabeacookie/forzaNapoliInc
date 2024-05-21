@@ -1,5 +1,4 @@
-<script setup>
-// Styles
+<script setup lang="ts">
 import "./src/assets/css/style.css";
 </script>
 
