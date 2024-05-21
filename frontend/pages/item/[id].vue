@@ -1,18 +1,18 @@
 <template>
-    <AppItem :id="id" />
+  <AppItem :id="id" />
 </template>
 
 <script>
 import AppItem from "../src/components/inspect-item/Item.vue";
 
 export default {
-    components: {
-        AppItem,
+  components: {
+    AppItem,
+  },
+  computed: {
+    id() {
+      return this.$route.params.id;
     },
-    computed: {
-        id() {
-            return this.$route.params.id;
-        },
-    },
+  },
 };
 </script>

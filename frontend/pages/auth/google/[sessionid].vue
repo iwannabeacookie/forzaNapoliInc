@@ -1,10 +1,9 @@
 <script setup>
 const route = useRoute();
 
-const sessionid = useCookie('sessionId');
+const sessionid = useCookie("sessionId");
 sessionid.value = route.params.sessionid;
-navigateTo('/');
+navigateTo("/");
 </script>
 
-<template>
-</template>
+<template></template>

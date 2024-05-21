@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import "./src/assets/css/style.css";
+import "./assets/css/access_form.css";
 </script>
 
 <template>
