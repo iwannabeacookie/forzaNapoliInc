@@ -14,12 +14,30 @@
     </p>
     <div class="item-review-section">
       <h2>Reviews</h2>
-      <p>Review section coming soon...</p>
+      <div v-if="data.reviews[0]">
+        <div v-for="review in data.reviews">
+          <p>{{ review.userName }} {{ review.userSurname }}</p>
+          <p v-if="review.certified">certified</p>
+          <p>{{ review.text }}</p>
+        </div>
+      </div>
+      <p v-else>no reviews</p>
+
+      <form id="sendReviews" @submit="sendReviews">
+        <input
+          type="textarea"
+          v-model="comment"
+          required
+          placeholder="Write your review"
+        />
+        <input type="submit" value="Send" />
+      </form>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import getItem from "./scripts/getItem.js";
 
 export default defineNuxtComponent({
@@ -27,6 +45,7 @@ export default defineNuxtComponent({
   data() {
     return {
       data: {},
+      comment: "",
     };
   },
   computed: {
@@ -46,6 +65,24 @@ export default defineNuxtComponent({
       });
     console.log(data);
     return { data: data };
+  },
+  methods: {
+    async sendReviews() {
+      const route = useRoute();
+      const sessionid = useCookie("sessionId");
+      await axios
+        .post("http://localhost:3000/post/review", {
+          sessionid: sessionid,
+          itemid: route.params.id,
+          comment: this.comment,
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
   },
 });
 </script>
