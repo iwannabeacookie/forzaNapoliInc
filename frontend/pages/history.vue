@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import AppHistory from "../src/components/History.vue";
+import AppHistory from "../src/components/order-history/History.vue";
 
 export default {
   components: {

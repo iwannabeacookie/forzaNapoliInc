@@ -1,6 +1,6 @@
 <script type="module">
-import ItemList from "./product-list/ProductList.vue";
-import { getHistory } from "./product-list/scripts/getHistory.js";
+import ItemList from "./ProductList.vue";
+import getHistory from "./scripts/getHistory.js";
 
 export default {
   name: "App",

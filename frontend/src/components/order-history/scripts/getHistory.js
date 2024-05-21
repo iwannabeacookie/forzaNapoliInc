@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export function getHistory(body) {
+export default function getHistory(body) {
   console.info("[API] POST Request, body:", body);
   const API_URL = "http://localhost:3000";
   return axios
