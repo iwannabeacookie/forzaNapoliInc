@@ -10,8 +10,8 @@ reviewRouter.post('/post/review', checkAuth, async (req, res) => {
         if (session) {
             if (session.passport) {
                 const user = await usercollection.findById(session.passport.user.id);
-                const item = await itemModel.findById(req.body.itemid)
-                const order = user.orders.find(order => order.items.some(item => item.article === 'article_vodka'));
+                const citem = await itemModel.findById(req.body.itemid)
+                const order = user.orders.find(order => order.items.some(item => item.article === citem.article));
                 const review = {
                     userName: user.name,
                     userSurname: user.surname,
@@ -22,8 +22,8 @@ reviewRouter.post('/post/review', checkAuth, async (req, res) => {
                 if(order){
                     review.certified = true;
                 }
-                item.reviews.push(review);
-                item.save();
+                citem.reviews.push(review);
+                citem.save();
                 res.send("review added");
             }
         }

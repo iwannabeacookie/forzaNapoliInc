@@ -28,7 +28,13 @@
       <p v-else>no reviews</p>
 
       <form class="sendReviews" @submit="sendReviews">
-        <input class="textFormReview" type="textarea" v-model="comment" required placeholder="Write your review" />
+        <input
+          class="textFormReview"
+          type="textarea"
+          v-model="comment"
+          required
+          placeholder="Write your review"
+        />
         <input class="submitReview" type="submit" value="➤" />
       </form>
     </div>
@@ -131,47 +137,46 @@ export default defineNuxtComponent({
   margin-top: 20px;
 }
 
-.nameReview{
+.nameReview {
   display: flex;
   padding: auto;
   margin-bottom: 10px;
   font-size: 18px;
 }
 
-.textReview{
+.textReview {
   padding: auto;
   font-size: 14px;
 }
 
-.review{
+.review {
   padding: 15px;
   margin-bottom: 15px;
   border-radius: 10px;
   background-color: #bff6ff;
 }
 
-.reviewCertifiedMark{
+.reviewCertifiedMark {
   margin-left: 5px;
   color: blue;
 }
 
-.sendReviews{
+.sendReviews {
   display: flex;
   width: 100%;
 }
 
-.textFormReview{
+.textFormReview {
   padding: 20px;
   margin-right: 10px;
   background-color: #bff6ff;
 }
 
-.submitReview{
+.submitReview {
   padding: 20px;
   padding-left: 25px;
   width: auto;
   font-size: larger;
   background-color: #74edff;
 }
-
 </style>
