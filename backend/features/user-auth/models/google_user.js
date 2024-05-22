@@ -30,11 +30,11 @@ const Googleschema = new mongoose.Schema({
     type: Boolean,
     required: true,
   },
-  Cart: {
+  cart: {
     type: [],
     required: true,
   },
-  Orders: {
+  orders: {
     type: [],
     required: true,
   },

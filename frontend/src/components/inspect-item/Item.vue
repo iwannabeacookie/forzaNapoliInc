@@ -15,22 +15,21 @@
     <div class="item-review-section">
       <h2>Reviews</h2>
       <div v-if="data.reviews[0]">
-        <div v-for="review in data.reviews">
-          <p>{{ review.userName }} {{ review.userSurname }}</p>
-          <p v-if="review.certified">certified</p>
-          <p>{{ review.text }}</p>
+        <div v-for="review in data.reviews" class="review">
+          <div class="nameReview">
+            <p>{{ review.userName }} {{ review.userSurname }}</p>
+            <p v-if="review.certified" class="reviewCertifiedMark">✅︎</p>
+          </div>
+          <div class="textReview">
+            <p>{{ review.text }}</p>
+          </div>
         </div>
       </div>
       <p v-else>no reviews</p>
 
-      <form id="sendReviews" @submit="sendReviews">
-        <input
-          type="textarea"
-          v-model="comment"
-          required
-          placeholder="Write your review"
-        />
-        <input type="submit" value="Send" />
+      <form class="sendReviews" @submit="sendReviews">
+        <input class="textFormReview" type="textarea" v-model="comment" required placeholder="Write your review" />
+        <input class="submitReview" type="submit" value="➤" />
       </form>
     </div>
   </div>
@@ -131,4 +130,48 @@ export default defineNuxtComponent({
 .item-review-section {
   margin-top: 20px;
 }
+
+.nameReview{
+  display: flex;
+  padding: auto;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.textReview{
+  padding: auto;
+  font-size: 14px;
+}
+
+.review{
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  background-color: #bff6ff;
+}
+
+.reviewCertifiedMark{
+  margin-left: 5px;
+  color: blue;
+}
+
+.sendReviews{
+  display: flex;
+  width: 100%;
+}
+
+.textFormReview{
+  padding: 20px;
+  margin-right: 10px;
+  background-color: #bff6ff;
+}
+
+.submitReview{
+  padding: 20px;
+  padding-left: 25px;
+  width: auto;
+  font-size: larger;
+  background-color: #74edff;
+}
+
 </style>

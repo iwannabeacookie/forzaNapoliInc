@@ -11,12 +11,16 @@ reviewRouter.post('/post/review', checkAuth, async (req, res) => {
             if (session.passport) {
                 const user = await usercollection.findById(session.passport.user.id);
                 const item = await itemModel.findById(req.body.itemid)
+                const order = user.orders.find(order => order.items.some(item => item.article === 'article_vodka'));
                 const review = {
                     userName: user.name,
                     userSurname: user.surname,
                     userId: user._id,
                     certified: false,
                     text: req.body.comment
+                }
+                if(order){
+                    review.certified = true;
                 }
                 item.reviews.push(review);
                 item.save();
