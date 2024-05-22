@@ -46,3 +46,19 @@ export async function sendAllNewsletters() {
   });
   console.info("Finished sending emails");
 }
+
+/**
+ * Change the status of the user's newsletter subscription
+ * @param userEmail The email of the user, in order to identify him
+ * @param newsletterVal The new useletter Value
+ * @returns returns the newsellter's new staturs
+ */
+export async function updateNewsletter(userEmail, newsletterVal) {
+  await userSchema.updateOne(
+    { email: userEmail },
+    { $set: { newsletter: newsletterVal } },
+  );
+  const { newsletter } = await userSchema.findOne({ email: userEmail });
+  console.info("Updated newsletter:", newsletter);
+  return newsletter;
+}
