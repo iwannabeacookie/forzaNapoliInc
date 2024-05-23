@@ -23,7 +23,7 @@ newsletterRouter.post("/remove-from-newsletter", async (req, res) => {
   if ((await updateNewsletter(reqBody.email, false)) === false) {
     res.status(200).json(null);
   } else {
-    res.status(200).json(null);
+    res.status(500).json(null);
   }
 });
 
@@ -37,7 +37,7 @@ newsletterRouter.post("/add-to-newsletter", async (req, res) => {
   if ((await updateNewsletter(reqBody.email, true)) === true) {
     res.status(200).json(null);
   } else {
-    res.status(200).json(null);
+    res.status(500).json(null);
   }
 });
 
