@@ -35,5 +35,8 @@ async function user() {
     <li>
       <NuxtLink to="/catalogue">Catalogue</NuxtLink>
     </li>
+    <li>
+      <NuxtLink to="/profile/modify">Modify Profile</NuxtLink>
+    </li>
   </ul>
 </template>

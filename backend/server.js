@@ -11,6 +11,7 @@ import ticketRouter from "./features/submit-ticket/ticket-router.js";
 import cartRouter from "./features/cart-management/cart-router.js";
 import cataloueRouter from "./features/browse-catalogue/catalogue-router.js";
 import itemRouter from "./features/inspect-item/item-router.js";
+import modifyRouter from "./features/modify-profile/modifyProfileRouter.js";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -60,6 +61,7 @@ app.use(ticketRouter);
 app.use(cartRouter);
 app.use(cataloueRouter);
 app.use(itemRouter);
+app.use(modifyRouter);
 
 //Setting up the listener
 

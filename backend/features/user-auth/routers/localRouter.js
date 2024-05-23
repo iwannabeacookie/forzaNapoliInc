@@ -80,7 +80,7 @@ localAuth.post("/signup", async (req, res, next) => {
 
 //Log Out
 
-localAuth.post("/logout", checkAuth, (req, res, next) => {
+localAuth.post("/logout", checkAuth, (req, res) => {
   req.sessionStore.destroy(req.body.sessionid._value, (error) => {
     res.status(200).end();
   });
