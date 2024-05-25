@@ -21,32 +21,25 @@
 
 <script>
 import getItem from "./scripts/getItem.js";
+import { ref, toRaw } from "vue";
 
-export default defineNuxtComponent({
-  name: "Item",
-  data() {
-    return {
-      data: {},
-    };
-  },
-  computed: {
-    discountedPrice() {
-      return (this.data.price * (100 - this.data.sale)) / 100;
-    },
-  },
-  async asyncData() {
-    const route = useRoute();
-    let data = {};
-    await getItem(route.params.id)
-      .then((doc) => {
-        data = doc;
+const route = useRoute();
+console.log(route, toRaw(route).params, route.params.id, "blyat", route.name);
+
+onBeforeMount(async () => {
+  const data = await useAsyncData(() =>
+    getItem(route.params.id)
+      .then((response) => {
+        return response;
       })
       .catch((error) => {
-        console.log("Blyat! Error fetching item:", error);
-      });
-    console.log(data);
-    return { data: data };
-  },
+        console.error(error);
+      }),
+  );
+
+  const discountedPrice = computed(
+    () => (data.price * (100 - data.sale)) / 100,
+  );
 });
 </script>
 
