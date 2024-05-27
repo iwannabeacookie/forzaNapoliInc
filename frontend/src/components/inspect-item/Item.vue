@@ -5,7 +5,7 @@
     <p class="item-description">{{ data.description }}</p>
     <p class="item-price" v-if="data.sale">
       <s>Price: {{ data.price }}</s> New Price:
-      {{ Math.ceil(discountedPrice) - 0.01 }}
+      {{ Math.ceil(discountedPrice()) - 0.01 }}
     </p>
     <p class="item-price" v-else>Price: {{ data.price }}</p>
     <p class="item-sale" v-if="data.sale">Sale: {{ data.sale }}%</p>
@@ -19,28 +19,19 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import getItem from "./scripts/getItem.js";
-import { ref, toRaw } from "vue";
+import { ref, onMounted } from "vue";
 
 const route = useRoute();
-console.log(route, toRaw(route).params, route.params.id, "blyat", route.name);
+const data = ref({});
 
-onBeforeMount(async () => {
-  const data = await useAsyncData(() =>
-    getItem(route.params.id)
-      .then((response) => {
-        return response;
-      })
-      .catch((error) => {
-        console.error(error);
-      }),
-  );
-
-  const discountedPrice = computed(
-    () => (data.price * (100 - data.sale)) / 100,
-  );
+onMounted(async () => {
+  data.value = await getItem(route.params.id);
 });
+const discountedPrice = () => {
+  return (data.value.price * (100 - data.value.sale)) / 100;
+};
 </script>
 
 <style scoped>
