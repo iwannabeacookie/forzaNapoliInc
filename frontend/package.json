@@ -25,7 +25,8 @@
     "swiper": "^11.1.2",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2",
-    "vuetify-nuxt-module": "^0.14.0"
+    "vuetify-nuxt-module": "^0.14.0",
+    "vuex": "^4.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^8.57.0",
