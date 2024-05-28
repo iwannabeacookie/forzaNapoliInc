@@ -5,7 +5,7 @@
     <p class="item-description">{{ data.description }}</p>
     <p class="item-price" v-if="data.sale">
       <s>Price: {{ data.price }}</s> New Price:
-      {{ Math.ceil(discountedPrice) - 0.01 }}
+      {{ Math.ceil(discountedPrice()) - 0.01 }}
     </p>
     <p class="item-price" v-else>Price: {{ data.price }}</p>
     <p class="item-sale" v-if="data.sale">Sale: {{ data.sale }}%</p>
@@ -19,35 +19,19 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import getItem from "./scripts/getItem.js";
+import { ref, onMounted } from "vue";
 
-export default defineNuxtComponent({
-  name: "Item",
-  data() {
-    return {
-      data: {},
-    };
-  },
-  computed: {
-    discountedPrice() {
-      return (this.data.price * (100 - this.data.sale)) / 100;
-    },
-  },
-  async asyncData() {
-    const route = useRoute();
-    let data = {};
-    await getItem(route.params.id)
-      .then((doc) => {
-        data = doc;
-      })
-      .catch((error) => {
-        console.log("Blyat! Error fetching item:", error);
-      });
-    console.log(data);
-    return { data: data };
-  },
+const route = useRoute();
+const data = ref({});
+
+onMounted(async () => {
+  data.value = await getItem(route.params.id);
 });
+const discountedPrice = () => {
+  return (data.value.price * (100 - data.value.sale)) / 100;
+};
 </script>
 
 <style scoped>

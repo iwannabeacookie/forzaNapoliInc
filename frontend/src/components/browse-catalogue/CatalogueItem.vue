@@ -16,21 +16,19 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "CatalogueItem",
-  props: {
-    item: {
-      type: Object,
-      required: true,
-    },
+<script setup>
+import { computed } from "vue";
+
+const props = defineProps({
+  item: {
+    type: Object,
+    required: true,
   },
-  computed: {
-    discountedPrice() {
-      return (this.item.price * (100 - this.item.sale)) / 100;
-    },
-  },
-};
+});
+
+const discountedPrice = computed(
+  () => (props.item.price * (100 - props.item.sale)) / 100,
+);
 </script>
 
 <style scoped>
