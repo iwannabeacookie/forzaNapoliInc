@@ -58,7 +58,12 @@ export async function updateNewsletter(userEmail, newsletterVal) {
     { email: userEmail },
     { $set: { newsletter: newsletterVal } },
   );
-  const { newsletter } = await userSchema.findOne({ email: userEmail });
-  console.info("Updated newsletter:", newsletter);
-  return newsletter;
+  try {
+    const { newsletter } = await userSchema.findOne({ email: userEmail });
+    console.info("Updated newsletter:", newsletter);
+    return newsletter;
+  } catch (err) {
+    console.error("Error finding newsletter user:", err);
+    return "Invalid Email";
+  }
 }
