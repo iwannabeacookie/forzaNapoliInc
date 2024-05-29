@@ -12,18 +12,24 @@ const newsletterRouter = Router();
 
 /**
  * @openapi
- * /newsletter/send-newsletter:
+ * /newsletter/send-newsletters:
  *    post:
  *      tags:
  *          - Newsletter
  *      description: Grabs all of the users filtering for who has the newsletter enabled, gets all their uselful information, and sends the newsletter
  *      responses:
  *        200:
- *          description: confirms newsletters have been sent
+ *          description: Returns true, confirming newsletters have been sent
+ *        500:
+ *          description: returns false, indicating an error with the server
  */
-newsletterRouter.post("/newsletter/send-newsletter", async (req, res) => {
-  await sendAllNewsletters();
-  res.status(200).json(null);
+newsletterRouter.post("/newsletter/send-newsletters", async (req, res) => {
+  const newsletters = await sendAllNewsletters();
+  if (newsletters === true) {
+    res.status(200).json(true);
+  } else {
+    res.status(500).json(false);
+  }
 });
 
 /**

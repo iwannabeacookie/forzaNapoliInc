@@ -78,7 +78,7 @@ async function updateCart(new_cart) {
   const { updated_cart } = await apiHelperPOST("/cart/update", {
     new_cart: new_cart,
     user_id: "663751edeb50fc9f32cfd751",
-  });
+  }).then((res) => res);
   console.info("New Cart:", updated_cart.cart);
   $items.set(updated_cart.cart);
 }
@@ -92,9 +92,9 @@ async function updateCart(new_cart) {
       <small v-if="available">Available</small>
     </p>
     <v-card-actions>
-      <v-btn @click="addItem = true">Add</v-btn>
-      <v-btn @click="removeItem = true">Remove</v-btn>
-      <v-btn @click="deleteItem = true">Delete</v-btn>
+      <v-btn @click="addItem = true" text="+1" style="width: 40px" />
+      <v-btn @click="removeItem = true" text="-1" style="width: 40px" />
+      <v-btn @click="deleteItem = true" text="Delete" style="width: 40px" />
     </v-card-actions>
   </v-card>
 </template>

@@ -30,7 +30,7 @@ async function sendNewsletter(customerEmail, customerName) {
     html: `<p>Dear ${customerName},</p><p>Your newsletter content here...</p>`, // HTML body
   };
 
-  await sgMail.send(mailOptions);
+  return sgMail.send(mailOptions);
 }
 
 /**
@@ -39,12 +39,24 @@ async function sendNewsletter(customerEmail, customerName) {
 export async function sendAllNewsletters() {
   console.info("Source email:", process.env.SOURCE_EMAIL);
   let users = await getUserInfo();
-  users.forEach(async (user) => {
-    console.info("Sending newsletter to:", user);
-    await sendNewsletter(user.email, user.name);
-    await sleep(1000);
-  });
-  console.info("Finished sending emails");
+  try {
+    users.forEach(async (user) => {
+      if (user.email === undefined) {
+        console.error(
+          "A user has an undefined email! Skipping. Full user:",
+          user,
+        );
+        return;
+      }
+      console.info("Sending newsletter to:", user.email);
+      return await sendNewsletter(user.email, user.name);
+    });
+    console.info("Finished sending emails");
+    return true;
+  } catch (error) {
+    console.error("Error sending newsletter:", error);
+    return false;
+  }
 }
 
 /**

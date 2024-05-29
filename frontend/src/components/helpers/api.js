@@ -12,11 +12,11 @@ export async function apiHelperPOST(endpoint, body) {
   return axios
     .post(`${API_URL}${endpoint}`, body)
     .then((response) => {
-      console.info("[API] Response:", response.data);
+      console.info(`[API] Response: ${response.status} body: ${response.data}`);
       return response.data;
     })
     .catch((error) => {
-      console.error(error);
+      console.error(`[API] Error: ${error}`);
     });
 }
 
