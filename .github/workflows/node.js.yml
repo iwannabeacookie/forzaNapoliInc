@@ -40,11 +40,14 @@ jobs:
       with:
         node-version: '20'
 
-    - name: Debug node modules
-      run: |
-        ls -lha
-        ls -lha ./frontend
-        ls -lha ./frontend/node_modules
+    - name: Ls root
+      run: ls -lha
+        
+    - name: Ls frontend
+      run: ls -lha ./fronted
+
+    - name: Ls node modules
+      run: ls -lha ./frontend/node_modules
 
     - name: Run frontend tests
       run: npm test
