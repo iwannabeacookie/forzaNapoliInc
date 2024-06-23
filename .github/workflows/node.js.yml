@@ -28,6 +28,8 @@ jobs:
       working-directory: ./frontend
       
   test:
+    needs: build
+
     runs-on: ubuntu-latest
 
     steps:
