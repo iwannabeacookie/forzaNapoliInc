@@ -1,28 +1,18 @@
-<script type="module">
+<script setup>
+import { ref, onMounted } from "vue";
 import ItemList from "./ProductList.vue";
 import getHistory from "./scripts/getHistory.js";
 
-export default {
-  name: "App",
-  components: {
-    ItemList,
-  },
-  data() {
-    return {
-      data: {},
-    };
-  },
-  async created() {
-    getHistory({ _id: "663c962b66b3219a1852a91e" })
-      .then((data) => {
-        console.log(data);
-        this.data = data;
-      })
-      .catch((error) => {
-        console.log("Blyat! Error fetching history:", error);
-      });
-  },
-};
+const data = ref({});
+
+onMounted(async () => {
+  try {
+    const historyData = await getHistory({ _id: "663c962b66b3219a1852a91e" });
+    data.value = historyData;
+  } catch (error) {
+    console.error("Blyat! Error fetching history:", error);
+  }
+});
 </script>
 
 <template>
