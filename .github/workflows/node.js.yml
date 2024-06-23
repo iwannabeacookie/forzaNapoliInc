@@ -7,7 +7,7 @@ on:
       - CI
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,28 +26,6 @@ jobs:
     - name: Install frontend dependencies
       run: npm install
       working-directory: ./frontend
-
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20'
-
-    - name: Ls root
-      run: ls -lha
-        
-    - name: Ls frontend
-      run: ls -lha ./frontend
-
-    - name: Ls node modules
-      run: ls -lha ./frontend/node_modules
 
     - name: Run frontend tests
       run: npm test
