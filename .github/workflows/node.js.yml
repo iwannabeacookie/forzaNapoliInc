@@ -40,6 +40,9 @@ jobs:
       with:
         node-version: '20'
 
+    - name: Debug node modules
+      run: ls -lha
+
     - name: Run frontend tests
       run: npm test
       working-directory: ./frontend
