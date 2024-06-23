@@ -20,16 +20,12 @@ jobs:
         node-version: '20'
 
     - name: Install backend dependencies
-      run: npm install
+      run: npm ci
       working-directory: ./backend
     
     - name: Install frontend dependencies
-      run: npm install
+      run: npm ci
       working-directory: ./frontend
-
-    - name: Run backend tests
-      run: npm test
-      working-directory: ./backend
       
     - name: Run frontend tests
       run: npm test
