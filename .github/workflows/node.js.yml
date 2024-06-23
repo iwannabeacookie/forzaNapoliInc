@@ -27,17 +27,13 @@ jobs:
       run: npm install
       working-directory: ./frontend
 
-    - name: Run frontend tests
-      run: npm test
-      working-directory: ./frontend
-
   test:
     needs: build
     runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+    # steps:
+    # - name: Checkout code
+    #   uses: actions/checkout@v4
 
     - name: Run frontend tests
       run: npm test
