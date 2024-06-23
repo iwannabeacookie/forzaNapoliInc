@@ -44,7 +44,7 @@ jobs:
       run: ls -lha
         
     - name: Ls frontend
-      run: ls -lha ./fronted
+      run: ls -lha ./frontend
 
     - name: Ls node modules
       run: ls -lha ./frontend/node_modules
