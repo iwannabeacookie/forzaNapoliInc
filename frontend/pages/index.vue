@@ -18,10 +18,7 @@ async function user() {
 </script>
 
 <template>
-  <button
-    v-tooltip="'Log in if you already have an account'"
-    onclick="window.location.href='/auth/login';"
-  >
+  <button v-tooltip="'Log in if you already have an account'" onclick="window.location.href='/auth/login';">
     Log In
   </button>
   {{ sessionid }}
@@ -42,9 +39,6 @@ async function user() {
     </li>
     <li>
       <NuxtLink to="/newsletter">Newsletter</NuxtLink>
-    </li>
-    <li>
-      <button v-tooltip="'Turn on guides'">?</button>
     </li>
   </ul>
 </template>
