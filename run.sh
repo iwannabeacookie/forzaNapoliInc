@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd ./frontend
-node ./server/index.mjs
+node ./.output/server/index.mjs
 
 cd ../backend
 npm run prod &
