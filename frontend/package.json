@@ -19,6 +19,7 @@
     "axios": "^1.6.8",
     "eslint": "^8.57.0",
     "eslint-plugin-vue": "^9.26.0",
+    "intro.js": "^7.2.0",
     "nanostores": "^0.10.3",
     "nuxt": "^3.11.2",
     "oh-vue-icons": "^1.0.0-rc3",

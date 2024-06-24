@@ -1,12 +1,13 @@
 <template>
+  <nav>
+    <ul>
+      <li><button @click="startTour">?</button></li>
+    </ul>
+  </nav>
   <div class="catalogue">
-    <section class="filter-section">
+    <section v-bind="introOptions.filters" class="filter-section">
       <label for="search">Search:</label>
-      <input
-        id="search"
-        v-model="searchTerm"
-        placeholder="Search for an item"
-      />
+      <input id="search" v-model="searchTerm" placeholder="Search for an item" />
 
       <label for="sale">On Sale:</label>
       <select id="sale" v-model="selectedSale">
@@ -33,20 +34,33 @@
       No items match the provided filters.
     </div>
 
-    <Item
-      v-for="(item, index) in filteredItems"
-      :key="index"
-      :item="item"
-      v-else
-    />
+    <Item v-bind="introOptions.itemCatalogue" v-for="(item, index) in filteredItems" :key="index" :item="item" v-else />
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, watch, computed } from "vue";
-import CatalogueItem from "./CatalogueItem.vue";
 import Item from "./CatalogueItem.vue";
+import 'intro.js/introjs.css';
 import getCatalogue from "./scripts/getCatalogue.js";
+// Guides - Intro.js
+import introJs from "intro.js";
+const introOptions = {
+  filters: {
+    "data-intro":
+      "These are the filters you can apply. You can Both search for an item and apply specific filters for each.",
+    "data-step": 1,
+  },
+  itemCatalogue: {
+    "data-intro":
+      "This is one of the items in the catalogue. Here you can find more info on the item like the name, description and price. Furthermore, you can inspect the item for more details",
+    "data-step": 2,
+  },
+
+};
+function startTour() {
+  introJs().start()
+}
 
 const items = ref([]);
 const selectedFilter = ref("");
