@@ -16,12 +16,6 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank"> </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
   <ItemList :data="data" />
 </template>
 
