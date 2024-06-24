@@ -3,6 +3,7 @@ const API_URL = process.env.NUXT_API_URL;
 
 export default function getCatalogue() {
   console.info("[API] Requesting catalogue...");
+    console.info("[API] URL:", `${API_URL}/api/catalogue`);
   return axios
     .get(`${API_URL}/api/catalogue`)
     .then((response) => {
