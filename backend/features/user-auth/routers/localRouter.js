@@ -120,7 +120,7 @@ localAuth.post("/session", checkAuth, (req, res) => {
 
 //Get User
 
-localAuth.post("/user", checkAuth, async (req, res) => {
+localAuth.get("/user", checkAuth, async (req, res) => {
   req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
     if (session) {
       if (session.passport) {
