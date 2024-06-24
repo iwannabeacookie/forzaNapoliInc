@@ -1,9 +1,10 @@
 import axios from "axios";
+const API_URL = process.env.API_URL;
 
 export default function getItem(id) {
   console.info(`[API] Requesting ${id}`);
   return axios
-    .get(`${process.env.API_URL}/api/item/${id}`)
+    .get(`${API_URL}/api/item/${id}`)
     .then((response) => {
       return response.data;
     })

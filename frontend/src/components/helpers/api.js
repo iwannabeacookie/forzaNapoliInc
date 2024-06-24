@@ -1,4 +1,5 @@
 import axios from "axios";
+const API_URL = process.env.API_URL;
 
 /**
  * Sends a post request with axios to the backend
@@ -9,7 +10,7 @@ import axios from "axios";
 export async function apiHelperPOST(endpoint, body) {
   console.info("[API] POST Request, body:", body);
   return axios
-    .post(`${process.env.API_URL}${endpoint}`, body)
+    .post(`${API_URL}${endpoint}`, body)
     .then((response) => {
       console.info(`[API] Response: ${response.status} body: ${response.data}`);
       return response.data;
@@ -28,7 +29,7 @@ export async function apiHelperPOST(endpoint, body) {
 export async function apiHelperGET(endpoint, body) {
   console.info("[API] GET Request, body:", body);
   return axios
-    .get(`${process.env.API_URL}${endpoint}`, body)
+    .get(`${API_URL}${endpoint}`, body)
     .then((response) => {
       console.info("[API] Response:", response.data);
       return response.data;

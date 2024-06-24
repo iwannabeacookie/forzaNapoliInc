@@ -1,9 +1,10 @@
 import axios from "axios";
+const API_URL = process.env.API_URL;
 
 export default function getHistory(body) {
   console.info("[API] POST Request, body:", body);
   return axios
-    .post(`${process.env.API_URL}/api/user/history`, body)
+    .post(`${API_URL}/api/user/history`, body)
     .then((response) => {
       return response.data;
     })
