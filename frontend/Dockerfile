@@ -15,7 +15,7 @@ COPY . ./
 
 ENV NODE_ENV=production
 ENV NITRO_PORT=10000
-ENV API_URL=https://cd-api1-6bafkhtnna-ew.a.run.app
+ENV NUXT_API_URL=https://cd-api1-6bafkhtnna-ew.a.run.app
 
 # Build the frontend
 RUN npm run build
@@ -24,4 +24,4 @@ RUN npm run build
 EXPOSE 10000
 
 # Start both the backend and frontend using PM2
-CMD ["API_URL=https://cd-api1-6bafkhtnna-ew.a.run.app", "node", ".output/server/index.mjs"]
+CMD ["node", ".output/server/index.mjs"]
