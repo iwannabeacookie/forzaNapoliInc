@@ -24,4 +24,4 @@ RUN npm run build
 EXPOSE 10000
 
 # Start both the backend and frontend using PM2
-CMD ["node", ".output/server/index.mjs"]
+CMD ["API_URL=https://cd-api1-6bafkhtnna-ew.a.run.app", "node", ".output/server/index.mjs"]
