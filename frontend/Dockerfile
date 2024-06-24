@@ -21,7 +21,7 @@ EXPOSE 10000
 
 ENV NODE_ENV=production
 ENV NITRO_PORT=10000
-ENV API_URL=https://api1-6bafkhtnna-ew.a.run.app
+ENV API_URL=https://cd-api1-6bafkhtnna-ew.a.run.app
 
 # Start both the backend and frontend using PM2
 CMD ["node", ".output/server/index.mjs"]
