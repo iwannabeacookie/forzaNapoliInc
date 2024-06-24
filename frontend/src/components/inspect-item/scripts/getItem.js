@@ -1,5 +1,5 @@
 import axios from "axios";
-const API_URL = process.env.API_URL;
+const API_URL = process.env.NUXT_API_URL;
 
 export default function getItem(id) {
   console.info(`[API] Requesting ${id}`);
