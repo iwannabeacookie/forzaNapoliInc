@@ -2,7 +2,8 @@
 
 cd ./frontend
 npm install
-npm run build &
+npm run build
+ls -la
 
 cd ../backend
 npm install
