@@ -18,7 +18,9 @@ async function user() {
 </script>
 
 <template>
-  <button onclick="window.location.href='/auth/login';">Log In</button>
+  <button v-tooltip="'Log in if you already have an account'" onclick="window.location.href='/auth/login';">
+    Log In
+  </button>
   {{ sessionid }}
   <button @click="user">user</button>
 
