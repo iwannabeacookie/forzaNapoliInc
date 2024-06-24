@@ -1,5 +1,6 @@
 import axios from "axios";
-const API_URL = process.env.NUXT_API_URL;
+import { useRuntimeConfig } from "nuxt/app";
+const API_URL = useRuntimeConfig().apiUrl;
 
 export default function getCatalogue() {
   console.info("[API] Requesting catalogue...");

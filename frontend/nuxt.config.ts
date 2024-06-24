@@ -14,7 +14,9 @@ export default defineNuxtConfig({
   devServer: {
     port: 5173,
   },
-  publicRuntimeConfig: {
-    apiUrl: process.env.NUXT_API_URL || "http://localhost:2000",
+  runtimeConfig: {
+    public: {
+        apiUrl: process.env.NUXT_API_URL || "http://localhost:2000",
+    },
   },
 });
