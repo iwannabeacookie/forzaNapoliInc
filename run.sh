@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd ./frontend
-npm run preview &
+node ./server/index.mjs
 
 cd ../backend
 npm run prod &
