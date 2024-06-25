@@ -9,13 +9,13 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    environment: Environment
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
     - name: Create .env file
-      environment: Environment
       env: 
         GOOGLE_ID: ${{ env.GOOGLE_ID }}
         GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
