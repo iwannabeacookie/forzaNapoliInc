@@ -16,7 +16,6 @@
       <NuxtLink :to="`item/${item._id}`"><button>Inspect</button></NuxtLink>
       <button @click="addItemToCart(item)">Add to Cart</button>
     </div>
-
   </div>
 </template>
 

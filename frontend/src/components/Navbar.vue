@@ -6,11 +6,11 @@
         {{ sessionId }}
         <button @click="user">user</button>
 
-    <NuxtLink to="/support"><button>Support</button></NuxtLink>
-    <NuxtLink to="/history"><button>History</button></NuxtLink>
-    <NuxtLink to="/profile/modify"><button> Modify Profile </button></NuxtLink>
-    <Cart />
-  </nav>
+        <NuxtLink to="/support"><button>Support</button></NuxtLink>
+        <NuxtLink to="/history"><button>History</button></NuxtLink>
+        <NuxtLink to="/profile/modify"><button>Modify Profile</button></NuxtLink>
+        <Cart />
+    </nav>
 </template>
 
 <script setup>
@@ -18,26 +18,24 @@ import Cart from "./cart/Cart.vue";
 import { apiHelper } from "~/src/components/helpers/api";
 import { $items, $userId } from "~/src/components/cart/scripts/cart";
 
-
-
 // Login codes
 const sessionid = useCookie("sessionId");
 
 async function user() {
-    const user = await apiHelper("post", useRuntimeConfig(), "/user", {
-        sessionid: sessionid,
-    });
+    const user = await apiHelper("get", useRuntimeConfig(), `/user/${sessionid.value}`);
     console.log(user._id);
-    $userId.set(user._id)
-    return user._id
+    $userId.set(user._id);
+    return user._id;
 }
 
 // Cart setup
-apiHelper("get", useRuntimeConfig(), `/cart/get/${await user()}`).then((res) => {
-    const { cart } = res;
-    console.info("Cart:", cart);
-    $items.set(cart);
-});
+apiHelper("get", useRuntimeConfig(), `/cart/get/${await user()}`).then(
+    (res) => {
+        const { cart } = res;
+        console.info("Cart:", cart);
+        $items.set(cart);
+    },
+);
 </script>
 
 <style scoped>

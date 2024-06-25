@@ -32,7 +32,7 @@ watch(addItem, (val) => {
   if (val) {
     const tmpItems = [...items.value];
     const itemIndex = findItemIndexById(tmpItems, props.id);
-    console.warn("INDEX:", itemIndex)
+    console.warn("INDEX:", itemIndex);
     if (itemIndex !== -1) {
       const updatedItem = {
         ...tmpItems[itemIndex],
@@ -79,7 +79,8 @@ watch(deleteItem, (val) => {
   <v-card :title="itemName">
     <img :src="imageUrl" class="productImg" />
     <p>
-      Quantity: {{ quantity }} Price: {{ parseFloat(price * quantity).toFixed(2) }}€
+      Quantity: {{ quantity }} Price:
+      {{ parseFloat(price * quantity).toFixed(2) }}€
       <small v-if="available">Available</small>
     </p>
     <v-card-actions>

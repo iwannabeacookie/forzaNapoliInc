@@ -11,7 +11,7 @@ onMounted(async () => {
     const userID = apiHelperGET(useRuntimeConfig(), "/user/" + sessionID);
     const historyData = await apiHelperPOST(
       useRuntimeConfig(),
-        `/api/${userID}/history`,
+      `/api/${userID}/history`,
     );
     data.value = historyData;
   } catch (error) {

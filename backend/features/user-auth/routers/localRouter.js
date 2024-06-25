@@ -120,9 +120,9 @@ localAuth.post("/session", checkAuth, (req, res) => {
 });
 
 //Get User
-
-localAuth.get("/user", checkAuth, async (req, res) => {
-  req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
+localAuth.get("/user/:sessionId", async (req, res) => {
+  const sessionId = req.params.sessionId;
+  req.sessionStore.get(sessionId, async (error, session) => {
     if (session) {
       if (session.passport) {
         const user = await usercollection.findOne({
