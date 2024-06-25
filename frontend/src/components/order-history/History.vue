@@ -7,10 +7,11 @@ const data = ref({});
 
 onMounted(async () => {
   try {
+    const sessionID = useCookie("sessionId");
+    const userID = apiHelperGET(useRuntimeConfig(), "/user/" + sessionID);
     const historyData = await apiHelperPOST(
       useRuntimeConfig(),
-      "/api/user/history",
-      { _id: "663c962b66b3219a1852a91e" },
+        `/api/${userID}/history`,
     );
     data.value = historyData;
   } catch (error) {
