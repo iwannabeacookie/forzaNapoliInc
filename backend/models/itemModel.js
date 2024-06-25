@@ -10,7 +10,7 @@ const ItemSchema = new Schema({
   imageUrl: String,
   sale: Number,
   available: Boolean,
-  reviews: [reviewModel]
+  reviews: [reviewModel],
 });
 
 export default mongoose.model("item", ItemSchema);

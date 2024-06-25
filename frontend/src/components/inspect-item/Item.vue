@@ -27,13 +27,7 @@
       </div>
 
       <form class="sendReviews" @submit="sendReviews">
-        <input
-          class="textFormReview"
-          type="textarea"
-          v-model="comment"
-          required
-          placeholder="Write your review"
-        />
+        <input class="textFormReview" type="textarea" v-model="comment" required placeholder="Write your review" />
         <input class="submitReview" type="submit" value="➤" />
       </form>
     </div>
@@ -69,9 +63,6 @@ async function sendReviews() {
 onMounted(async () => {
   sendReviews();
 });
-const discountedPrice = () => {
-  return (data.value.price * (100 - data.value.sale)) / 100;
-};
 </script>
 
 <style scoped>
