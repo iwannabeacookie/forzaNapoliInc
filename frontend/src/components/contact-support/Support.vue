@@ -13,7 +13,7 @@ function submitTicket() {
     email: email.value,
     message: message.value,
   };
-  postTicket(useRuntimeConfig(), "/api/ticket", ticketBody);
+  apiHelperPOST(useRuntimeConfig(), "/api/ticket", ticketBody);
   phone.value = "";
   email.value = "";
   message.value = "";
