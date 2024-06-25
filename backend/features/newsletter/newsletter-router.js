@@ -35,7 +35,7 @@ newsletterRouter.post("/newsletter/send-newsletters", async (req, res) => {
 /**
  * @openapi
  * /newsletter/remove-from-newsletter:
- *   post:
+ *   put:
  *     tags:
  *        - Newsletter
  *     description: Changes the parameter of the user received to stop receiving newsletters
@@ -61,29 +61,26 @@ newsletterRouter.post("/newsletter/send-newsletters", async (req, res) => {
  *       401:
  *         description: Returns true, indicating the user wasn't correctly removed from the newsletter due to the email being specified in the request body not returning a match
  */
-newsletterRouter.post(
-  "/newsletter/remove-from-newsletter",
-  async (req, res) => {
-    const reqBody = req.body;
-    console.info("Remving from Newsletter", reqBody);
-    if (reqBody.email === undefined) {
-      return res.status(400).json(false);
-    }
-    const newsletterUpdate = await updateNewsletter(reqBody.email, false);
-    if (newsletterUpdate === false) {
-      res.status(200).json(false);
-    } else if (newsletterUpdate === "Invalid Email") {
-      return res.status(401).json(true);
-    } else {
-      res.status(500).json(true);
-    }
-  },
-);
+newsletterRouter.put("/newsletter/remove-from-newsletter", async (req, res) => {
+  const reqBody = req.body;
+  console.info("Remving from Newsletter", reqBody);
+  if (reqBody.email === undefined) {
+    return res.status(400).json(false);
+  }
+  const newsletterUpdate = await updateNewsletter(reqBody.email, false);
+  if (newsletterUpdate === false) {
+    res.status(200).json(false);
+  } else if (newsletterUpdate === "Invalid Email") {
+    return res.status(401).json(true);
+  } else {
+    res.status(500).json(true);
+  }
+});
 
 /**
  * @openapi
  * /newsletter/add-to-newsletter:
- *   post:
+ *   put:
  *     tags:
  *        - Newsletter
  *     description: Changes the parameter of the user received to accept newsletters
@@ -109,7 +106,7 @@ newsletterRouter.post(
  *       401:
  *         description: Returns false, indicating the user wasn't correctly added to the newsletter due to the email being specified in the request body not returning a match
  */
-newsletterRouter.post("/newsletter/add-to-newsletter", async (req, res) => {
+newsletterRouter.put("/newsletter/add-to-newsletter", async (req, res) => {
   const reqBody = req.body;
   console.info("Adding to Newsletter", reqBody);
   if (reqBody.email === undefined) {

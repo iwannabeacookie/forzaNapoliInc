@@ -3,43 +3,19 @@
     <div class="nameSurnameForm">
       <form @submit.prevent="modifyName" class="formSN">
         <p>CHANGE NAME</p>
-        <input
-          type="text"
-          v-model="name"
-          required
-          placeholder="Enter new name"
-          class="input"
-        />
+        <input type="text" v-model="name" required placeholder="Enter new name" class="input" />
         <input type="submit" value="UPDATE" />
       </form>
       <form @submit.prevent="modifySurname" class="formSN">
         <p>CHANGE SURNAME</p>
-        <input
-          type="text"
-          v-model="surname"
-          required
-          placeholder="Enter new surname"
-          class="input"
-        />
+        <input type="text" v-model="surname" required placeholder="Enter new surname" class="input" />
         <input type="submit" value="UPDATE" />
       </form>
     </div>
     <form @submit.prevent="modifyPassword" class="formP">
       <p>CHANGE PASSWORD</p>
-      <input
-        type="password"
-        v-model="repassword"
-        required
-        placeholder="Enter new password"
-        class="input"
-      />
-      <input
-        type="password"
-        v-model="password"
-        required
-        placeholder="Re-enter new password"
-        class="input"
-      />
+      <input type="password" v-model="repassword" required placeholder="Enter new password" class="input" />
+      <input type="password" v-model="password" required placeholder="Re-enter new password" class="input" />
       <input type="submit" value="UPDATE" />
     </form>
     <form @submit.prevent="unSubscibe(data.email)" v-if="data.newsletter">
@@ -73,7 +49,7 @@ form {
   text-align: center;
 }
 
-form > p {
+form>p {
   margin-bottom: 15px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -184,7 +160,7 @@ export default {
     },
     async subscribe(email) {
       await axios
-        .post(`${runtime}/newsletter/add-to-newsletter`, {
+        .put(`${runtime}/newsletter/add-to-newsletter`, {
           email: email,
         })
         .then((response) => {
@@ -196,7 +172,7 @@ export default {
     },
     async unSubscribe(email) {
       await axios
-        .post(`${runtime}/newsletter/remove-from-newsletter`, {
+        .put(`${runtime}/newsletter/remove-from-newsletter`, {
           email: email,
         })
         .then((response) => {
