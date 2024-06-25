@@ -12,7 +12,7 @@ const cartRouter = Router();
 /**
  * @openapi
  * /cart/update:
- *   post:
+ *   put:
  *     tags:
  *        - Cart
  *     description: Updates the old cart to the new one
@@ -36,14 +36,14 @@ const cartRouter = Router();
  *       200:
  *         description: Retuns the new cart
  */
-cartRouter.post("/cart/update", (req, res) => {
+cartRouter.put("/cart/update", (req, res) => {
   const reqBody = req.body;
   console.info("Updating cart:", reqBody);
   updateCart(reqBody.new_cart, reqBody.user_id).then((newCart) => {
     console.info("New Cart:", newCart);
     return res
       .status(200)
-      .json({ client_id: reqBody.client_id, updated_cart: newCart });
+      .json({ client_id: reqBody.user_id, updated_cart: newCart });
   });
 });
 
@@ -70,12 +70,12 @@ cartRouter.post("/cart/update", (req, res) => {
  *       200:
  *         description: Retuns the user's cart
  */
-cartRouter.post("/cart/get", (req, res) => {
-  const reqBody = req.body;
-  console.info("Getting cart:", reqBody);
-  getCart(reqBody.user_id).then((cart) => {
+cartRouter.get("/cart/get/:userId", (req, res) => {
+  const userId = req.params.userId;
+  console.info("Getting cart:", userId);
+  getCart(userId).then((cart) => {
     console.info("Cart:", cart);
-    return res.status(200).json({ client_id: reqBody.client_id, cart: cart });
+    return res.status(200).json({ client_id: userId, cart: cart });
   });
 });
 

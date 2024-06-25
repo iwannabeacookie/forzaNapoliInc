@@ -15,7 +15,6 @@
   "dependencies": {
     "@nanostores/vue": "^0.10.0",
     "@nuxt/eslint": "^0.3.12",
-    "@nuxtjs/axios": "^5.13.6",
     "axios": "^1.6.8",
     "dotenv": "^16.4.5",
     "eslint": "^8.57.0",
