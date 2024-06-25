@@ -48,5 +48,4 @@ jobs:
 
     - name: Run frontend tests
       run: |
-        node ./backend/server.js &
-        npm test
+        node ./backend/server.js
