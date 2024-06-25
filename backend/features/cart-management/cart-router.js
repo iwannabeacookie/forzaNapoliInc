@@ -84,11 +84,14 @@ cartRouter.get("/cart/get/:userId", (req, res) => {
   console.info("Getting cart:", userId);
   try {
     getCart(userId).then((cart) => {
+      if (cart === false) {
+        return res.status(400).json(false);
+      }
       console.info("Cart:", cart);
       return res.status(200).json({ client_id: userId, cart: cart });
     });
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     return res.status(400).json(false);
   }
 });
