@@ -27,7 +27,13 @@
       </div>
 
       <form class="sendReviews" @submit="sendReviews">
-        <input class="textFormReview" type="textarea" v-model="comment" required placeholder="Write your review" />
+        <input
+          class="textFormReview"
+          type="textarea"
+          v-model="comment"
+          required
+          placeholder="Write your review"
+        />
         <input class="submitReview" type="submit" value="➤" />
       </form>
     </div>

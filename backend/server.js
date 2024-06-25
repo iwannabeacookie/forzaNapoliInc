@@ -22,6 +22,7 @@ import cataloueRouter from "./features/browse-catalogue/catalogue-router.js";
 import itemRouter from "./features/inspect-item/item-router.js";
 import modifyRouter from "./features/modify-profile/modifyProfileRouter.js";
 import newsletterRouter from "./features/newsletter/newsletter-router.js";
+import reviewRouter from "./features/leave-reviews/reviews-router.js";
 
 const app = express();
 const port = 3000;
