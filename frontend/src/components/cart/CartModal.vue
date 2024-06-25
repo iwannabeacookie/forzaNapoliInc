@@ -41,7 +41,7 @@ const viewCart = useStore($viewCart);
             class="ms-auto"
             text="Close"
             @click="$viewCart.set(!viewCart)"
-          ></v-btn>
+          />
         </template>
       </v-card>
     </v-dialog>

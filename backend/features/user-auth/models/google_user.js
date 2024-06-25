@@ -22,6 +22,10 @@ const Googleschema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  role: {
+    type: String,
+    required: true,
+  },
   VIP: {
     type: Boolean,
     required: true,

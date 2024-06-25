@@ -1,23 +1,34 @@
 import axios from "axios";
-export const API_URL = "http://localhost:3000";
 
-export async function apiHelperPOST(endpoint, body) {
+/**
+ * Sends a post request with axios to the backend
+ * @param {string} endpoint Endpoint of the API. Template: /endpoint
+ * @param {object} body The body of the request to be sent
+ * @returns The response's data, or nothing if an error occurs
+ */
+export async function apiHelperPOST(runtimeConfig, endpoint, body) {
   console.info("[API] POST Request, body:", body);
   return axios
-    .post(`${API_URL}${endpoint}`, body)
+    .post(`${runtimeConfig.public.baseApiUrl}${endpoint}`, body)
     .then((response) => {
-      console.info("[API] Response:", response.data);
+      console.info(`[API] Response: ${response.status} body: ${response.data}`);
       return response.data;
     })
     .catch((error) => {
-      console.error(error);
+      console.error(`[API] Error: ${error}`);
     });
 }
 
-export async function apiHelperGET(endpoint, body) {
+/**
+ * Sends a post request with axios to the backend
+ * @param {string} endpoint Endpoint of the API. Template: /endpoint
+ * @param {object} body The body of the request to be sent
+ * @returns The response's data, or nothing if an error occurs
+ */
+export async function apiHelperGET(runtimeConfig, endpoint, body) {
   console.info("[API] GET Request, body:", body);
   return axios
-    .get(`${API_URL}${endpoint}`, body)
+    .get(`${runtimeConfig.public.baseApiUrl}${endpoint}`, body)
     .then((response) => {
       console.info("[API] Response:", response.data);
       return response.data;

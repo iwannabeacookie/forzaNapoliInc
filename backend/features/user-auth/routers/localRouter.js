@@ -55,6 +55,7 @@ localAuth.post("/signup", async (req, res, next) => {
           email: req.body.email,
           password: hashedPassword.toString("base64"),
           salt: salt,
+          role: "Customer",
           VIP: false,
           newsletter: false,
           Cart: [],

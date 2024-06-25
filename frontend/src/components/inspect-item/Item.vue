@@ -5,7 +5,7 @@
     <p class="item-description">{{ data.description }}</p>
     <p class="item-price" v-if="data.sale">
       <s>Price: {{ data.price }}</s> New Price:
-      {{ Math.ceil(discountedPrice) - 0.01 }}
+      {{ Math.ceil(discountedPrice()) - 0.01 }}
     </p>
     <p class="item-price" v-else>Price: {{ data.price }}</p>
     <p class="item-sale" v-if="data.sale">Sale: {{ data.sale }}%</p>
@@ -69,6 +69,9 @@ async function sendReviews() {
 onMounted(async () => {
   sendReviews();
 });
+const discountedPrice = () => {
+  return (data.value.price * (100 - data.value.sale)) / 100;
+};
 </script>
 
 <style scoped>

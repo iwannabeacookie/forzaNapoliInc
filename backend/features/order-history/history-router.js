@@ -10,8 +10,8 @@ const router = express.Router();
  * }
  */
 
-router.post("/api/user/history", checkAuth, (req, res) => {
-  User.findOne({ _id: (req.user_id = req.session.passport.user.id) })
+router.post("/api/user/history", (req, res) => {
+  User.findOne({ _id: req.user_id })
     .then((doc) => {
       console.log(doc);
       res.status(200).json(doc);
