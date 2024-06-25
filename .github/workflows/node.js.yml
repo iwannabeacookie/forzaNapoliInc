@@ -49,12 +49,7 @@ jobs:
 
     - name: Run frontend tests
       env: 
-        GOOGLE_ID: ${{ vars.GOOGLE_ID }}
-        GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
-        MONGODB_URI: ${{ secrets.MONGODB_URI }}
-        SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
-        SOURCE_EMAIL: ${{ secrets.SOURCE_EMAIL }}
-        TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
+        NUXT_BASE_API_URL: http://localhost:3000
       run: |
         node ./backend/server.js &
         sleep 3
