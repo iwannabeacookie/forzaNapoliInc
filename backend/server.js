@@ -1,19 +1,28 @@
+// General imports
 import "dotenv/config";
 import express from "express";
-import morgan from "morgan";
 import cors from "cors";
+import path from "path";
+import morgan from "morgan";
+import MongoDbSession from "connect-mongodb-session";
+import swaggerUi from "swagger-ui-express";
+import { openApiSpecification } from "./swaggerDocConfig.js";
+
+// Authentication imports
+import { fileURLToPath } from "url";
 import session from "express-session";
 import passport from "passport";
-import MongoDbSession from "connect-mongodb-session";
+
+// Routes
 import authRouter from "./features/user-auth/auth.js";
 import historyRouter from "./features/order-history/history-router.js";
 import ticketRouter from "./features/submit-ticket/ticket-router.js";
 import cartRouter from "./features/cart-management/cart-router.js";
 import cataloueRouter from "./features/browse-catalogue/catalogue-router.js";
 import itemRouter from "./features/inspect-item/item-router.js";
-import newsletterRouter from "./features/newsletter/newsletter-router.js";
 import modifyRouter from "./features/modify-profile/modifyProfileRouter.js";
-
+import newsletterRouter from "./features/newsletter/newsletter-router.js";
+import reviewRouter from "./features/leave-reviews/reviews-router.js";
 
 const app = express();
 const port = 3000;
@@ -63,6 +72,7 @@ app.use(cataloueRouter);
 app.use(itemRouter);
 app.use(newsletterRouter);
 app.use(modifyRouter);
+app.use(reviewRouter);
 
 // Serve Swagger docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openApiSpecification));

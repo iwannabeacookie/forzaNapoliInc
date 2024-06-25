@@ -11,7 +11,13 @@ export default defineNuxtConfig({
   },
   ssr: false,
   modules: ["vuetify-nuxt-module", "@nuxt/eslint"],
+  plugins: [{ src: "~/plugins/v-tooltip", mode: "client" }],
   devServer: {
     port: 5173,
+  },
+  runtimeConfig: {
+    public: {
+      baseApiUrl: process.env.NUXT_BASE_API_URL || "http://localhost:3000",
+    },
   },
 });

@@ -1,37 +1,25 @@
-<script type="module">
+<script setup>
+import { ref, onMounted } from "vue";
 import ItemList from "./ProductList.vue";
-import getHistory from "./scripts/getHistory.js";
+import { apiHelperPOST } from "../helpers/api.js";
 
-export default {
-  name: "App",
-  components: {
-    ItemList,
-  },
-  data() {
-    return {
-      data: {},
-    };
-  },
-  async created() {
-    getHistory({ _id: "663c962b66b3219a1852a91e" })
-      .then((data) => {
-        console.log(data);
-        this.data = data;
-      })
-      .catch((error) => {
-        console.log("Blyat! Error fetching history:", error);
-      });
-  },
-};
+const data = ref({});
+
+onMounted(async () => {
+  try {
+    const historyData = await apiHelperPOST(
+      useRuntimeConfig(),
+      "/api/user/history",
+      { _id: "663c962b66b3219a1852a91e" },
+    );
+    data.value = historyData;
+  } catch (error) {
+    console.error("Blyat! Error fetching history:", error);
+  }
+});
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank"> </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
   <ItemList :data="data" />
 </template>
 

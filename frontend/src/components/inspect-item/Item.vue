@@ -5,7 +5,7 @@
     <p class="item-description">{{ data.description }}</p>
     <p class="item-price" v-if="data.sale">
       <s>Price: {{ data.price }}</s> New Price:
-      {{ Math.ceil(discountedPrice) - 0.01 }}
+      {{ Math.ceil(discountedPrice()) - 0.01 }}
     </p>
     <p class="item-price" v-else>Price: {{ data.price }}</p>
     <p class="item-sale" v-if="data.sale">Sale: {{ data.sale }}%</p>
@@ -14,40 +14,64 @@
     </p>
     <div class="item-review-section">
       <h2>Reviews</h2>
-      <p>Review section coming soon...</p>
+      <div>
+        <div v-for="review in data.reviews" class="review">
+          <div class="nameReview">
+            <p>{{ review.userName }} {{ review.userSurname }}</p>
+            <p v-if="review.certified" class="reviewCertifiedMark">✅︎</p>
+          </div>
+          <div class="textReview">
+            <p>{{ review.text }}</p>
+          </div>
+        </div>
+      </div>
+
+      <form class="sendReviews" @submit="sendReviews">
+        <input
+          class="textFormReview"
+          type="textarea"
+          v-model="comment"
+          required
+          placeholder="Write your review"
+        />
+        <input class="submitReview" type="submit" value="➤" />
+      </form>
     </div>
   </div>
 </template>
 
-<script>
-import getItem from "./scripts/getItem.js";
+<script setup>
+import { apiHelperGET, apiHelperPOST } from "../helpers/api.js";
+import { ref, onMounted } from "vue";
+const sessionid = useCookie("sessionId");
 
-export default defineNuxtComponent({
-  name: "Item",
-  data() {
-    return {
-      data: {},
-    };
-  },
-  computed: {
-    discountedPrice() {
-      return (this.data.price * (100 - this.data.sale)) / 100;
-    },
-  },
-  async asyncData() {
-    const route = useRoute();
-    let data = {};
-    await getItem(route.params.id)
-      .then((doc) => {
-        data = doc;
-      })
-      .catch((error) => {
-        console.log("Blyat! Error fetching item:", error);
-      });
-    console.log(data);
-    return { data: data };
-  },
+const route = useRoute();
+const data = ref({});
+const comment = ref("");
+
+onMounted(async () => {
+  data.value = await apiHelperGET(
+    useRuntimeConfig(),
+    "/api/item/" + route.params.id,
+    {},
+  );
 });
+const discountedPrice = () => {
+  return (data.value.price * (100 - data.value.sale)) / 100;
+};
+async function sendReviews() {
+  await apiHelperPOST(useRuntimeConfig(), "/review", {
+    sessionid: sessionid,
+    itemid: route.params.id,
+    comment: comment.value,
+  });
+}
+onMounted(async () => {
+  sendReviews();
+});
+const discountedPrice = () => {
+  return (data.value.price * (100 - data.value.sale)) / 100;
+};
 </script>
 
 <style scoped>
@@ -93,5 +117,48 @@ export default defineNuxtComponent({
 
 .item-review-section {
   margin-top: 20px;
+}
+
+.nameReview {
+  display: flex;
+  padding: auto;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.textReview {
+  padding: auto;
+  font-size: 14px;
+}
+
+.review {
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  background-color: #bff6ff;
+}
+
+.reviewCertifiedMark {
+  margin-left: 5px;
+  color: blue;
+}
+
+.sendReviews {
+  display: flex;
+  width: 100%;
+}
+
+.textFormReview {
+  padding: 20px;
+  margin-right: 10px;
+  background-color: #bff6ff;
+}
+
+.submitReview {
+  padding: 20px;
+  padding-left: 25px;
+  width: auto;
+  font-size: larger;
+  background-color: #74edff;
 }
 </style>
