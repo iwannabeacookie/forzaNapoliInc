@@ -1,7 +1,7 @@
 import usercollection from "../models/userModel.js";
 
 export function isCustomer(req, res, next) {
-  req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
+  req.sessionStore.get(req.body.sessionid, async (error, session) => {
     if (session) {
       if (session.passport) {
         const user = await usercollection.findOne({
@@ -18,7 +18,7 @@ export function isCustomer(req, res, next) {
 }
 
 export function isAdmin(req, res, next) {
-  req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
+  req.sessionStore.get(req.body.sessionid, async (error, session) => {
     if (session) {
       if (session.passport) {
         const user = await usercollection.findOne({
@@ -35,7 +35,7 @@ export function isAdmin(req, res, next) {
 }
 
 export function isModerator(req, res, next) {
-  req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
+  req.sessionStore.get(req.body.sessionid, async (error, session) => {
     if (session) {
       if (session.passport) {
         const user = await usercollection.findOne({

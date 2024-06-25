@@ -121,7 +121,7 @@ export default {
       await axios
         .put(`${runtime}/profile/name`, {
           name: this.name,
-          sessionid: sessionid,
+          sessionid: sessionid.value,
         })
         .then((response) => {
           console.log(response);
@@ -140,7 +140,7 @@ export default {
       await axios
         .put(`${runtime}/profile/surname`, {
           surname: this.surname,
-          sessionid: sessionid,
+          sessionid: sessionid.value,
         })
         .then((response) => {
           console.log(response);
@@ -160,7 +160,7 @@ export default {
         await axios
           .put(`${runtime}/profile/password`, {
             password: this.password,
-            sessionid: sessionid,
+            sessionid: sessionid.value,
           })
           .then((response) => {
             console.log(response);

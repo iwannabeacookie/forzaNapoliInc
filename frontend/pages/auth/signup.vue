@@ -43,6 +43,7 @@
 <script>
 import axios from "axios";
 import "~/assets/css/access_form.css";
+const runtime = useRuntimeConfig().public.baseApiUrl;
 
 export default {
   data() {
@@ -58,7 +59,7 @@ export default {
     async userSignup() {
       const sessionid = useCookie("sessionId");
       await axios
-        .post("http://localhost:3000/signup", {
+        .post(`${runtime}/signup`, {
           name: this.name,
           surname: this.surname,
           email: this.email,
