@@ -81,7 +81,7 @@ localAuth.post("/signup", async (req, res, next) => {
 
 //Log Out
 
-localAuth.post("/logout", checkAuth, (req, res, next) => {
+localAuth.post("/logout", checkAuth, (req, res) => {
   req.sessionStore.destroy(req.body.sessionid._value, (error) => {
     res.status(200).end();
   });
@@ -121,7 +121,7 @@ localAuth.post("/session", checkAuth, (req, res) => {
 
 //Get User
 
-localAuth.post("/user", checkAuth, async (req, res) => {
+localAuth.get("/user", checkAuth, async (req, res) => {
   req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
     if (session) {
       if (session.passport) {

@@ -11,6 +11,7 @@
 
     <NuxtLink to="/support"><button>Support</button></NuxtLink>
     <NuxtLink to="/history"><button>History</button></NuxtLink>
+    <NuxtLink to="/profile/modify"><button> Modify Profile </button></NuxtLink>
     <Cart />
   </nav>
 </template>
