@@ -5,7 +5,7 @@ import { checkAuth } from '../../helpers/auth.js'
 
 const reviewRouter = express.Router();
 
-reviewRouter.post('/post/review', checkAuth, async (req, res) => {
+reviewRouter.post('/review', checkAuth, async (req, res) => {
     req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
         if (session) {
             if (session.passport) {

@@ -60,7 +60,7 @@ const discountedPrice = () => {
   return (data.value.price * (100 - data.value.sale)) / 100;
 };
 async function sendReviews() {
-  await apiHelperPOST(useRuntimeConfig(), "/post/review", {
+  await apiHelperPOST(useRuntimeConfig(), "/review", {
     sessionid: sessionid,
     itemid: route.params.id,
     comment: comment.value,
