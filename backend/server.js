@@ -12,12 +12,8 @@ import cartRouter from "./features/cart-management/cart-router.js";
 import cataloueRouter from "./features/browse-catalogue/catalogue-router.js";
 import itemRouter from "./features/inspect-item/item-router.js";
 import reviewRouter from "./features/leave-reviews/reviews-router.js";
-import path from "path";
-import { fileURLToPath } from "url";
-=======
 import newsletterRouter from "./features/newsletter/newsletter-router.js";
 import reviewRouter from "./features/leave-reviews/reviews-router.js";
->>>>>>> Stashed changes
 
 const app = express();
 const port = 3000;
@@ -65,15 +61,11 @@ app.use(ticketRouter);
 app.use(cartRouter);
 app.use(cataloueRouter);
 app.use(itemRouter);
-<<<<<<< Updated upstream
-app.use(reviewRouter);
-=======
 app.use(newsletterRouter);
 app.use(reviewRouter);
 
 // Serve Swagger docs
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(openApiSpecification));
->>>>>>> Stashed changes
 
 //Setting up the listener
 

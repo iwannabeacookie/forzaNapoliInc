@@ -14,10 +14,7 @@
     </p>
     <div class="item-review-section">
       <h2>Reviews</h2>
-      <div v-if="data.reviews[0]">
-=======
-      <div v-if="data.reviews">
->>>>>>> Stashed changes
+      <div>
         <div v-for="review in data.reviews" class="review">
           <div class="nameReview">
             <p>{{ review.userName }} {{ review.userSurname }}</p>
@@ -28,9 +25,6 @@
           </div>
         </div>
       </div>
-      <p v-else>no reviews</p>
-=======
->>>>>>> Stashed changes
 
       <form class="sendReviews" @submit="sendReviews">
         <input
@@ -46,57 +40,6 @@
   </div>
 </template>
 
-<<<<<<< Updated upstream
-<script>
-import axios from "axios";
-import getItem from "./scripts/getItem.js";
-
-export default defineNuxtComponent({
-  name: "Item",
-  data() {
-    return {
-      data: {},
-      comment: "",
-    };
-  },
-  computed: {
-    discountedPrice() {
-      return (this.data.price * (100 - this.data.sale)) / 100;
-    },
-  },
-  async asyncData() {
-    const route = useRoute();
-    let data = {};
-    await getItem(route.params.id)
-      .then((doc) => {
-        data = doc;
-      })
-      .catch((error) => {
-        console.log("Blyat! Error fetching item:", error);
-      });
-    console.log(data);
-    return { data: data };
-  },
-  methods: {
-    async sendReviews() {
-      const route = useRoute();
-      const sessionid = useCookie("sessionId");
-      await axios
-        .post("http://localhost:3000/post/review", {
-          sessionid: sessionid,
-          itemid: route.params.id,
-          comment: this.comment,
-        })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-  },
-});
-=======
 <script setup>
 import { apiHelperGET, apiHelperPOST } from "../helpers/api.js";
 import { ref, onMounted } from "vue";
@@ -126,7 +69,6 @@ async function sendReviews() {
 onMounted(async () => {
   sendReviews();
 });
->>>>>>> Stashed changes
 </script>
 
 <style scoped>
