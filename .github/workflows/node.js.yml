@@ -49,3 +49,10 @@ jobs:
     - name: Run frontend tests
       run: |
         node ./backend/server.js
+      env: 
+        GOOGLE_ID: ${{ secrets.GOOGLE_ID }}
+        GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
+        MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
+        SOURCE_EMAIL: ${{ secrets.SOURCE_EMAIL }}
+        SOURCE_TWILIO_API_KEY: ${{ secrets.SOURCE_TWILIO_API_KEY }}
