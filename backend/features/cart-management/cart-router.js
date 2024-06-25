@@ -1,6 +1,5 @@
 import { Router } from "express";
 import { getCart, updateCart } from "./cart.js";
-import { getUserIdFromSessionId } from "../../helpers/auth.js";
 const cartRouter = Router();
 
 /**
@@ -44,7 +43,7 @@ cartRouter.put("/cart/update", (req, res) => {
     console.info("New Cart:", newCart);
     return res
       .status(200)
-      .json({ client_id: reqBody.client_id, updated_cart: newCart });
+      .json({ client_id: reqBody.user_id, updated_cart: newCart });
   });
 });
 
@@ -76,7 +75,7 @@ cartRouter.get("/cart/get/:userId", (req, res) => {
   console.info("Getting cart:", userId);
   getCart(userId).then((cart) => {
     console.info("Cart:", cart);
-    return res.status(200).json({ client_id: reqBody.client_id, cart: cart });
+    return res.status(200).json({ client_id: userId, cart: cart });
   });
 });
 

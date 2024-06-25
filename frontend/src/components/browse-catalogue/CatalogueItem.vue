@@ -12,12 +12,17 @@
     <p class="item-availability">
       Availability: {{ item.available ? "Available" : "Out of stock" }}
     </p>
-    <NuxtLink :to="`item/${item._id}`"><button>Inspect</button></NuxtLink>
+    <div class="buttonsContainer">
+      <NuxtLink :to="`item/${item._id}`"><button>Inspect</button></NuxtLink>
+      <button @click="addItemToCart(item)">Add to Cart</button>
+    </div>
+
   </div>
 </template>
 
 <script setup>
 import { computed } from "vue";
+import { addItemToCart } from "../cart/scripts/cart";
 
 const props = defineProps({
   item: {
@@ -32,6 +37,16 @@ const discountedPrice = computed(
 </script>
 
 <style scoped>
+.buttonContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 500px;
+}
+
+/* button {
+  width: 200px;
+} */
+
 .catalogue-item {
   border: 1px solid #ddd;
   padding: 20px;

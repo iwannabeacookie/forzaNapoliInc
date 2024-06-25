@@ -1,9 +1,7 @@
 <script setup>
 import { ref, watch, computed } from "vue";
-import { $items, findItemIndexById } from "./scripts/cart";
+import { $items, findItemIndexById, updateCart } from "./scripts/cart";
 import { useStore } from "@nanostores/vue";
-import { apiHelper, apiHelperPOST } from "../helpers/api";
-const sessionId = useCookie("sessionId");
 
 const props = defineProps({
   id: String,
@@ -34,6 +32,7 @@ watch(addItem, (val) => {
   if (val) {
     const tmpItems = [...items.value];
     const itemIndex = findItemIndexById(tmpItems, props.id);
+    console.warn("INDEX:", itemIndex)
     if (itemIndex !== -1) {
       const updatedItem = {
         ...tmpItems[itemIndex],
@@ -69,27 +68,18 @@ watch(removeItem, (val) => {
 
 watch(deleteItem, (val) => {
   if (val) {
-    const tmpItems = items.value.filter((item) => item.id !== props.id);
+    const tmpItems = items.value.filter((item) => item._id !== props.id);
     updateCart(tmpItems);
     deleteItem.value = false;
   }
 });
-
-async function updateCart(new_cart) {
-  const { updated_cart } = await apiHelper("post", "/cart/update", {
-    new_cart: new_cart,
-    sessionId,
-  }).then((res) => res);
-  console.info("New Cart:", updated_cart.cart);
-  $items.set(updated_cart.cart);
-}
 </script>
 
 <template>
   <v-card :title="itemName">
-    <img :src="imageUrl" />
+    <img :src="imageUrl" class="productImg" />
     <p>
-      Quantity: {{ realQuantity }} Price: {{ realPrice * realQuantity }}€
+      Quantity: {{ quantity }} Price: {{ parseFloat(price * quantity).toFixed(2) }}€
       <small v-if="available">Available</small>
     </p>
     <v-card-actions>
@@ -99,3 +89,10 @@ async function updateCart(new_cart) {
     </v-card-actions>
   </v-card>
 </template>
+
+<style scoped>
+.productImg {
+  max-width: 200px;
+  max-height: 500px;
+}
+</style>

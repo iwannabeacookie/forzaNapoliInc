@@ -14,8 +14,8 @@
 
 <script setup>
 import Cart from "./cart/Cart.vue";
-import { apiHelper, apiHelperGET } from "~/src/components/helpers/api";
-import { $items } from "~/src/components/cart/scripts/cart";
+import { apiHelper } from "~/src/components/helpers/api";
+import { $items, $userId } from "~/src/components/cart/scripts/cart";
 
 
 
@@ -23,10 +23,11 @@ import { $items } from "~/src/components/cart/scripts/cart";
 const sessionid = useCookie("sessionId");
 
 async function user() {
-    const user = await apiHelperPOST(useRuntimeConfig(), "/user", {
+    const user = await apiHelper("post", useRuntimeConfig(), "/user", {
         sessionid: sessionid,
     });
     console.log(user._id);
+    $userId.set(user._id)
     return user._id
 }
 
