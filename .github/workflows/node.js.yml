@@ -47,5 +47,6 @@ jobs:
       working-directory: ./frontend
 
     - name: Run frontend tests
-      run: npm test
-      working-directory: ./frontend
+      run: |
+        node ./backend/server.js &
+        npm test
