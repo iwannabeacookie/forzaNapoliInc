@@ -17,7 +17,7 @@ jobs:
 
     - name: Create .env file
       env: 
-        GOOGLE_ID: ${{ env.GOOGLE_ID }}
+        GOOGLE_ID: ${{ vars.GOOGLE_ID }}
         GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
         MONGODB_URI: ${{ secrets.MONGODB_URI }}
         SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
@@ -55,7 +55,7 @@ jobs:
       run: |
         node ./backend/server.js
       env: 
-        GOOGLE_ID: ${{ env.GOOGLE_ID }}
+        GOOGLE_ID: ${{ vars.GOOGLE_ID }}
         GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
         MONGODB_URI: ${{ secrets.MONGODB_URI }}
         SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
