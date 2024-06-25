@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   },
   ssr: false,
   modules: ["vuetify-nuxt-module", "@nuxt/eslint"],
+  plugins: [{ src: "~/plugins/v-tooltip", mode: "client" }],
   devServer: {
     port: 5173,
   },
