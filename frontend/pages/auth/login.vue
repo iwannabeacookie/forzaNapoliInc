@@ -33,6 +33,7 @@
 <script>
 import "~/assets/css/access_form.css";
 import axios from "axios";
+const runtime = useRuntimeConfig().public.baseApiUrl;
 
 export default {
   data() {
@@ -46,7 +47,7 @@ export default {
     async userLogin() {
       const sessionid = useCookie("sessionId");
       await axios
-        .post("http://localhost:3000/login", {
+        .post(`${runtime}/login`, {
           username: this.username,
           password: this.password,
         })

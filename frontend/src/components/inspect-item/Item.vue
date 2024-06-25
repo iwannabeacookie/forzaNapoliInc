@@ -61,7 +61,7 @@ const discountedPrice = () => {
 };
 async function sendReviews() {
   await apiHelperPOST(useRuntimeConfig(), "/review", {
-    sessionid: sessionid,
+    sessionid: sessionid.value,
     itemid: route.params.id,
     comment: comment.value,
   });

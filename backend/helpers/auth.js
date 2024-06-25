@@ -1,5 +1,5 @@
 export function checkAuth(req, res, next) {
-  req.sessionStore.get(req.body.sessionid._value, (error, session) => {
+  req.sessionStore.get(req.body.sessionid, (error, session) => {
     if (session) {
       if (session.passport) {
         console.log(session.passport);
@@ -12,7 +12,7 @@ export function checkAuth(req, res, next) {
 }
 
 export function checkunAuth(req, res, next) {
-  req.sessionStore.get(req.body.sessionid._value, (error, session) => {
+  req.sessionStore.get(req.body.sessionid, (error, session) => {
     if (!session) {
       return next();
     } else {
