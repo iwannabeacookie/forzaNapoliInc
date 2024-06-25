@@ -3,7 +3,7 @@
         <button v-tooltip="'Log in if you already have an account'" onclick="window.location.href='/auth/login';">
             Log In
         </button>
-        {{ sessionid }}
+        {{ sessionId }}
         <button @click="user">user</button>
 
         <NuxtLink to="/support"><button>Support</button></NuxtLink>
@@ -15,25 +15,27 @@
 <script setup>
 import axios from "axios";
 import Cart from "./cart/Cart.vue";
-import { apiHelperPOST } from "~/src/components/helpers/api";
+import { apiHelper } from "~/src/components/helpers/api";
 import { $items } from "~/src/components/cart/scripts/cart";
 
-// Cart setup
-apiHelperPOST("/cart/get", {
-    user_id: "663751edeb50fc9f32cfd751",
-}).then((res) => {
-    const { cart } = res;
-    console.info("Cart:", cart);
-    $items.set(cart);
-});
-
 // Login code
-const sessionid = useCookie("sessionId");
+const sessionId = useCookie("sessionId");
+
+// Cart setup
+apiHelper("get", useRuntimeConfig(), `/cart/get/${userId}`).then((res) => {
+    const { cart } = res;
+    console.info("[ Cart ] Cart:", cart);
+    $items.set(cart);
+})
+    .catch(res => {
+        console.error("[ Cart ] Failed to fetch cart")
+    })
+
 
 async function user() {
     await axios
         .post("http://localhost:3000/user", {
-            sessionid: sessionid,
+            sessionId: sessionId,
         })
         .then((response) => {
             console.log(response.data);
@@ -58,6 +60,6 @@ a {
 }
 
 button {
-    width: 50px;
+    width: 75px;
 }
 </style>
