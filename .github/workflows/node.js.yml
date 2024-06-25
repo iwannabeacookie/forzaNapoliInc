@@ -49,7 +49,7 @@ jobs:
 
     - name: Run frontend tests
       run: |
-        node ./backend/server.js
+        node ./backend/server.js &
         sleep 3
         cd ./frontend
         npm test
