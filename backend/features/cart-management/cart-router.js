@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { getCart, updateCart } from "./cart.js";
+import { getUserIdFromSessionId } from "../../helpers/auth.js";
 const cartRouter = Router();
 
 /**
@@ -70,8 +71,30 @@ cartRouter.put("/cart/update", (req, res) => {
  *       200:
  *         description: Retuns the user's cart
  */
-cartRouter.get("/cart/get/:userId", (req, res) => {
-  const userId = req.params.userId;
+cartRouter.get("/cart/get/", async (req, res) => {
+  const sessionId = req.sessionID;
+  const userId = undefined;
+  console.log("SessionId:", sessionId);
+  console.log(await getUserIdFromSessionId(sessionId));
+  // console.log("SessionStore:", req.sessionStore);
+  // console.log("Type check", req.sessionStore.get);
+  // await req.sessionStore.get(sessionId, (error, session) => {
+  //   console.log("get returned");
+  //   console.log(error);
+  //   console.log(session);
+  // });
+  // await req.sessionStore.all((error, session) => {
+  //   console.log("all returned");
+  //   console.log(error);
+  //   console.log(session);
+  // });
+  // console.log("UANM");
+  // req.sessionStore.get()
+  // const userId = await getUserIdFromSessionId(sessionId);
+  // const sessionId = req.sessionId;
+  if (userId === undefined) {
+    return res.status(401).json();
+  }
   console.info("Getting cart of", userId);
   getCart(userId).then((cart) => {
     console.info("Cart:", cart);

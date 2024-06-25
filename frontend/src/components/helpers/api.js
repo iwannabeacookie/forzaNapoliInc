@@ -33,7 +33,9 @@ export async function apiHelper(method, runtimeConfig, endpointUrl, body) {
       return axios
         .post(`${runtimeConfig.public.baseApiUrl}${endpointUrl}`, body)
         .then((response) => {
-          console.info(`[API] Response: ${response.status} body: ${response.data}`);
+          console.info(
+            `[API] Response: ${response.status} body: ${response.data}`,
+          );
           return response.data;
         })
         .catch((error) => {
@@ -43,7 +45,9 @@ export async function apiHelper(method, runtimeConfig, endpointUrl, body) {
       return axios
         .get(`${runtimeConfig.public.baseApiUrl}${endpointUrl}`)
         .then((response) => {
-          console.info(`[API] Response: ${response.status} body: ${response.data}`);
+          console.info(
+            `[API] Response: ${response.status} body: ${response.data}`,
+          );
           return response.data;
         })
         .catch((error) => {
@@ -53,7 +57,9 @@ export async function apiHelper(method, runtimeConfig, endpointUrl, body) {
       return axios
         .put(`${runtimeConfig.public.baseApiUrl}${endpointUrl}`, body)
         .then((response) => {
-          console.info(`[API] Response: ${response.status} body: ${response.data}`);
+          console.info(
+            `[API] Response: ${response.status} body: ${response.data}`,
+          );
           return response.data;
         })
         .catch((error) => {
@@ -63,14 +69,15 @@ export async function apiHelper(method, runtimeConfig, endpointUrl, body) {
       return axios
         .delete(`${runtimeConfig.public.baseApiUrl}${endpointUrl}`, body)
         .then((response) => {
-          console.info(`[API] Response: ${response.status} body: ${response.data}`);
+          console.info(
+            `[API] Response: ${response.status} body: ${response.data}`,
+          );
           return response.data;
         })
         .catch((error) => {
           console.error(`[API] Error: ${error}`);
         });
   }
-
 }
 
 /**

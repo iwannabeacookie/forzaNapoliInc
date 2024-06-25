@@ -22,15 +22,15 @@ import { $items } from "~/src/components/cart/scripts/cart";
 const sessionId = useCookie("sessionId");
 
 // Cart setup
-apiHelper("get", useRuntimeConfig(), `/cart/get/${userId}`).then((res) => {
-    const { cart } = res;
-    console.info("[ Cart ] Cart:", cart);
-    $items.set(cart);
-})
-    .catch(res => {
-        console.error("[ Cart ] Failed to fetch cart")
+apiHelper("get", useRuntimeConfig(), `/cart/get/`)
+    .then((res) => {
+        const { cart } = res;
+        console.info("[ Cart ] Cart:", cart);
+        $items.set(cart);
     })
-
+    .catch((res) => {
+        console.error("[ Cart ] Failed to fetch cart");
+    });
 
 async function user() {
     await axios
