@@ -22,7 +22,7 @@ jobs:
         MONGODB_URI: ${{ secrets.MONGODB_URI }}
         SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
         SOURCE_EMAIL: ${{ secrets.SOURCE_EMAIL }}
-        SOURCE_TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
+        TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
       run: |
           touch .env
           echo GOOGLE_ID=$GOOGLE_ID >> .env
@@ -30,7 +30,7 @@ jobs:
           echo MONGODB_URI=$MONGODB_URI >> .env
           echo SESSION_SECRET=$SESSION_SECRET >> .env
           echo SOURCE_EMAIL=$SOURCE_EMAIL >> .env
-          echo SOURCE_TWILIO_API_KEY=$SOURCE_TWILIO_API_KEY >> .env
+          echo TWILIO_API_KEY=$TWILIO_API_KEY >> .env
           echo $MONGODB_URI
           cp ./.env ./backend/.env
           cp ./.env ./frontend/.env
@@ -60,4 +60,4 @@ jobs:
         MONGODB_URI: ${{ secrets.MONGODB_URI }}
         SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
         SOURCE_EMAIL: ${{ secrets.SOURCE_EMAIL }}
-        SOURCE_TWILIO_API_KEY: ${{ secrets.SOURCE_TWILIO_API_KEY }}
+        TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
