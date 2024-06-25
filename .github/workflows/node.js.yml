@@ -31,12 +31,8 @@ jobs:
           echo SESSION_SECRET=$SESSION_SECRET >> .env
           echo SOURCE_EMAIL=$SOURCE_EMAIL >> .env
           echo TWILIO_API_KEY=$TWILIO_API_KEY >> .env
-          echo $GOOGLE_ID
           cp ./.env ./backend/.env
           cp ./.env ./frontend/.env
-          ls -la
-          ls ./backend -la
-          ls ./frontend -la
 
     - name: Set up Node.js
       uses: actions/setup-node@v4
@@ -53,11 +49,5 @@ jobs:
 
     - name: Run frontend tests
       run: |
-        node ./backend/server.js
-      env: 
-        GOOGLE_ID: ${{ vars.GOOGLE_ID }}
-        GOOGLE_SECRET: ${{ secrets.GOOGLE_SECRET }}
-        MONGODB_URI: ${{ secrets.MONGODB_URI }}
-        SESSION_SECRET: ${{ secrets.SESSION_SECRET }}
-        SOURCE_EMAIL: ${{ secrets.SOURCE_EMAIL }}
-        TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
+        node ./backend/server.js &
+        npm test
