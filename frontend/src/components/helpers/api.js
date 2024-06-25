@@ -1,5 +1,4 @@
 import axios from "axios";
-export const API_URL = "http://localhost:3000";
 
 /**
  * Sends a post request with axios to the backend
@@ -7,10 +6,10 @@ export const API_URL = "http://localhost:3000";
  * @param {object} body The body of the request to be sent
  * @returns The response's data, or nothing if an error occurs
  */
-export async function apiHelperPOST(endpoint, body) {
+export async function apiHelperPOST(runtimeConfig, endpoint, body) {
   console.info("[API] POST Request, body:", body);
   return axios
-    .post(`${API_URL}${endpoint}`, body)
+    .post(`${runtimeConfig.public.baseApiUrl}${endpoint}`, body)
     .then((response) => {
       console.info(`[API] Response: ${response.status} body: ${response.data}`);
       return response.data;
@@ -26,10 +25,10 @@ export async function apiHelperPOST(endpoint, body) {
  * @param {object} body The body of the request to be sent
  * @returns The response's data, or nothing if an error occurs
  */
-export async function apiHelperGET(endpoint, body) {
+export async function apiHelperGET(runtimeConfig, endpoint, body) {
   console.info("[API] GET Request, body:", body);
   return axios
-    .get(`${API_URL}${endpoint}`, body)
+    .get(`${runtimeConfig.public.baseApiUrl}${endpoint}`, body)
     .then((response) => {
       console.info("[API] Response:", response.data);
       return response.data;

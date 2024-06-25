@@ -20,14 +20,18 @@
 </template>
 
 <script setup>
-import getItem from "./scripts/getItem.js";
+import { apiHelperGET } from "../helpers/api.js";
 import { ref, onMounted } from "vue";
 
 const route = useRoute();
 const data = ref({});
 
 onMounted(async () => {
-  data.value = await getItem(route.params.id);
+  data.value = await apiHelperGET(
+    useRuntimeConfig(),
+    "/api/item/" + route.params.id,
+    {},
+  );
 });
 const discountedPrice = () => {
   return (data.value.price * (100 - data.value.sale)) / 100;

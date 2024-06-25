@@ -1,6 +1,6 @@
 <script setup>
 import ItemList from "../order-history/ProductList.vue";
-import { postTicket } from "./scripts/post.js";
+import { apiHelperPOST } from "../helpers/api.js";
 import { ref } from "vue";
 
 const phone = ref("");
@@ -13,7 +13,7 @@ function submitTicket() {
     email: email.value,
     message: message.value,
   };
-  postTicket(ticketBody);
+  apiHelperPOST(useRuntimeConfig(), "/api/ticket", ticketBody);
   phone.value = "";
   email.value = "";
   message.value = "";
