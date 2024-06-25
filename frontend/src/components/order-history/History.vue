@@ -1,13 +1,17 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import ItemList from "./ProductList.vue";
-import getHistory from "./scripts/getHistory.js";
+import { apiHelperPOST } from "../helpers/api.js";
 
 const data = ref({});
 
 onMounted(async () => {
   try {
-    const historyData = await getHistory({ _id: "663c962b66b3219a1852a91e" });
+    const historyData = await apiHelperPOST(
+      useRuntimeConfig(),
+      "/api/user/history",
+      { _id: "663c962b66b3219a1852a91e" },
+    );
     data.value = historyData;
   } catch (error) {
     console.error("Blyat! Error fetching history:", error);
