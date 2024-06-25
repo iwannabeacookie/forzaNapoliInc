@@ -3,7 +3,7 @@
         <button v-tooltip="'Log in if you already have an account'" onclick="window.location.href='/auth/login';">
             Log In
         </button>
-        {{ sessionid }}
+        {{ sessionId }}
         <button @click="user">user</button>
 
         <NuxtLink to="/support"><button>Support</button></NuxtLink>
@@ -14,7 +14,7 @@
 
 <script setup>
 import Cart from "./cart/Cart.vue";
-import { apiHelperPOST, apiHelperGET } from "~/src/components/helpers/api";
+import { apiHelper, apiHelperGET } from "~/src/components/helpers/api";
 import { $items } from "~/src/components/cart/scripts/cart";
 
 
@@ -31,7 +31,7 @@ async function user() {
 }
 
 // Cart setup
-apiHelperGET(`/cart/get/${await user()}`).then((res) => {
+apiHelper("get", useRuntimeConfig(), `/cart/get/${await user()}`).then((res) => {
     const { cart } = res;
     console.info("Cart:", cart);
     $items.set(cart);
@@ -52,6 +52,6 @@ a {
 }
 
 button {
-    width: 50px;
+    width: 75px;
 }
 </style>

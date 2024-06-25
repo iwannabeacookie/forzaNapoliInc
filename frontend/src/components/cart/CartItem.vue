@@ -2,7 +2,8 @@
 import { ref, watch, computed } from "vue";
 import { $items, findItemIndexById } from "./scripts/cart";
 import { useStore } from "@nanostores/vue";
-import { apiHelperPOST } from "../helpers/api";
+import { apiHelper, apiHelperPOST } from "../helpers/api";
+const sessionId = useCookie("sessionId");
 
 const props = defineProps({
   id: String,
@@ -75,9 +76,9 @@ watch(deleteItem, (val) => {
 });
 
 async function updateCart(new_cart) {
-  const { updated_cart } = await apiHelperPOST("/cart/update", {
+  const { updated_cart } = await apiHelper("post", "/cart/update", {
     new_cart: new_cart,
-    user_id: "663751edeb50fc9f32cfd751",
+    sessionId,
   }).then((res) => res);
   console.info("New Cart:", updated_cart.cart);
   $items.set(updated_cart.cart);

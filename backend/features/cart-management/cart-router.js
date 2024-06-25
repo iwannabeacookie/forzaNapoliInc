@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { getCart, updateCart } from "./cart.js";
+import { getUserIdFromSessionId } from "../../helpers/auth.js";
 const cartRouter = Router();
 
 /**
@@ -12,7 +13,7 @@ const cartRouter = Router();
 /**
  * @openapi
  * /cart/update:
- *   post:
+ *   put:
  *     tags:
  *        - Cart
  *     description: Updates the old cart to the new one
@@ -36,7 +37,7 @@ const cartRouter = Router();
  *       200:
  *         description: Retuns the new cart
  */
-cartRouter.post("/cart/update", (req, res) => {
+cartRouter.put("/cart/update", (req, res) => {
   const reqBody = req.body;
   console.info("Updating cart:", reqBody);
   updateCart(reqBody.new_cart, reqBody.user_id).then((newCart) => {
