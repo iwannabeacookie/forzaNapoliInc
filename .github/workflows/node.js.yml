@@ -31,7 +31,7 @@ jobs:
           echo SESSION_SECRET=$SESSION_SECRET >> .env
           echo SOURCE_EMAIL=$SOURCE_EMAIL >> .env
           echo TWILIO_API_KEY=$TWILIO_API_KEY >> .env
-          echo $MONGODB_URI
+          echo $GOOGLE_ID
           cp ./.env ./backend/.env
           cp ./.env ./frontend/.env
           ls -la
