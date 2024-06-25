@@ -9,7 +9,7 @@ import axios from "axios";
 export async function apiHelperPOST(runtimeConfig, endpoint, body) {
   console.info("[API] POST Request, body:", body);
   return axios
-    .post(`${runtimeConfig.baseApiUrl}${endpoint}`, body)
+    .post(`${runtimeConfig.public.baseApiUrl}${endpoint}`, body)
     .then((response) => {
       console.info(`[API] Response: ${response.status} body: ${response.data}`);
       return response.data;
@@ -28,7 +28,7 @@ export async function apiHelperPOST(runtimeConfig, endpoint, body) {
 export async function apiHelperGET(runtimeConfig, endpoint, body) {
   console.info("[API] GET Request, body:", body);
   return axios
-    .get(`${runtimeConfig.baseApiUrl}${endpoint}`, body)
+    .get(`${runtimeConfig.public.baseApiUrl}${endpoint}`, body)
     .then((response) => {
       console.info("[API] Response:", response.data);
       return response.data;
