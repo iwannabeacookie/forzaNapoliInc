@@ -15,6 +15,9 @@
     <div class="item-review-section">
       <h2>Reviews</h2>
       <div v-if="data.reviews[0]">
+=======
+      <div v-if="data.reviews">
+>>>>>>> Stashed changes
         <div v-for="review in data.reviews" class="review">
           <div class="nameReview">
             <p>{{ review.userName }} {{ review.userSurname }}</p>
@@ -26,6 +29,8 @@
         </div>
       </div>
       <p v-else>no reviews</p>
+=======
+>>>>>>> Stashed changes
 
       <form class="sendReviews" @submit="sendReviews">
         <input
@@ -41,6 +46,7 @@
   </div>
 </template>
 
+<<<<<<< Updated upstream
 <script>
 import axios from "axios";
 import getItem from "./scripts/getItem.js";
@@ -90,6 +96,37 @@ export default defineNuxtComponent({
     },
   },
 });
+=======
+<script setup>
+import { apiHelperGET, apiHelperPOST } from "../helpers/api.js";
+import { ref, onMounted } from "vue";
+const sessionid = useCookie("sessionId");
+
+const route = useRoute();
+const data = ref({});
+const comment = ref("");
+
+onMounted(async () => {
+  data.value = await apiHelperGET(
+    useRuntimeConfig(),
+    "/api/item/" + route.params.id,
+    {},
+  );
+});
+const discountedPrice = () => {
+  return (data.value.price * (100 - data.value.sale)) / 100;
+};
+async function sendReviews() {
+  await apiHelperPOST(useRuntimeConfig(), "/post/review", {
+    sessionid: sessionid,
+    itemid: route.params.id,
+    comment: comment.value,
+  });
+}
+onMounted(async () => {
+  sendReviews();
+});
+>>>>>>> Stashed changes
 </script>
 
 <style scoped>
