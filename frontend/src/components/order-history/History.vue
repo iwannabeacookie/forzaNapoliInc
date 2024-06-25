@@ -1,17 +1,22 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import ItemList from "./ProductList.vue";
-import { apiHelperPOST } from "../helpers/api.js";
+import { apiHelper } from "../helpers/api.js";
 
 const data = ref({});
 
 onMounted(async () => {
   try {
     const sessionID = useCookie("sessionId");
-    const userID = apiHelperGET(useRuntimeConfig(), "/user/" + sessionID);
-    const historyData = await apiHelperPOST(
+    const user = await apiHelper(
+      "get",
       useRuntimeConfig(),
-      `/api/${userID}/history`,
+      "/user/" + sessionID.value,
+    );
+    const historyData = await apiHelper(
+      "get",
+      useRuntimeConfig(),
+      `/api/${user._id}/history`,
     );
     data.value = historyData;
   } catch (error) {

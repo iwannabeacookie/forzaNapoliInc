@@ -14,7 +14,7 @@
     </p>
     <div class="buttonsContainer">
       <NuxtLink :to="`item/${item._id}`"><button>Inspect</button></NuxtLink>
-      <button @click="addItemToCart(item)">Add to Cart</button>
+      <button v-if="sessionId" @click="addItemToCart(item)">Add to Cart</button>
     </div>
   </div>
 </template>
@@ -22,6 +22,7 @@
 <script setup>
 import { computed } from "vue";
 import { addItemToCart } from "../cart/scripts/cart";
+const sessionId = useCookie("sessionId")
 
 const props = defineProps({
   item: {
