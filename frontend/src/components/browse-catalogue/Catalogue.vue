@@ -46,7 +46,7 @@
 import { ref, onMounted, watch, computed } from "vue";
 import CatalogueItem from "./CatalogueItem.vue";
 import Item from "./CatalogueItem.vue";
-import getCatalogue from "./scripts/getCatalogue.js";
+import { apiHelperGET } from "../helpers/api.js";
 
 const items = ref([]);
 const selectedFilter = ref("");
@@ -113,7 +113,7 @@ watch(
 );
 
 onMounted(async () => {
-  items.value = await getCatalogue();
+  items.value = await apiHelperGET(useRuntimeConfig(), "/api/catalogue", {});
 });
 </script>
 
