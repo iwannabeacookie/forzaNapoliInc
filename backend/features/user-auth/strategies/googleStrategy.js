@@ -34,6 +34,7 @@ const googleStrategy = new GoogleStrategy(
       surname: profile.name.familyName,
       email: profile.emails[0].value,
       googleID: profile.id,
+      role: "Customer",
       VIP: false,
       newsletter: false,
       Cart: [],

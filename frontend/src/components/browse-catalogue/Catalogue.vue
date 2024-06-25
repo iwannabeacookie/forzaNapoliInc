@@ -43,6 +43,7 @@ import { ref, onMounted, watch, computed } from "vue";
 import Item from "./CatalogueItem.vue";
 import 'intro.js/introjs.css';
 import getCatalogue from "./scripts/getCatalogue.js";
+import { apiHelperGET } from "../helpers/api.js";
 // Guides - Intro.js
 import introJs from "intro.js";
 const introOptions = {
@@ -127,7 +128,7 @@ watch(
 );
 
 onMounted(async () => {
-  items.value = await getCatalogue();
+  items.value = await apiHelperGET(useRuntimeConfig(), "/api/catalogue", {});
 });
 </script>
 
