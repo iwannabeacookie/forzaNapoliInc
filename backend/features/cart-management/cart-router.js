@@ -35,16 +35,23 @@ const cartRouter = Router();
  *     responses:
  *       200:
  *         description: Retuns the new cart
+ *       400:
+ *         description: Returns false, indicating the cart wasn't updated properly due to an error with the request's parameters
  */
 cartRouter.put("/cart/update", (req, res) => {
   const reqBody = req.body;
   console.info("Updating cart:", reqBody);
-  updateCart(reqBody.new_cart, reqBody.user_id).then((newCart) => {
-    console.info("New Cart:", newCart);
-    return res
-      .status(200)
-      .json({ client_id: reqBody.user_id, updated_cart: newCart });
-  });
+  try {
+    updateCart(reqBody.new_cart, reqBody.user_id).then((newCart) => {
+      console.info("New Cart:", newCart);
+      return res
+        .status(200)
+        .json({ client_id: reqBody.user_id, updated_cart: newCart });
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json(false);
+  }
 });
 
 /**
@@ -69,14 +76,21 @@ cartRouter.put("/cart/update", (req, res) => {
  *     responses:
  *       200:
  *         description: Retuns the user's cart
+ *       400:
+ *         description: Returns false, indicating the user cart wasn't fetched properly due to an issue with the request
  */
 cartRouter.get("/cart/get/:userId", (req, res) => {
   const userId = req.params.userId;
   console.info("Getting cart:", userId);
-  getCart(userId).then((cart) => {
-    console.info("Cart:", cart);
-    return res.status(200).json({ client_id: userId, cart: cart });
-  });
+  try {
+    getCart(userId).then((cart) => {
+      console.info("Cart:", cart);
+      return res.status(200).json({ client_id: userId, cart: cart });
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(400).json(false);
+  }
 });
 
 export default cartRouter;
