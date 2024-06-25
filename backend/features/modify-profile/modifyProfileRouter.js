@@ -1,11 +1,10 @@
 import express from 'express';
 import usercollection from "../user-auth/models/userModel.js";
-import googlecollection from "../user-auth/models/google_user.js";
 import { checkAuth } from "../../helpers/auth.js";
 
 const modifyRouter = express.Router();
 
-modifyRouter.post('/profile/modify/name', checkAuth, async (req, res) => {
+modifyRouter.put('/profile/name', checkAuth, async (req, res) => {
     req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
         if (session) {
             if (session.passport) {
@@ -20,7 +19,7 @@ modifyRouter.post('/profile/modify/name', checkAuth, async (req, res) => {
     });
 });
 
-modifyRouter.post('/profile/modify/surname', checkAuth, async (req, res) => {
+modifyRouter.put('/profile/surname', checkAuth, async (req, res) => {
     req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
         if (session) {
             if (session.passport) {
@@ -35,7 +34,7 @@ modifyRouter.post('/profile/modify/surname', checkAuth, async (req, res) => {
     });
 });
 
-modifyRouter.post('/profile/modify/password', checkAuth, async (req, res) => {
+modifyRouter.put('/profile/password', checkAuth, async (req, res) => {
     req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
         if (session) {
             if (session.passport) {

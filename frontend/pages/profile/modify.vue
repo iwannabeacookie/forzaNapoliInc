@@ -96,6 +96,8 @@ import axios from "axios";
 const sessionid = useCookie("sessionId");
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
+const runtime = useRuntimeConfig().public.baseApiUrl;
+
 
 export default {
   name: "User",
@@ -110,22 +112,15 @@ export default {
   },
   async AsyncData() {
     let data = {};
-    await axios
-      .get("http://localhost:3000/user", {
-        sessionid: sessionid,
-      })
-      .then((response) => {
-        data = response;
-      })
-      .catch((error) => {
-        console.log("Fetch user error: ", error);
-      });
+    data = await apiHelperPOST(useRuntimeConfig(), "/user", {
+      sessionid: sessionid,
+    });
     return { data: data };
   },
   methods: {
     async modifyName() {
       await axios
-        .post("http://localhost:3000/profile/modify/name", {
+        .put(`${runtime}/profile/name`, {
           name: this.name,
           sessionid: sessionid,
         })
@@ -144,7 +139,7 @@ export default {
     },
     async modifySurname() {
       await axios
-        .post("http://localhost:3000/profile/modify/surname", {
+        .put(`${runtime}/profile/surname`, {
           surname: this.surname,
           sessionid: sessionid,
         })
@@ -164,7 +159,7 @@ export default {
     async modifyPassword() {
       if (this.password === this.repassword) {
         await axios
-          .post("http://localhost:3000/profile/modify/password", {
+          .put(`${runtime}/profile/password`, {
             password: this.password,
             sessionid: sessionid,
           })
@@ -190,9 +185,12 @@ export default {
     },
     async subscribe(email) {
       await axios
-        .post("http://localhost:3000//newsletter/add-to-newsletter", {
-          email: email,
-        })
+        .post(
+          `${runtime}/newsletter/add-to-newsletter`,
+          {
+            email: email,
+          },
+        )
         .then((response) => {
           console.log(response);
         })
@@ -202,9 +200,12 @@ export default {
     },
     async unSubscribe(email) {
       await axios
-        .post("http://localhost:3000/newsletter/remove-from-newsletter", {
-          email: email,
-        })
+        .post(
+          `${runtime}/newsletter/remove-from-newsletter`,
+          {
+            email: email,
+          },
+        )
         .then((response) => {
           console.log(response);
         })
