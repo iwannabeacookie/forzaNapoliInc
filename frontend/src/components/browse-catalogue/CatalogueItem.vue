@@ -22,7 +22,7 @@
 <script setup>
 import { computed } from "vue";
 import { addItemToCart } from "../cart/scripts/cart";
-const sessionId = useCookie("sessionId")
+const sessionId = useCookie("sessionId");
 
 const props = defineProps({
   item: {
