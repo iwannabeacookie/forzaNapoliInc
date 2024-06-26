@@ -11,14 +11,15 @@
 <script>
 import axios from "axios";
 import "~/assets/css/access_form.css";
+const runtime = useRuntimeConfig().public.baseApiUrl;
 
 export default {
   methods: {
     async userLogout() {
       const sessionid = useCookie("sessionId");
       await axios
-        .post("http://localhost:3000/logout", {
-          sessionid: sessionid,
+        .post(`${runtime}/logout`, {
+          sessionid: sessionid.value,
         })
         .then((response) => {
           sessionid.value = null;

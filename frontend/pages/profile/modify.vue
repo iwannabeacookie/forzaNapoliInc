@@ -148,8 +148,6 @@ async function unSubscribe(email) {
 }
 </script>
 
-
-
 <style>
 .modifyPage {
   border: 1px solid #ddd;

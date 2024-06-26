@@ -18,6 +18,38 @@ localAuth.use(flash());
 
 //Log In
 
+/**
+ * @openapi
+ * /login:
+ *   post:
+ *     tags:
+ *       - User
+ *     description: Log in
+ *     parameters:
+ *       - name: email
+ *         in: body
+ *         required: true
+ *         description: User's email
+ *         schema:
+ *           type: string
+ *       - name: password
+ *         in: body
+ *         required: true
+ *         description: User's password
+ *         schema:
+ *            type: string
+ *     responses:
+ *       200:
+ *         description: Return User Session Id
+ *         content:
+ *           string
+ *       404:
+ *         description: Not Found
+ *
+ *       400:
+ *         description: Wrong credential
+ */
+
 localAuth.post(
   "/login",
   passport.authenticate("local", { failureRedirect: "/message/error" }),
@@ -31,6 +63,50 @@ localAuth.get("/message/error", (req, res) => {
 });
 
 //Sign Up
+
+/**
+ * @openapi
+ * /signup:
+ *   post:
+ *     tags:
+ *       - User
+ *     description: Sign up
+ *     parameters:
+ *       - name: name
+ *         in: body
+ *         required: true
+ *         description: User's name
+ *         schema:
+ *           type: string
+ *        - name: surname
+ *         in: body
+ *         required: true
+ *         description: User's surname
+ *         schema:
+ *           type: string
+ *       - name: email
+ *         in: body
+ *         required: true
+ *         description: User's email
+ *         schema:
+ *           type: string
+ *       - name: password
+ *         in: body
+ *         required: true
+ *         description: User's password
+ *         schema:
+ *            type: string
+ *     responses:
+ *       200:
+ *         description: Return User Session Id
+ *         content:
+ *           string
+ *       404:
+ *         description: Not Found
+ *
+ *       400:
+ *         description: Already used credential
+ */
 
 localAuth.post("/signup", async (req, res, next) => {
   const checkuser = await usercollection.findOne({ email: req.body.email });
@@ -81,16 +157,68 @@ localAuth.post("/signup", async (req, res, next) => {
 
 //Log Out
 
+/**
+ * @openapi
+ * /logout:
+ *   post:
+ *     tags:
+ *       - User
+ *     description: Log Out
+ *     parameters:
+ *       - name: sessionid
+ *         in: body
+ *         required: true
+ *         description: User's session Id
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Session sucessfully destroied
+ *         content:
+ *           string
+ *       404:
+ *         description: Not Found
+ *
+ *       500:
+ *         description: Non logged in user
+ */
+
 localAuth.post("/logout", checkAuth, (req, res) => {
-  req.sessionStore.destroy(req.body.sessionid._value, (error) => {
-    res.status(200).end();
+  req.sessionStore.destroy(req.body.sessionid, (error) => {
+    res.status(200).send("OK");
   });
 });
 
 //Sign Out
 
+/**
+ * @openapi
+ * /signout:
+ *   post:
+ *     tags:
+ *       - User
+ *     description: Sign Out
+ *     parameters:
+ *       - name: sessionid
+ *         in: body
+ *         required: true
+ *         description: User's session Id
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Account sucessfully destroied
+ *         content:
+ *           string
+ *       404:
+ *         description: Not Found
+ *
+ *       500:
+ *         description: Non logged in user
+ */
+
 localAuth.post("/signout", checkAuth, async (req, res) => {
-  req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
+  req.sessionStore.get(req.body.sessionid, async (error, session) => {
     if (session) {
       if (session.passport.user.issuer) {
         await googlecollection.findOneAndDelete({
@@ -111,15 +239,71 @@ localAuth.post("/signout", checkAuth, async (req, res) => {
 
 //Get Session
 
-localAuth.post("/session", checkAuth, (req, res) => {
-  req.sessionStore.get(req.body.sessionid._value, async (error, session) => {
+/**
+ * @openapi
+ * /session/{sessionId}:
+ *   get:
+ *     tags:
+ *       - User
+ *     description: Fetches an session by ID
+ *     parameters:
+ *       - name: sesionId
+ *         in: path
+ *         required: true
+ *         description: The ID of the session to fetch
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: 
+ *         content:
+ *           applicatio/jon
+ *       404:
+ *         description: Not Found
+ *
+ *       500:
+ *         description: No valid session ID
+ */
+
+localAuth.get("/session/:sessionId", (req, res) => {
+  const sessionId = req.params.sessionId;
+  req.sessionStore.get(sessionId, async (error, session) => {
     if (session) {
       res.json(session);
+    } else {
+      res.status(500).send("Nn valid session ID")
     }
   });
 });
 
 //Get User
+
+/**
+ * @openapi
+ * /user/{sessionId}:
+ *   get:
+ *     tags:
+ *       - User
+ *     description: Fetches an User by sessionID
+ *     parameters:
+ *       - name: sesionId
+ *         in: path
+ *         required: true
+ *         description: The ID of the session of the user to fetch
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: 
+ *         content:
+ *           applicatio/jon
+ *       404:
+ *         description: Not Found
+ *
+ *       500:
+ *         description: No valid session ID
+ */
+
 localAuth.get("/user/:sessionId", async (req, res) => {
   const sessionId = req.params.sessionId;
   req.sessionStore.get(sessionId, async (error, session) => {
@@ -130,6 +314,8 @@ localAuth.get("/user/:sessionId", async (req, res) => {
         });
         res.json(user);
       }
+    } else {
+      res.status(500).send("Non valid Session")
     }
   });
 });

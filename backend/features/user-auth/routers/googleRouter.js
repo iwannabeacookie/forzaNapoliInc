@@ -18,12 +18,12 @@ GoogleAuth.get(
   "/google/redirect",
   passport.authenticate("google", {
     successRedirect: "/google/success",
-    failureRedirect: "http://localhost:5173/auth/login",
+    failureRedirect: "https://cd-ui1-6bafkhtnna-ew.a.run.app/auth/login",
   }),
 );
 
 GoogleAuth.get("/google/success", (req, res) => {
-  const redirect = "http://localhost:5173/auth/google/" + req.sessionID;
+  const redirect = "https://cd-ui1-6bafkhtnna-ew.a.run.app/auth/google/" + req.sessionID;
   res.redirect(redirect);
 });
 
