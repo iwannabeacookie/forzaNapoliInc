@@ -40,6 +40,10 @@ npm install
 ## Usage
 
 ```bash
-# Run the server
-npm start
+# Run the backend
+cd backend && npm run dev
+# On a separate terminal, run the frontend
+cd frontend && npm run dev
 ```
+
+When running both, as part of our CI suite, there will be a linter and formatter that scan all files and lint and format them. Specifically, that would be eslint and prettier.
