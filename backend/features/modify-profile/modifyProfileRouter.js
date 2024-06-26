@@ -12,30 +12,32 @@ const modifyRouter = express.Router();
  *     tags:
  *       - User
  *     description: Change the user's name
- *     parameters:
- *       - name: sessionid
- *         in: body
- *         required: true
- *         description: The ID of the user's session
- *         schema:
- *           type: string
- *       - name: name
- *         in: body
- *         required: true
- *         description: The new value of user's name
- *         schema:
- *            type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               sessionid:
+ *                 type: string
+ *                 description: The ID of the user's session
+ *               name:
+ *                 type: string
+ *                 description: The new value of the user's name
  *     responses:
  *       200:
  *         description: OK
  *         content:
- *           string
+ *           application/json:
+ *             schema:
+ *               type: string
  *       404:
  *         description: Not Found
- *
  *       500:
  *         description: Internal Server Error
  */
+
 modifyRouter.put("/profile/name", checkAuth, async (req, res) => {
   req.sessionStore.get(req.body.sessionid, async (error, session) => {
     if (session) {
@@ -57,31 +59,33 @@ modifyRouter.put("/profile/name", checkAuth, async (req, res) => {
  *   put:
  *     tags:
  *       - User
- *     description: Change the user's name
- *     parameters:
- *       - name: sessionid
- *         in: body
- *         required: true
- *         description: The ID of the user's session
- *         schema:
- *           type: string
- *       - name: surname
- *         in: body
- *         required: true
- *         description: The new value of user's surname
- *         schema:
- *            type: string
+ *     description: Change the user's surname
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               sessionid:
+ *                 type: string
+ *                 description: The ID of the user's session
+ *               surname:
+ *                 type: string
+ *                 description: The new value of the user's surname
  *     responses:
  *       200:
  *         description: OK
  *         content:
- *           string
+ *           application/json:
+ *             schema:
+ *               type: string
  *       404:
  *         description: Not Found
- *
  *       500:
  *         description: Internal Server Error
  */
+
 modifyRouter.put("/profile/surname", checkAuth, async (req, res) => {
   req.sessionStore.get(req.body.sessionid, async (error, session) => {
     if (session) {
@@ -103,31 +107,33 @@ modifyRouter.put("/profile/surname", checkAuth, async (req, res) => {
  *   put:
  *     tags:
  *       - User
- *     description: Change the user's name
- *     parameters:
- *       - name: sessionid
- *         in: body
- *         required: true
- *         description: The ID of the user's session
- *         schema:
- *           type: string
- *       - name: password
- *         in: body
- *         required: true
- *         description: The new value of user's password
- *         schema:
- *            type: string
+ *     description: Change the user's password
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               sessionid:
+ *                 type: string
+ *                 description: The ID of the user's session
+ *               password:
+ *                 type: string
+ *                 description: The new value of the user's password
  *     responses:
  *       200:
  *         description: OK
  *         content:
- *           string
+ *           application/json:
+ *             schema:
+ *               type: string
  *       404:
  *         description: Not Found
- *
  *       500:
  *         description: Internal Server Error
  */
+
 modifyRouter.put("/profile/password", checkAuth, async (req, res) => {
   req.sessionStore.get(req.body.sessionid, async (error, session) => {
     if (session) {

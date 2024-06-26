@@ -16,6 +16,20 @@ passport.use(localStrategy);
 const localAuth = express.Router();
 localAuth.use(flash());
 
+/**
+ * @openapi
+ * tags:
+ *   - name: Auth
+ *     description: Authentication related endpoints
+ */
+
+/**
+ * @openapi
+ * tags:
+ *   - name: User
+ *     description: User info related endpoints
+ */
+
 //Log In
 
 /**
@@ -23,29 +37,30 @@ localAuth.use(flash());
  * /login:
  *   post:
  *     tags:
- *       - User
+ *       - Auth
  *     description: Log in
- *     parameters:
- *       - name: email
- *         in: body
- *         required: true
- *         description: User's email
- *         schema:
- *           type: string
- *       - name: password
- *         in: body
- *         required: true
- *         description: User's password
- *         schema:
- *            type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 description: User's email
+ *               password:
+ *                 type: string
+ *                 description: User's password
  *     responses:
  *       200:
  *         description: Return User Session Id
  *         content:
- *           string
+ *           application/json:
+ *             schema:
+ *               type: string
  *       404:
  *         description: Not Found
- *
  *       400:
  *         description: Wrong credential
  */
@@ -69,41 +84,36 @@ localAuth.get("/message/error", (req, res) => {
  * /signup:
  *   post:
  *     tags:
- *       - User
+ *       - Auth
  *     description: Sign up
- *     parameters:
- *       - name: name
- *         in: body
- *         required: true
- *         description: User's name
- *         schema:
- *           type: string
- *        - name: surname
- *         in: body
- *         required: true
- *         description: User's surname
- *         schema:
- *           type: string
- *       - name: email
- *         in: body
- *         required: true
- *         description: User's email
- *         schema:
- *           type: string
- *       - name: password
- *         in: body
- *         required: true
- *         description: User's password
- *         schema:
- *            type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *                 description: User's name
+ *               surname:
+ *                 type: string
+ *                 description: User's surname
+ *               email:
+ *                 type: string
+ *                 description: User's email
+ *               password:
+ *                 type: string
+ *                 description: User's password
  *     responses:
  *       200:
  *         description: Return User Session Id
  *         content:
- *           string
+ *           application/json:
+ *             schema:
+ *               type: string
  *       404:
  *         description: Not Found
- *
  *       400:
  *         description: Already used credential
  */
@@ -162,23 +172,27 @@ localAuth.post("/signup", async (req, res, next) => {
  * /logout:
  *   post:
  *     tags:
- *       - User
+ *       - Auth
  *     description: Log Out
- *     parameters:
- *       - name: sessionid
- *         in: body
- *         required: true
- *         description: User's session Id
- *         schema:
- *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               sessionid:
+ *                 type: string
+ *                 description: User's session Id
  *     responses:
  *       200:
- *         description: Session sucessfully destroied
+ *         description: Session successfully destroyed
  *         content:
- *           string
+ *           application/json:
+ *             schema:
+ *               type: string
  *       404:
  *         description: Not Found
- *
  *       500:
  *         description: Non logged in user
  */
@@ -196,23 +210,27 @@ localAuth.post("/logout", checkAuth, (req, res) => {
  * /signout:
  *   post:
  *     tags:
- *       - User
+ *       - Auth
  *     description: Sign Out
- *     parameters:
- *       - name: sessionid
- *         in: body
- *         required: true
- *         description: User's session Id
- *         schema:
- *           type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               sessionid:
+ *                 type: string
+ *                 description: User's session Id
  *     responses:
  *       200:
- *         description: Account sucessfully destroied
+ *         description: Account successfully destroyed
  *         content:
- *           string
+ *           application/json:
+ *             schema:
+ *               type: string
  *       404:
  *         description: Not Found
- *
  *       500:
  *         description: Non logged in user
  */
@@ -245,9 +263,9 @@ localAuth.post("/signout", checkAuth, async (req, res) => {
  *   get:
  *     tags:
  *       - User
- *     description: Fetches an session by ID
+ *     description: Fetches a session by ID
  *     parameters:
- *       - name: sesionId
+ *       - name: sessionId
  *         in: path
  *         required: true
  *         description: The ID of the session to fetch
@@ -255,12 +273,20 @@ localAuth.post("/signout", checkAuth, async (req, res) => {
  *           type: string
  *     responses:
  *       200:
- *         description:
+ *         description: Session fetched successfully
  *         content:
- *           applicatio/jon
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                 userId:
+ *                   type: string
+ *                 status:
+ *                   type: string
  *       404:
  *         description: Not Found
- *
  *       500:
  *         description: Invalid session ID
  */
@@ -271,7 +297,7 @@ localAuth.get("/session/:sessionId", (req, res) => {
     if (session) {
       res.json(session);
     } else {
-      res.status(500).send("Invalid session ID");
+      res.status(500).send("Nn valid session ID");
     }
   });
 });
@@ -284,9 +310,9 @@ localAuth.get("/session/:sessionId", (req, res) => {
  *   get:
  *     tags:
  *       - User
- *     description: Fetches an User by sessionID
+ *     description: Fetches a User by sessionID
  *     parameters:
- *       - name: sesionId
+ *       - name: sessionId
  *         in: path
  *         required: true
  *         description: The ID of the session of the user to fetch
@@ -294,12 +320,20 @@ localAuth.get("/session/:sessionId", (req, res) => {
  *           type: string
  *     responses:
  *       200:
- *         description:
+ *         description: User fetched successfully
  *         content:
- *           applicatio/jon
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: string
+ *                 name:
+ *                   type: string
+ *                 email:
+ *                   type: string
  *       404:
  *         description: Not Found
- *
  *       500:
  *         description: No valid session ID
  */
