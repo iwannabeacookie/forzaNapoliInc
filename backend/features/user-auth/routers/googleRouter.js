@@ -23,7 +23,8 @@ GoogleAuth.get(
 );
 
 GoogleAuth.get("/google/success", (req, res) => {
-  const redirect = "https://cd-ui1-6bafkhtnna-ew.a.run.app/auth/google/" + req.sessionID;
+  const redirect =
+    "https://cd-ui1-6bafkhtnna-ew.a.run.app/auth/google/" + req.sessionID;
   res.redirect(redirect);
 });
 

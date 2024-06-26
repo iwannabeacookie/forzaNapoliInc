@@ -7,8 +7,16 @@ import userSchema from "../user-auth/models/userModel.js";
  */
 export async function updateCart(newCart, customer_id) {
   console.info("Customer Id:", customer_id, "\n New Cart:", newCart);
-  await userSchema.updateOne({ _id: customer_id }, { $set: { cart: newCart } });
-  return await userSchema.findOne({ _id: customer_id });
+  try {
+    await userSchema.updateOne(
+      { _id: customer_id },
+      { $set: { cart: newCart } },
+    );
+    return await userSchema.findOne({ _id: customer_id });
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 }
 
 export async function getCart(customer_id) {

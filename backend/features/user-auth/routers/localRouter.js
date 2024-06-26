@@ -255,14 +255,14 @@ localAuth.post("/signout", checkAuth, async (req, res) => {
  *           type: string
  *     responses:
  *       200:
- *         description: 
+ *         description:
  *         content:
  *           applicatio/jon
  *       404:
  *         description: Not Found
  *
  *       500:
- *         description: No valid session ID
+ *         description: Invalid session ID
  */
 
 localAuth.get("/session/:sessionId", (req, res) => {
@@ -271,7 +271,7 @@ localAuth.get("/session/:sessionId", (req, res) => {
     if (session) {
       res.json(session);
     } else {
-      res.status(500).send("Nn valid session ID")
+      res.status(500).send("Invalid session ID");
     }
   });
 });
@@ -294,7 +294,7 @@ localAuth.get("/session/:sessionId", (req, res) => {
  *           type: string
  *     responses:
  *       200:
- *         description: 
+ *         description:
  *         content:
  *           applicatio/jon
  *       404:
@@ -315,7 +315,7 @@ localAuth.get("/user/:sessionId", async (req, res) => {
         res.json(user);
       }
     } else {
-      res.status(500).send("Non valid Session")
+      res.status(500).send("Non valid Session");
     }
   });
 });

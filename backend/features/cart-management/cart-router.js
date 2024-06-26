@@ -44,6 +44,9 @@ cartRouter.put("/cart/update", (req, res) => {
   try {
     updateCart(reqBody.new_cart, reqBody.user_id).then((newCart) => {
       console.info("New Cart:", newCart);
+      if (newCart === false) {
+        return res.status(400).json(false);
+      }
       return res
         .status(200)
         .json({ client_id: reqBody.user_id, updated_cart: newCart });
