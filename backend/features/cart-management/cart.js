@@ -13,7 +13,12 @@ export async function updateCart(newCart, customer_id) {
 
 export async function getCart(customer_id) {
   console.log("Getting cart of", customer_id);
-  const user = await userSchema.findOne({ _id: customer_id });
-  console.info("Cart:", user.cart);
-  return user.cart;
+  try {
+    const user = await userSchema.findOne({ _id: customer_id });
+    console.info("Cart:", user.cart);
+    return user.cart;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 }
