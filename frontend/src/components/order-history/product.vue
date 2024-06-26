@@ -13,8 +13,7 @@ export default {
 <template>
   <div>
     <label>
-      {{ item.article }}: {{ item.quantity }} штук ёпта ......
-      {{ item.quantity * item.price }}₽
+      {{ item.article }}: {{ item.quantity }} pieces - {{ item.quantity * item.price }} €
     </label>
   </div>
 </template>
