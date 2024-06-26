@@ -3,22 +3,49 @@
     <div class="nameSurnameForm">
       <form @submit.prevent="modifyName" class="formSN">
         <p>CHANGE NAME</p>
-        <input type="text" v-model="name" required placeholder="Enter new name" class="input" />
+        <input
+          type="text"
+          v-model="name"
+          required
+          placeholder="Enter new name"
+          class="input"
+        />
         <input type="submit" value="UPDATE" />
       </form>
       <form @submit.prevent="modifySurname" class="formSN">
         <p>CHANGE SURNAME</p>
-        <input type="text" v-model="surname" required placeholder="Enter new surname" class="input" />
+        <input
+          type="text"
+          v-model="surname"
+          required
+          placeholder="Enter new surname"
+          class="input"
+        />
         <input type="submit" value="UPDATE" />
       </form>
     </div>
     <form @submit.prevent="modifyPassword" class="formP">
       <p>CHANGE PASSWORD</p>
-      <input type="password" v-model="repeatPassword" required placeholder="Enter new password" class="input" />
-      <input type="password" v-model="password" required placeholder="Re-enter new password" class="input" />
+      <input
+        type="password"
+        v-model="repeatPassword"
+        required
+        placeholder="Enter new password"
+        class="input"
+      />
+      <input
+        type="password"
+        v-model="password"
+        required
+        placeholder="Re-enter new password"
+        class="input"
+      />
       <input type="submit" value="UPDATE" />
     </form>
-    <form @submit.prevent="unSubscribe(userData.email)" v-if="userData.newsletter">
+    <form
+      @submit.prevent="unSubscribe(userData.email)"
+      v-if="userData.newsletter"
+    >
       <p>Un-subscribe from the newsletter</p>
       <input type="submit" value="Un-Subscribe" />
     </form>
@@ -37,26 +64,30 @@ const sessionid = useCookie("sessionId");
 import { toast } from "vue3-toastify";
 import "vue3-toastify/dist/index.css";
 const runtime = useRuntimeConfig().public.baseApiUrl;
-const userData = ref({})
-const name = ref("")
-const surname = ref("")
-const password = ref("")
-const repeatPassword = ref("")
+const userData = ref({});
+const name = ref("");
+const surname = ref("");
+const password = ref("");
+const repeatPassword = ref("");
 
 onMounted(async () => {
-  grabNewData()
-})
+  grabNewData();
+});
 
 async function grabNewData() {
-  const newData = await apiHelper("get", useRuntimeConfig(), `/user/${sessionid.value}`);
-  userData.value = newData
+  const newData = await apiHelper(
+    "get",
+    useRuntimeConfig(),
+    `/user/${sessionid.value}`,
+  );
+  userData.value = newData;
 }
 
 async function modifyName() {
   await axios
     .put(`${runtime}/profile/name`, {
       name: name.value,
-      sessionid: sessionid,
+      sessionid: sessionid.value,
     })
     .then((response) => {
       console.log(response);
@@ -76,7 +107,7 @@ async function modifySurname() {
   await axios
     .put(`${runtime}/profile/surname`, {
       surname: surname.value,
-      sessionid: sessionid,
+      sessionid: sessionid.value,
     })
     .then((response) => {
       console.log(response);
@@ -93,11 +124,11 @@ async function modifySurname() {
 }
 
 async function modifyPassword() {
-  if (password.value == repeatPassword.value) {
+  if (password.value.toString() === repeatPassword.value.toString()) {
     await axios
       .put(`${runtime}/profile/password`, {
         password: password.value,
-        sessionid: sessionid,
+        sessionid: sessionid.value,
       })
       .then((response) => {
         console.log(response);
@@ -127,7 +158,7 @@ async function subscribe(email) {
     })
     .then((response) => {
       console.log(response);
-      grabNewData()
+      grabNewData();
     })
     .catch((error) => {
       console.log(error);
@@ -140,7 +171,7 @@ async function unSubscribe(email) {
     })
     .then((response) => {
       console.log(response);
-      grabNewData()
+      grabNewData();
     })
     .catch((error) => {
       console.log(error);
@@ -168,7 +199,7 @@ form {
   text-align: center;
 }
 
-form>p {
+form > p {
   margin-bottom: 15px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
