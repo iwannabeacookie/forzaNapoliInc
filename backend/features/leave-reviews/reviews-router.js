@@ -6,39 +6,38 @@ import { checkAuth } from "../../helpers/auth.js";
 const reviewRouter = express.Router();
 
 /**
+/**
  * @openapi
  * /review:
  *   post:
  *     tags:
  *       - Item
  *     description: Add a review to the reviews array of an item
- *     parameters:
- *       - name: sessionid
- *         in: body
- *         required: true
- *         description: The ID of the user's session
- *         schema:
- *           type: string
- *       - name: itemid
- *         in: body
- *         required: true
- *         description: The ID of the item to add the review
- *         schema:
- *            type: string
- *       - name: comment
- *         in: body
- *         required: true
- *         description: The cotent of the review
- *         schema:
- *            type: string
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               sessionid:
+ *                 type: string
+ *                 description: The ID of the user's session
+ *               itemid:
+ *                 type: string
+ *                 description: The ID of the item to add the review
+ *               comment:
+ *                 type: string
+ *                 description: The content of the review
  *     responses:
  *       200:
  *         description: OK
  *         content:
- *           string
+ *           application/json:
+ *             schema:
+ *               type: string
  *       404:
  *         description: Not Found
- *
  *       500:
  *         description: Internal Server Error
  */
